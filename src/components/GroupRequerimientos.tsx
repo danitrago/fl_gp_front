@@ -49,7 +49,7 @@ const GroupRequerimientos = (props: any) => {
               })}
             >
               <option value="">Seleccionar...</option>
-              {ddl.tipoConsultores.map((option: IDdl) => (
+              {ddl.listaRequisitos.map((option: IDdl) => (
                 <option key={option.id} value={option.id}>
                   {option.label}
                 </option>
