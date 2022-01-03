@@ -15,6 +15,7 @@ export interface IFieldsRequerimientos {
 }
 
 const GroupRequerimientos = (props: any) => {
+  const { ddl } = props;
   const {
     register,
     handleSubmit,

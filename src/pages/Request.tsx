@@ -27,13 +27,13 @@ const Request = () => {
 
   useEffect(() => {
     axios
-      .get("http://localhost:3000/api/fl-gp-solicitudes")
+      .get("http://localhost:3000/api/ddl-fl-gp")
       .then((response) => {
         setDdl(response.data);
       })
       .catch((e) => {
         alert("Error al cargar las opciones");
-        // setDdl(ddlFile);
+        console.log(e);
       });
   }, []);
 
@@ -54,6 +54,7 @@ const Request = () => {
           <FormRecursos
             setToSubmitData={setToSubmitData}
             setSelectedStep={setSelectedStep}
+            ddl={ddl}
           />
         </WizardContent>
         {/* Step 3 */}
@@ -61,6 +62,7 @@ const Request = () => {
           <FormRequerimientos
             setToSubmitData={setToSubmitData}
             setSelectedStep={setSelectedStep}
+            ddl={ddl}
           />
         </WizardContent>
         {/* Step 4 */}

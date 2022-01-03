@@ -12,4 +12,5 @@ export interface IFormStepProps {
   setSelectedStep: React.Dispatch<React.SetStateAction<string>>;
   setToSubmitData: React.Dispatch<React.SetStateAction<IFieldsData | null>>;
   demo?: string;
+  ddl?: any;
 }

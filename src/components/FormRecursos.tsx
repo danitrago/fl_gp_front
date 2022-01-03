@@ -36,6 +36,7 @@ const FormRecursos = (props: any) => {
             unique={props.formGroup.length === 1}
             removeGroup={props.removeGroup}
             onSubmit={props.onSubmit}
+            ddl={props.ddl}
           />
         );
       })}

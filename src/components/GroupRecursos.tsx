@@ -6,7 +6,7 @@ import Button from "../ui-components/Button";
 import Input from "../ui-components/Input";
 import Select from "../ui-components/Select";
 import TextArea from "../ui-components/TextArea";
-const ddl = require("../assets/ddl.json");
+// const ddl = require("../assets/ddl.json");
 
 export interface IFieldsRecursos {
   crcf3_group_id_front: number;
@@ -19,6 +19,7 @@ export interface IFieldsRecursos {
 }
 
 const GroupRecursos = (props: any) => {
+  const { ddl } = props;
   const {
     register,
     handleSubmit,
