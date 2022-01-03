@@ -25,10 +25,35 @@ const Request = () => {
 
   const [ddl, setDdl] = useState(ddlFile);
 
+  const getDdlOptions = () => {
+    axios
+      .get(
+        `${
+          process.env.NODE_ENV === "development"
+            ? process.env.REACT_APP_API_DEVELOP
+            : process.env.REACT_APP_API_PRODUCTION
+        }/api/ddl-fl-gp`
+      )
+      .then((response) => {
+        setDdl(response.data);
+      })
+      .catch((e) => {
+        // alert("Error al cargar las opciones");
+        console.log(e);
+      });
+  };
+
   const postData = () => {
     console.log("send data");
     axios
-      .post("http://localhost:3000/api/fl-gp-solicitudes", toSubmitData)
+      .post(
+        `${
+          process.env.NODE_ENV === "development"
+            ? process.env.REACT_APP_API_DEVELOP
+            : process.env.REACT_APP_API_PRODUCTION
+        }/api/fl-gp-solicitudes`,
+        toSubmitData
+      )
       .then((response) => {
         console.log(response);
         alert("¡Hecho! Tu solicitud ha sido creada.");
@@ -40,19 +65,12 @@ const Request = () => {
   };
 
   useEffect(() => {
-    axios
-      .get("http://localhost:3000/api/ddl-fl-gp")
-      .then((response) => {
-        setDdl(response.data);
-      })
-      .catch((e) => {
-        alert("Error al cargar las opciones");
-        console.log(e);
-      });
+    getDdlOptions();
   }, []);
 
   return (
     <div>
+      {console.log(process.env.NODE_ENV)}
       {toSubmitData && console.log(toSubmitData)}
       <Wizard selectedStep={selectedStep}>
         {/* Step 1 */}
