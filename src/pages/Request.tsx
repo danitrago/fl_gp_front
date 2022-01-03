@@ -20,7 +20,7 @@ export interface IFieldsData {
 }
 
 const Request = () => {
-  const [selectedStep, setSelectedStep] = useState<string>("Historias");
+  const [selectedStep, setSelectedStep] = useState<string>("Caracterización");
   const [toSubmitData, setToSubmitData] = useState<IFieldsData | null>(null);
 
   const [ddl, setDdl] = useState(ddlFile);
