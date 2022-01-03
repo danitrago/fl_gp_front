@@ -13,9 +13,9 @@ export interface IFieldsRecursos {
   crcf3_guid_tipo_consultor: string;
   crcf3_guid_seniority: string;
   crcf3_cantidad_consultores: number;
-  crcf3_dedicacion: number;
+  crcf3_porcentaje_dedicacion: number;
   crcf3_tiempo_requerido: number;
-  crcf3_obsrevaciones: string;
+  crcf3_observaciones: string;
 }
 
 const GroupRecursos = (props: any) => {
@@ -91,7 +91,7 @@ const GroupRecursos = (props: any) => {
               label="% Dedicación*"
               type="number"
               errors={errors}
-              {...register("crcf3_dedicacion", { required: true })}
+              {...register("crcf3_porcentaje_dedicacion", { required: true })}
             />
           </div>
           <div>
@@ -106,7 +106,7 @@ const GroupRecursos = (props: any) => {
             <TextArea
               label="Observaciones"
               errors={errors}
-              {...register("crcf3_obsrevaciones")}
+              {...register("crcf3_observaciones")}
             />
           </div>
         </div>

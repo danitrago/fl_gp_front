@@ -10,9 +10,9 @@ export interface IFormRecursos {
   crcf3_guid_tipo_consultor: string;
   crcf3_guid_seniority: string;
   crcf3_cantidad_consultores: number;
-  crcf3_dedicacion: number;
+  crcf3_porcentaje_dedicacion: number;
   crcf3_tiempo_requerido: number;
-  crcf3_obsrevaciones: string;
+  crcf3_observaciones: string;
 }
 
 interface IFormRecursosProps {
