@@ -7,7 +7,6 @@ export interface IFormGroup {
 
 const withGropusForm = (Component: ComponentType<any>) => {
   const NewComponent = (props: IFormStepProps) => {
-
     const [formGroup, setFormGroup] = useState<IFormGroup[]>([
       {
         id: Date.now(),
@@ -20,12 +19,19 @@ const withGropusForm = (Component: ComponentType<any>) => {
 
     let nextStep: string = "";
 
+    let postAllData = false;
+
     const groupPanel = useRef<HTMLDivElement>(null);
 
-    const submitAllGroups = (newStateSelector: string, newNextStep: string) => {
+    const submitAllGroups = (
+      newStateSelector: string,
+      newNextStep: string,
+      postAll: boolean
+    ) => {
       submitedForms = 0;
       stateSelector = newStateSelector;
       nextStep = newNextStep;
+      postAllData = postAll;
       const forms: any = groupPanel?.current?.getElementsByTagName("form");
       if (forms?.length) {
         [...forms].map((form) =>
@@ -51,7 +57,9 @@ const withGropusForm = (Component: ComponentType<any>) => {
           return { [stateSelector]: [data] };
         }
       });
-      if (submitedForms === formGroup.length && nextStep) {
+      if (postAllData && submitedForms === formGroup.length) {
+        props.postData();
+      } else if (submitedForms === formGroup.length && nextStep) {
         props.setSelectedStep(nextStep);
       }
     };

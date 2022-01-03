@@ -14,9 +14,7 @@ interface IFormHistoriasProps {
 const FormHistorias = (props: any) => {
   return (
     <div ref={props.groupPanel}>
-      <h3 className="text-lg font-bold mb-3">
-        Historias de Usuario
-      </h3>
+      <h3 className="text-lg font-bold mb-3">Historias de Usuario</h3>
       {/* <span className="text-sm mb-5 block">
         Has seleccionado el tipo de solicitud (Recurso), por favor describe los
         detalles de el/los recursos.
@@ -46,9 +44,9 @@ const FormHistorias = (props: any) => {
           Anterior
         </Button>
         <Button
-          onClick={() => props.submitAllGroups("historias", "Historias")}
+          onClick={() => props.submitAllGroups("historias", "Historias", true)}
         >
-          Siguiente
+          Enviar
         </Button>
       </div>
     </div>

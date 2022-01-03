@@ -20,10 +20,24 @@ export interface IFieldsData {
 }
 
 const Request = () => {
-  const [selectedStep, setSelectedStep] = useState<string>("Caracterización");
+  const [selectedStep, setSelectedStep] = useState<string>("Historias");
   const [toSubmitData, setToSubmitData] = useState<IFieldsData | null>(null);
 
   const [ddl, setDdl] = useState(ddlFile);
+
+  const postData = () => {
+    console.log("send data");
+    axios
+      .post("http://localhost:3000/api/fl-gp-solicitudes", toSubmitData)
+      .then((response) => {
+        console.log(response);
+        alert("¡Hecho! Tu solicitud ha sido creada.");
+      })
+      .catch((e) => {
+        console.log(e);
+        alert("Error al crear la solicitud.");
+      });
+  };
 
   useEffect(() => {
     axios
@@ -70,6 +84,7 @@ const Request = () => {
           <FormHistorias
             setToSubmitData={setToSubmitData}
             setSelectedStep={setSelectedStep}
+            postData={postData}
           />
         </WizardContent>
       </Wizard>
