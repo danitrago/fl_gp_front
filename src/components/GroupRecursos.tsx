@@ -1,25 +1,13 @@
-import React, { ReactNode, SetStateAction, useRef, useState } from "react";
-import { SubmitHandler, useForm } from "react-hook-form";
+import React from "react";
+import { useForm } from "react-hook-form";
+import { IFieldsRecursos } from "../interfaces/form-fields";
 import { IDdl } from "../interfaces/global";
-import { IFieldsData } from "../pages/Request";
-import Button from "../ui-components/Button";
 import Input from "../ui-components/Input";
 import Select from "../ui-components/Select";
 import TextArea from "../ui-components/TextArea";
-// const ddl = require("../assets/ddl.json");
-
-export interface IFieldsRecursos {
-  crcf3_group_id_front: number;
-  crcf3_guid_tipo_consultor: string;
-  crcf3_guid_seniority: string;
-  crcf3_cantidad_consultores: number;
-  crcf3_porcentaje_dedicacion: number;
-  crcf3_tiempo_requerido: number;
-  crcf3_observaciones: string;
-}
 
 const GroupRecursos = (props: any) => {
-  const { ddl } = props;
+  const { ddlOptions } = props;
   const {
     register,
     handleSubmit,
@@ -36,7 +24,7 @@ const GroupRecursos = (props: any) => {
           </h4>
           {!props.unique && (
             <a
-              onClick={() => props.removeGroup(props.group.id)}
+              onClick={() => props.removeGroup(props.group.id, 'recursos')}
               className="text-sm text-red-500 font-bold cursor-pointer hover:underline underline-offset-4"
             >
               Eliminar
@@ -53,7 +41,7 @@ const GroupRecursos = (props: any) => {
               })}
             >
               <option value="">Seleccionar...</option>
-              {ddl.tipoConsultores.map((option: IDdl) => (
+              {ddlOptions.tipoConsultores.map((option: IDdl) => (
                 <option key={option.id} value={option.id}>
                   {option.label}
                 </option>
@@ -69,7 +57,7 @@ const GroupRecursos = (props: any) => {
               })}
             >
               <option value="">Seleccionar...</option>
-              {ddl.listaSeniority.map((option: IDdl) => (
+              {ddlOptions.listaSeniority.map((option: IDdl) => (
                 <option key={option.id} value={option.id}>
                   {option.label}
                 </option>

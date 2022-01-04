@@ -1,17 +1,33 @@
-import { IFormRecursos } from "../components/FormRecursos";
-import { IFieldsHistorias } from "../components/GroupHistorias";
-import { IFieldsRequerimientos } from "../components/GroupRequerimientos";
-import { IFieldsData } from "../pages/Request";
+import {
+  IFieldsData,
+  IFieldsHistorias,
+  IFieldsRecursos,
+  IFieldsRequerimientos,
+} from "../interfaces/form-fields";
+import { IFormGroup } from "./withGropusForm";
 
 export type TSubmitData =
-  | IFormRecursos
+  | IFieldsRecursos
   | IFieldsRequerimientos
   | IFieldsHistorias;
-
 export interface IFormStepProps {
   setSelectedStep: React.Dispatch<React.SetStateAction<string>>;
-  setToSubmitData: React.Dispatch<React.SetStateAction<IFieldsData | null>>;
-  demo?: string;
-  ddl?: any;
-  postData?: any;
+  setToSubmitData: React.Dispatch<React.SetStateAction<IFieldsData>>;
+  ddlOptions?: any;
+  postData?: () => void;
 }
+
+export type TSubmitAllGroups = (
+  newStateSelector: string,
+  newNextStep: string,
+  postAll?: boolean
+) => void;
+
+export type TFormStep = {
+  formGroup: IFormGroup[];
+  groupPanel: React.RefObject<HTMLDivElement>;
+  removeGroup: (id: number) => void;
+  onSubmit: (data: TSubmitData) => void;
+  addGroup: () => void;
+  submitAllGroups: TSubmitAllGroups;
+} & IFormStepProps;

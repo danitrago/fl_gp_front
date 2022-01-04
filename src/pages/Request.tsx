@@ -1,27 +1,18 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
-import FormCaracterizacion, {
-  IFieldsCaracterizacion,
-} from "../components/FormCaracterizacion";
+import FormCaracterizacion from "../components/FormCaracterizacion";
 import FormHistorias from "../components/FormHistorias";
 import FormRecursos from "../components/FormRecursos";
 import FormRequerimientos from "../components/FormRequerimientos";
-import { IFieldsHistorias } from "../components/GroupHistorias";
-import { IFieldsRecursos } from "../components/GroupRecursos";
-import { IFieldsRequerimientos } from "../components/GroupRequerimientos";
+import { IFieldsData } from "../interfaces/form-fields";
 import Wizard, { WizardContent } from "../ui-components/Wizard";
 const ddlFile = require("../assets/ddl.json");
 
-export interface IFieldsData {
-  caracterizacion?: IFieldsCaracterizacion;
-  recursos?: IFieldsRecursos;
-  requerimientos?: IFieldsRequerimientos;
-  historias?: IFieldsHistorias;
-}
-
 const Request = () => {
   const [selectedStep, setSelectedStep] = useState<string>("Caracterización");
-  const [toSubmitData, setToSubmitData] = useState<IFieldsData | null>(null);
+  const [toSubmitData, setToSubmitData] = useState<IFieldsData>(
+    {} as IFieldsData
+  );
 
   const [ddl, setDdl] = useState(ddlFile);
 
@@ -70,7 +61,6 @@ const Request = () => {
 
   return (
     <div>
-      {console.log(process.env.NODE_ENV)}
       {toSubmitData && console.log(toSubmitData)}
       <Wizard selectedStep={selectedStep}>
         {/* Step 1 */}
@@ -78,7 +68,7 @@ const Request = () => {
           <FormCaracterizacion
             setToSubmitData={setToSubmitData}
             setSelectedStep={setSelectedStep}
-            ddl={ddl}
+            ddlOptions={ddl}
           />
         </WizardContent>
         {/* Step 2 */}
@@ -86,7 +76,7 @@ const Request = () => {
           <FormRecursos
             setToSubmitData={setToSubmitData}
             setSelectedStep={setSelectedStep}
-            ddl={ddl}
+            ddlOptions={ddl}
           />
         </WizardContent>
         {/* Step 3 */}
@@ -94,7 +84,7 @@ const Request = () => {
           <FormRequerimientos
             setToSubmitData={setToSubmitData}
             setSelectedStep={setSelectedStep}
-            ddl={ddl}
+            ddlOptions={ddl}
           />
         </WizardContent>
         {/* Step 4 */}

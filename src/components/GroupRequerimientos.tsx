@@ -1,21 +1,12 @@
-import React, { ReactNode, SetStateAction, useRef, useState } from "react";
-import { SubmitHandler, useForm } from "react-hook-form";
+import React from "react";
+import { useForm } from "react-hook-form";
+import { IFieldsRequerimientos } from "../interfaces/form-fields";
 import { IDdl } from "../interfaces/global";
-import { IFieldsData } from "../pages/Request";
-import Button from "../ui-components/Button";
-import Input from "../ui-components/Input";
 import Select from "../ui-components/Select";
 import TextArea from "../ui-components/TextArea";
-const ddl = require("../assets/ddl.json");
-
-export interface IFieldsRequerimientos {
-  crcf3_group_id_front: number;
-  crcf3_guid_tipo_requisito: string;
-  crcf3_titulo: string;
-}
 
 const GroupRequerimientos = (props: any) => {
-  const { ddl } = props;
+  const { ddlOptions } = props;
   const {
     register,
     handleSubmit,
@@ -32,7 +23,7 @@ const GroupRequerimientos = (props: any) => {
           </h4>
           {!props.unique && (
             <a
-              onClick={() => props.removeGroup(props.group.id)}
+              onClick={() => props.removeGroup(props.group.id, 'requerimientos')}
               className="text-sm text-red-500 font-bold cursor-pointer hover:underline underline-offset-4"
             >
               Eliminar
@@ -49,7 +40,7 @@ const GroupRequerimientos = (props: any) => {
               })}
             >
               <option value="">Seleccionar...</option>
-              {ddl.listaRequisitos.map((option: IDdl) => (
+              {ddlOptions.listaRequisitos.map((option: IDdl) => (
                 <option key={option.id} value={option.id}>
                   {option.label}
                 </option>

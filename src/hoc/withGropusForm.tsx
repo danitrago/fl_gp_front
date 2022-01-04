@@ -1,9 +1,20 @@
 import React, { ComponentType, useRef, useState } from "react";
-import { IFormStepProps, TSubmitData } from "./withGropusForm.types";
+import {
+  IFormStepProps,
+  TSubmitAllGroups,
+  TSubmitData,
+} from "./withGropusForm.types";
 
 export interface IFormGroup {
   id: number;
 }
+
+type TStepParameters = {
+  submitedForms: number;
+  stateSelector: string;
+  nextStep: string;
+  postAllData: boolean;
+};
 
 const withGropusForm = (Component: ComponentType<any>) => {
   const NewComponent = (props: IFormStepProps) => {
@@ -13,25 +24,26 @@ const withGropusForm = (Component: ComponentType<any>) => {
       },
     ]);
 
-    let submitedForms: number = 0;
-
-    let stateSelector: string = "";
-
-    let nextStep: string = "";
-
-    let postAllData = false;
+    let stepParameters: TStepParameters = {
+      submitedForms: 0,
+      stateSelector: "",
+      nextStep: "",
+      postAllData: false,
+    };
 
     const groupPanel = useRef<HTMLDivElement>(null);
 
-    const submitAllGroups = (
-      newStateSelector: string,
-      newNextStep: string,
-      postAll: boolean
+    const submitAllGroups: TSubmitAllGroups = (
+      newStateSelector,
+      newNextStep,
+      postAll
     ) => {
-      submitedForms = 0;
-      stateSelector = newStateSelector;
-      nextStep = newNextStep;
-      postAllData = postAll;
+      stepParameters.submitedForms = 0;
+      stepParameters.stateSelector = newStateSelector;
+      stepParameters.nextStep = newNextStep;
+      if (postAll) {
+        stepParameters.postAllData = postAll;
+      }
       const forms: any = groupPanel?.current?.getElementsByTagName("form");
       if (forms?.length) {
         [...forms].map((form) =>
@@ -40,27 +52,38 @@ const withGropusForm = (Component: ComponentType<any>) => {
       }
     };
 
-    const onSubmit: any = (data: TSubmitData) => {
-      submitedForms++;
+    const onSubmit: (data: TSubmitData) => void = (data: TSubmitData) => {
+      stepParameters.submitedForms++;
       props.setToSubmitData((prev: any) => {
         if (prev) {
-          if (prev[stateSelector]) {
-            let filtered = prev[stateSelector]?.filter(
-              (group: any) =>
+          if (prev[stepParameters.stateSelector]) {
+            let filtered = prev[stepParameters.stateSelector]?.filter(
+              (group: TSubmitData) =>
                 group.crcf3_group_id_front !== data.crcf3_group_id_front
             );
-            return { ...prev, [stateSelector]: [...filtered, data] };
+            return {
+              ...prev,
+              [stepParameters.stateSelector]: [...filtered, data],
+            };
           } else {
-            return { ...prev, [stateSelector]: [data] };
+            return { ...prev, [stepParameters.stateSelector]: [data] };
           }
         } else {
-          return { [stateSelector]: [data] };
+          return { [stepParameters.stateSelector]: [data] };
         }
       });
-      if (postAllData && submitedForms === formGroup.length) {
-        props.postData();
-      } else if (submitedForms === formGroup.length && nextStep) {
-        props.setSelectedStep(nextStep);
+      if (
+        stepParameters.postAllData &&
+        stepParameters.submitedForms === formGroup.length
+      ) {
+        if (props.postData) {
+          props.postData(); // send data and finish flow
+        }
+      } else if (
+        stepParameters.submitedForms === formGroup.length &&
+        stepParameters.nextStep
+      ) {
+        props.setSelectedStep(stepParameters.nextStep); // only save data in state and set next step
       }
     };
 
@@ -75,16 +98,19 @@ const withGropusForm = (Component: ComponentType<any>) => {
       });
     };
 
-    const removeGroup = (id: number) => {
+    const removeGroup: (id: number, selector: string) => void = (
+      id: number,
+      selector: string
+    ) => {
       setFormGroup((prev) => {
         return prev.filter((group) => group.id !== id);
       });
       props.setToSubmitData((prev: any) => {
-        let filtered = prev?.recursos?.filter(
-          (group: any) => group.crcf3_group_id_front != id
+        let filtered = prev?.[selector]?.filter(
+          (group: TSubmitData) => group.crcf3_group_id_front != id
         );
         if (filtered) {
-          return { ...prev, recursos: [...filtered] };
+          return { ...prev, [selector]: [...filtered] };
         } else {
           return prev;
         }

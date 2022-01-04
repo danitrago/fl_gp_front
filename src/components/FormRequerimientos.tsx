@@ -1,16 +1,10 @@
 import React from "react";
 import withGropusForm, { IFormGroup } from "../hoc/withGropusForm";
-import { IFieldsData } from "../pages/Request";
+import { TFormStep } from "../hoc/withGropusForm.types";
 import Button from "../ui-components/Button";
 import GroupRequerimientos from "./GroupRequerimientos";
 
-interface IFormRequerimientosProps {
-  setSelectedStep: React.Dispatch<React.SetStateAction<string>>;
-  setToSubmitData: React.Dispatch<React.SetStateAction<IFieldsData | null>>;
-  demo: string;
-}
-
-const FormRequerimientos = (props: any) => {
+const FormRequerimientos = (props: TFormStep) => {
   return (
     <div ref={props.groupPanel}>
       <h3 className="text-lg font-bold mb-3">Requerimientos Técnicos</h3>
@@ -27,7 +21,7 @@ const FormRequerimientos = (props: any) => {
             unique={props.formGroup.length === 1}
             removeGroup={props.removeGroup}
             onSubmit={props.onSubmit}
-            ddl={props.ddl}
+            ddlOptions={props.ddlOptions}
           />
         );
       })}

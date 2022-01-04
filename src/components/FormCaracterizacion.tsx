@@ -1,39 +1,23 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { SubmitHandler, useForm } from "react-hook-form";
+import { IFieldsCaracterizacion, IFieldsData } from "../interfaces/form-fields";
 import { IDdl } from "../interfaces/global";
-import { IFieldsData } from "../pages/Request";
 import Button from "../ui-components/Button";
 import Input from "../ui-components/Input";
 import Select from "../ui-components/Select";
 import TextArea from "../ui-components/TextArea";
-// const ddl = require("../assets/ddl.json");
-
-export interface IFieldsCaracterizacion {
-  crcf3_guid_tipo_solicitud: string;
-  crcf3_guid_interventor_contrato: string;
-  crcf3_guid_tipo_necesidad: string;
-  crcf3_numero_ticket_servicio: number;
-  crcf3_fecha_limite: string;
-  crcf3_modulo_funcionalidad: string;
-  crcf3_guid_complejidad: string;
-  crcf3_situacionactual: string;
-  crcf3_justificacion: string;
-  crcf3_descripcion_necesidad: string;
-  crcf3_prerrequisitos: string;
-  // crcf3_fecha_solicitud: string;
-  // crcf3_guid_estado_solicitud: string;
-  // crcf3_guid_solicitante_lider: string;
-}
+// const ddl = require("../assets/ddlOptions.json");
 
 interface IFormCaracterizacionProps {
   setSelectedStep: React.Dispatch<React.SetStateAction<string>>;
-  setToSubmitData: React.Dispatch<React.SetStateAction<IFieldsData | null>>;
-  ddl: any;
+  setToSubmitData: React.Dispatch<React.SetStateAction<IFieldsData>>;
+  ddlOptions?: any;
+  postData?: () => void;
 }
 
 const FormCaracterizacion = (props: IFormCaracterizacionProps) => {
-  const { ddl } = props;
+  const { ddlOptions } = props;
 
   const {
     register,
@@ -44,7 +28,7 @@ const FormCaracterizacion = (props: IFormCaracterizacionProps) => {
   const onSubmit: SubmitHandler<IFieldsCaracterizacion> = (
     data: IFieldsCaracterizacion
   ) => {
-    props.setToSubmitData((prev: IFieldsData | null) => {
+    props.setToSubmitData((prev: IFieldsData) => {
       return { ...prev, caracterizacion: data };
     });
 
@@ -71,7 +55,7 @@ const FormCaracterizacion = (props: IFormCaracterizacionProps) => {
               })}
             >
               <option value="">Seleccionar...</option>
-              {ddl.tipoSolicitudes.map((option: IDdl) => (
+              {ddlOptions.tipoSolicitudes.map((option: IDdl) => (
                 <option key={option.id} value={option.id}>
                   {option.label}
                 </option>
@@ -87,7 +71,7 @@ const FormCaracterizacion = (props: IFormCaracterizacionProps) => {
               })}
             >
               <option value="">Seleccionar...</option>
-              {ddl.interventores.map((option: IDdl) => (
+              {ddlOptions.interventores.map((option: IDdl) => (
                 <option key={option.id} value={option.id}>
                   {option.label}
                 </option>
@@ -103,7 +87,7 @@ const FormCaracterizacion = (props: IFormCaracterizacionProps) => {
               })}
             >
               <option value="">Seleccionar...</option>
-              {ddl.listaNecesidad.map((option: IDdl) => (
+              {ddlOptions.listaNecesidad.map((option: IDdl) => (
                 <option key={option.id} value={option.id}>
                   {option.label}
                 </option>
@@ -144,7 +128,7 @@ const FormCaracterizacion = (props: IFormCaracterizacionProps) => {
               })}
             >
               <option value="">Seleccionar...</option>
-              {ddl.listaPrioridades.map((option: IDdl) => (
+              {ddlOptions.listaPrioridades.map((option: IDdl) => (
                 <option key={option.id} value={option.id}>
                   {option.label}
                 </option>

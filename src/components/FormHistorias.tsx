@@ -1,17 +1,10 @@
 import React from "react";
 import withGropusForm, { IFormGroup } from "../hoc/withGropusForm";
-import { IFieldsData } from "../pages/Request";
+import { TFormStep } from "../hoc/withGropusForm.types";
 import Button from "../ui-components/Button";
 import GroupHistorias from "./GroupHistorias";
-import GroupRequerimientos from "./GroupRequerimientos";
 
-interface IFormHistoriasProps {
-  setSelectedStep: React.Dispatch<React.SetStateAction<string>>;
-  setToSubmitData: React.Dispatch<React.SetStateAction<IFieldsData | null>>;
-  demo: string;
-}
-
-const FormHistorias = (props: any) => {
+const FormHistorias = (props: TFormStep) => {
   return (
     <div ref={props.groupPanel}>
       <h3 className="text-lg font-bold mb-3">Historias de Usuario</h3>
@@ -40,7 +33,7 @@ const FormHistorias = (props: any) => {
       </a>
 
       <div className="w-full mt-3 pt-3 flex justify-between">
-        <Button onClick={() => props.setSelectedStep("Recursos")}>
+        <Button onClick={() => props.setSelectedStep("Requerimientos")}>
           Anterior
         </Button>
         <Button

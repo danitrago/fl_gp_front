@@ -1,17 +1,7 @@
-import React, { ReactNode, SetStateAction, useRef, useState } from "react";
-import { SubmitHandler, useForm } from "react-hook-form";
-import { IFieldsData } from "../pages/Request";
-import Button from "../ui-components/Button";
-import Input from "../ui-components/Input";
-import Select from "../ui-components/Select";
+import React from "react";
+import { useForm } from "react-hook-form";
+import { IFieldsHistorias } from "../interfaces/form-fields";
 import TextArea from "../ui-components/TextArea";
-const ddl = require("../assets/ddl.json");
-
-export interface IFieldsHistorias {
-  crcf3_group_id_front: number;
-  crcf3_titulo: string;
-  crcf3_criterio: string;
-}
 
 const GroupHistorias = (props: any) => {
   const {
@@ -30,7 +20,7 @@ const GroupHistorias = (props: any) => {
           </h4>
           {!props.unique && (
             <a
-              onClick={() => props.removeGroup(props.group.id)}
+              onClick={() => props.removeGroup(props.group.id, 'historias')}
               className="text-sm text-red-500 font-bold cursor-pointer hover:underline underline-offset-4"
             >
               Eliminar

@@ -1,25 +1,10 @@
 import React from "react";
 import withGropusForm, { IFormGroup } from "../hoc/withGropusForm";
+import { TFormStep } from "../hoc/withGropusForm.types";
 import Button from "../ui-components/Button";
 import GroupRecursos from "./GroupRecursos";
 
-export interface IFormRecursos {
-  crcf3_group_id_front: number;
-  crcf3_guid_tipo_consultor: string;
-  crcf3_guid_seniority: string;
-  crcf3_cantidad_consultores: number;
-  crcf3_porcentaje_dedicacion: number;
-  crcf3_tiempo_requerido: number;
-  crcf3_observaciones: string;
-}
-
-// interface IFormRecursosProps {
-//   setSelectedStep: React.Dispatch<React.SetStateAction<string>>;
-//   setToSubmitData: React.Dispatch<React.SetStateAction<IFieldsData | null>>;
-//   demo: string;
-// }
-
-const FormRecursos = (props: any) => {
+const FormRecursos = (props: TFormStep) => {
   return (
     <div ref={props.groupPanel}>
       <h3 className="text-lg font-bold">Recursos</h3>
@@ -36,7 +21,7 @@ const FormRecursos = (props: any) => {
             unique={props.formGroup.length === 1}
             removeGroup={props.removeGroup}
             onSubmit={props.onSubmit}
-            ddl={props.ddl}
+            ddlOptions={props.ddlOptions}
           />
         );
       })}
