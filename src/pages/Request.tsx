@@ -9,14 +9,14 @@ import Wizard, { WizardContent } from "../ui-components/Wizard";
 const ddlFile = require("../assets/ddl.json");
 
 const Request = () => {
-  const [selectedStep, setSelectedStep] = useState<string>("Caracterización");
+  const [selectedStep, setSelectedStep] = useState<string>("Recursos");
   const [toSubmitData, setToSubmitData] = useState<IFieldsData>(
     {} as IFieldsData
   );
 
   const [ddl, setDdl] = useState(ddlFile);
 
-  const getDdlOptions = () => {
+  const getDdlOptions: () => void = () => {
     axios
       .get(
         `${
@@ -34,7 +34,7 @@ const Request = () => {
       });
   };
 
-  const postData = () => {
+  const postData: () => void = () => {
     console.log("send data");
     axios
       .post(

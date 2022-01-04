@@ -117,6 +117,17 @@ const withGropusForm = (Component: ComponentType<any>) => {
       });
     };
 
+    const deleteButton = (id: number, type: string) => {
+      return (
+        <a
+          onClick={() => removeGroup(id, type)}
+          className="text-sm text-red-500 font-bold cursor-pointer hover:underline underline-offset-4"
+        >
+          Eliminar
+        </a>
+      );
+    };
+
     return (
       <Component
         formGroup={formGroup}
@@ -125,6 +136,7 @@ const withGropusForm = (Component: ComponentType<any>) => {
         onSubmit={onSubmit}
         addGroup={addGroup}
         submitAllGroups={submitAllGroups}
+        deleteButton={deleteButton}
         {...props}
       />
     );

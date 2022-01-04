@@ -22,16 +22,10 @@ const GroupRecursos = (props: any) => {
             {props.index + 1}. Grupo de Recursos{" "}
             <small className="text-xs">({props.group.id})</small>
           </h4>
-          {!props.unique && (
-            <a
-              onClick={() => props.removeGroup(props.group.id, 'recursos')}
-              className="text-sm text-red-500 font-bold cursor-pointer hover:underline underline-offset-4"
-            >
-              Eliminar
-            </a>
-          )}
+          {!props.unique && props.deleteButton(props.group.id, "recursos")}
         </div>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+          {/* START FIELDS */}
           <div className="lg:col-span-2">
             <Select
               label="Tipo de consultor*"
@@ -97,6 +91,7 @@ const GroupRecursos = (props: any) => {
               {...register("crcf3_observaciones")}
             />
           </div>
+          {/* END FIELDS */}
         </div>
       </div>
       <input

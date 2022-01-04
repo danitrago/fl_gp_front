@@ -18,16 +18,10 @@ const GroupHistorias = (props: any) => {
             HU{props.index + 1}{" "}
             <small className="text-xs">({props.group.id})</small>
           </h4>
-          {!props.unique && (
-            <a
-              onClick={() => props.removeGroup(props.group.id, 'historias')}
-              className="text-sm text-red-500 font-bold cursor-pointer hover:underline underline-offset-4"
-            >
-              Eliminar
-            </a>
-          )}
+          {!props.unique && props.deleteButton(props.group.id, "historias")}
         </div>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+          {/* START FIELDS */}
           <div>
             <TextArea
               label="Descripción de la HU*"
@@ -43,6 +37,7 @@ const GroupHistorias = (props: any) => {
               {...register("crcf3_criterio", { required: true })}
             />
           </div>
+          {/* END FIELDS */}
         </div>
       </div>
       <input

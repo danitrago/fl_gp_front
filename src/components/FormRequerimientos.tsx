@@ -22,6 +22,7 @@ const FormRequerimientos = (props: TFormStep) => {
             removeGroup={props.removeGroup}
             onSubmit={props.onSubmit}
             ddlOptions={props.ddlOptions}
+            deleteButton={props.deleteButton}
           />
         );
       })}

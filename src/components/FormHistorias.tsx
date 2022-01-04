@@ -21,6 +21,7 @@ const FormHistorias = (props: TFormStep) => {
             unique={props.formGroup.length === 1}
             removeGroup={props.removeGroup}
             onSubmit={props.onSubmit}
+            deleteButton={props.deleteButton}
           />
         );
       })}

@@ -30,4 +30,5 @@ export type TFormStep = {
   onSubmit: (data: TSubmitData) => void;
   addGroup: () => void;
   submitAllGroups: TSubmitAllGroups;
+  deleteButton: () => void;
 } & IFormStepProps;
