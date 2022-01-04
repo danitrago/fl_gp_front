@@ -9,7 +9,7 @@ import Wizard, { WizardContent } from "../ui-components/Wizard";
 const ddlFile = require("../assets/ddl.json");
 
 const Request = () => {
-  const [selectedStep, setSelectedStep] = useState<string>("Historias");
+  const [selectedStep, setSelectedStep] = useState<string>("Caracterización");
   const [toSubmitData, setToSubmitData] = useState<IFieldsData>(
     {} as IFieldsData
   );

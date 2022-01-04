@@ -10,7 +10,6 @@ export interface IFieldsCaracterizacion {
   crcf3_justificacion: string;
   crcf3_descripcion_necesidad: string;
   crcf3_prerrequisitos: string;
-  // crcf3_fecha_solicitud: string;
   // crcf3_guid_estado_solicitud: string;
   // crcf3_guid_solicitante_lider: string;
 }
