@@ -9,7 +9,7 @@ import Wizard, { WizardContent } from "../ui-components/Wizard";
 const ddlFile = require("../assets/ddl.json");
 
 const Request = () => {
-  const [selectedStep, setSelectedStep] = useState<string>("Caracterización");
+  const [selectedStep, setSelectedStep] = useState<string>("Historias");
   const [toSubmitData, setToSubmitData] = useState<IFieldsData>(
     {} as IFieldsData
   );
@@ -34,8 +34,9 @@ const Request = () => {
       });
   };
 
-  const postData: () => void = () => {
+  const postData = (data: IFieldsData) => {
     console.log("send data");
+    console.log(data);
     axios
       .post(
         `${
@@ -43,7 +44,7 @@ const Request = () => {
             ? process.env.REACT_APP_API_DEVELOP
             : process.env.REACT_APP_API_PRODUCTION
         }/api/fl-gp-solicitudes`,
-        toSubmitData
+        data
       )
       .then((response) => {
         console.log(response);

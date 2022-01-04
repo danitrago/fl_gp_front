@@ -54,6 +54,7 @@ const withGropusForm = (Component: ComponentType<any>) => {
 
     const onSubmit: (data: TSubmitData) => void = (data: TSubmitData) => {
       stepParameters.submitedForms++;
+      let result = null;
       props.setToSubmitData((prev: any) => {
         if (prev) {
           if (prev[stepParameters.stateSelector]) {
@@ -61,25 +62,36 @@ const withGropusForm = (Component: ComponentType<any>) => {
               (group: TSubmitData) =>
                 group.crcf3_group_id_front !== data.crcf3_group_id_front
             );
-            return {
+            result = {
               ...prev,
               [stepParameters.stateSelector]: [...filtered, data],
             };
+            return result;
           } else {
-            return { ...prev, [stepParameters.stateSelector]: [data] };
+            result = { ...prev, [stepParameters.stateSelector]: [data] };
+            return result;
           }
         } else {
-          return { [stepParameters.stateSelector]: [data] };
+          result = { [stepParameters.stateSelector]: [data] };
+          return result;
         }
       });
+      stepParameters.postAllData ? post(result) : nextStep();
+    };
+
+    const post = (result: any) => {
       if (
         stepParameters.postAllData &&
         stepParameters.submitedForms === formGroup.length
       ) {
         if (props.postData) {
-          props.postData(); // send data and finish flow
+          props.postData(result); // send data and finish flow
         }
-      } else if (
+      }
+    };
+
+    const nextStep = () => {
+      if (
         stepParameters.submitedForms === formGroup.length &&
         stepParameters.nextStep
       ) {

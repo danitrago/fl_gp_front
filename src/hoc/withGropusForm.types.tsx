@@ -14,7 +14,7 @@ export interface IFormStepProps {
   setSelectedStep: React.Dispatch<React.SetStateAction<string>>;
   setToSubmitData: React.Dispatch<React.SetStateAction<IFieldsData>>;
   ddlOptions?: any;
-  postData?: () => void;
+  postData?: (data: IFieldsData) => void;
 }
 
 export type TSubmitAllGroups = (
