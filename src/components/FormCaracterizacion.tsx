@@ -1,5 +1,4 @@
-import axios from "axios";
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { IFieldsCaracterizacion, IFieldsData } from "../interfaces/form-fields";
 import { IDdl } from "../interfaces/global";
@@ -7,7 +6,6 @@ import Button from "../ui-components/Button";
 import Input from "../ui-components/Input";
 import Select from "../ui-components/Select";
 import TextArea from "../ui-components/TextArea";
-// const ddl = require("../assets/ddlOptions.json");
 
 interface IFormCaracterizacionProps {
   setSelectedStep: React.Dispatch<React.SetStateAction<string>>;
@@ -46,6 +44,7 @@ const FormCaracterizacion = (props: IFormCaracterizacionProps) => {
       <form onSubmit={handleSubmit(onSubmit)}>
         <h3 className="text-lg font-bold mb-3">Datos Generales</h3>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mb-6">
+          {/* START FIELDS */}
           <div>
             <Select
               label="Tipo solicitud*"
@@ -135,9 +134,11 @@ const FormCaracterizacion = (props: IFormCaracterizacionProps) => {
               ))}
             </Select>
           </div>
+          {/* END FIELDS */}
         </div>
         <h3 className="text-lg font-bold mb-3">Descripción de la Necesidad</h3>
         <div className="grid gap-4">
+          {/* START FIELDS */}
           <div>
             <TextArea
               label="Situación actual*"
@@ -166,6 +167,7 @@ const FormCaracterizacion = (props: IFormCaracterizacionProps) => {
               {...register("crcf3_prerrequisitos")}
             />
           </div>
+          {/* END FIELDS */}
         </div>
         <div className="w-full mt-3 pt-3 flex justify-end">
           <Button type="submit">Siguiente</Button>
