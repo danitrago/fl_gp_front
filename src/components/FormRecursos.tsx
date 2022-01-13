@@ -47,7 +47,7 @@ const FormRecursos = (props: any) => {
               </option>
             ))}
           </Select>
-          <Select
+          {/* <Select
             label="Seniority"
             errors={errors}
             {...register("crcf3_guid_seniority", {
@@ -88,7 +88,7 @@ const FormRecursos = (props: any) => {
             errors={errors}
             cols={3}
             {...register("crcf3_observaciones")}
-          />
+          /> */}
         </FieldsGrid>
         <input {...register("crcf3_group_id_front")} hidden />
         <input type="submit" hidden />

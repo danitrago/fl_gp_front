@@ -1,5 +1,6 @@
 import React, { ComponentType, useContext, useEffect } from "react";
 import { useForm } from "react-hook-form";
+import ActionButtons from "../components/ActionButtons";
 import FormContext from "../context/formContext";
 import { IFieldsData } from "../interfaces/form-fields";
 import { THoCForm } from "../interfaces/global";
@@ -10,7 +11,8 @@ const withForm = (Component: ComponentType<any>) => {
     const FORM_CONFIG = {
       keyName: props.querySelector,
     };
-    const { toSubmitData, setToSubmitData, ddl } = useContext(FormContext);
+    const { toSubmitData, setToSubmitData, ddl, setSelectedStep } =
+      useContext(FormContext);
 
     const {
       register,
@@ -23,7 +25,7 @@ const withForm = (Component: ComponentType<any>) => {
       setToSubmitData((prev: IFieldsData) => {
         return { ...prev, [FORM_CONFIG.keyName]: data };
       });
-      props.submitCallback();
+      if (props.next) setSelectedStep(props.next);
     };
 
     const fillFields = () => {
@@ -42,14 +44,19 @@ const withForm = (Component: ComponentType<any>) => {
     }, [toSubmitData]);
 
     return (
-      <Component
-        handleSubmit={handleSubmit}
-        onSubmit={onSubmit}
-        errors={errors}
-        register={register}
-        ddl={ddl}
-        {...props}
-      />
+      <>
+        <form onSubmit={handleSubmit(onSubmit)}>
+          <Component
+            handleSubmit={handleSubmit}
+            onSubmit={onSubmit}
+            errors={errors}
+            register={register}
+            ddl={ddl}
+            {...props}
+          />
+          <ActionButtons {...props} />
+        </form>
+      </>
     );
   };
   return NewComponent;

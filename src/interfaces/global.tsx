@@ -1,3 +1,5 @@
+import { ReactNode } from "react";
+
 export interface IDdl {
   id: string;
   label: string;
@@ -8,6 +10,8 @@ export type THoCForm = {
   querySelector: string;
   // ddl?: any;
   submitCallback?: any;
+  next?: any;
+  prev?: any;
 };
 
 export type TFormRepeat = {
@@ -16,6 +20,10 @@ export type TFormRepeat = {
   querySelector: string;
   // ddl?: any;
   submitCallback?: any;
+  backStep?: string;
+  children?: ReactNode;
+  next?: any;
+  prev?: any;
 };
 
 // export type TFormGroup = {

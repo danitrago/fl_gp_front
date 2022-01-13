@@ -6,6 +6,7 @@ import FormRecursos from "../components/FormRecursos";
 import FormRequerimientos from "../components/FormRequerimientos";
 import FormContext from "../context/formContext";
 import { IFieldsData } from "../interfaces/form-fields";
+import Button from "../ui-components/Button";
 import { Wizard, WizardContent } from "../ui-components/Wizard";
 const ddlFile = require("../assets/ddl.json");
 
@@ -120,7 +121,7 @@ const Request = () => {
   };
 
   useEffect(() => {
-    setIsLoading(true);
+    // setIsLoading(true);
     getDdlOptions();
     setTimeout(() => {
       if (demoData) {
@@ -128,12 +129,18 @@ const Request = () => {
         setToSubmitData(demoData);
         setIsLoading(false);
       }
-    }, 3000);
+    }, 1000);
   }, []);
 
   return (
     <FormContext.Provider
-      value={{ toSubmitData, setToSubmitData, ddl, postFormData }}
+      value={{
+        toSubmitData,
+        setToSubmitData,
+        ddl,
+        postFormData,
+        setSelectedStep,
+      }}
     >
       {isLoading ? (
         "Cargando..."
@@ -144,33 +151,17 @@ const Request = () => {
             <WizardContent title="Caracterización" selectedStep={selectedStep}>
               <FormCaracterizacion
                 querySelector="caracterizacion"
-                submitCallback={() => setSelectedStep("Recursos")}
+                next="Recursos"
+                // prev="Recursos"
               />
             </WizardContent>
             {/* Step 2 */}
             <WizardContent title="Recursos" selectedStep={selectedStep}>
               <FormRecursos
-                title="Recursos"
-                subTitle="Has seleccionado el tipo de solicitud (Recurso), por favor describe los
-            detalles de el/los recursos."
+                title="Recursitos"
                 querySelector="recursos"
-                submitCallback={() => setSelectedStep("Requerimientos")}
-              />
-            </WizardContent>
-            {/* Step 3 */}
-            <WizardContent title="Requerimientos" selectedStep={selectedStep}>
-              <FormRequerimientos
-                title="Requerimientos"
-                querySelector="requerimientos"
-                submitCallback={() => setSelectedStep("Historias")}
-              />
-            </WizardContent>
-            {/* Step 4 */}
-            <WizardContent title="Historias" selectedStep={selectedStep}>
-              <FormHistorias
-                title="Historias"
-                querySelector="historias"
-                submitCallback={() => setSelectedStep("Enviar")}
+                next="Enviar"
+                prev="Caracterización"
               />
             </WizardContent>
             {/* Step 5 */}

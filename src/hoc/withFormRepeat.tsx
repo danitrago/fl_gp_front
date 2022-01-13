@@ -5,6 +5,7 @@ import React, {
   useRef,
   useState,
 } from "react";
+import ActionButtons from "../components/ActionButtons";
 import FormContext from "../context/formContext";
 import { TFormRepeat } from "../interfaces/global";
 import Button from "../ui-components/Button";
@@ -17,7 +18,8 @@ const withFormRepeat = (Component: ComponentType<any>) => {
       keyName: props.querySelector,
     };
 
-    const { toSubmitData, setToSubmitData, ddl } = useContext(FormContext);
+    const { toSubmitData, setToSubmitData, ddl, setSelectedStep } =
+      useContext(FormContext);
 
     const wrapperForms = useRef<HTMLDivElement>(null);
 
@@ -56,10 +58,13 @@ const withFormRepeat = (Component: ComponentType<any>) => {
       if (tempRef.current.counterSubmit === groups.length) {
         setGroups(tempRef.current.dataTemp);
         setToSubmitData((prev: any) => {
-          let result = { ...prev, [FORM_CONFIG.keyName]: tempRef.current.dataTemp };
+          let result = {
+            ...prev,
+            [FORM_CONFIG.keyName]: tempRef.current.dataTemp,
+          };
           return result;
         });
-        props.submitCallback();
+        if (props.next) setSelectedStep(props.next);
       }
     };
 
@@ -88,6 +93,19 @@ const withFormRepeat = (Component: ComponentType<any>) => {
     useEffect(() => {
       populateGroupsWithFetch();
     }, [toSubmitData]);
+
+    useEffect(() => {
+      if (wrapperForms.current) {
+        const forms: any = wrapperForms.current.querySelectorAll("button");
+        console.log(forms);
+        // for (let i = 0; i < forms.length; i++) {
+        //   console.log("for", i);
+        //   const groupForm = forms[i];
+        //   let inputSubmit = groupForm.querySelector('input[type="submit"]');
+        //   inputSubmit.click();
+        // }
+      }
+    }, []);
 
     // useEffect(() => {
     //   console.log('RENDER GROUPS')
@@ -129,6 +147,7 @@ const withFormRepeat = (Component: ComponentType<any>) => {
                 )}
               </div>
               <Component
+                groups={groups}
                 group={group}
                 submitIndividual={submitIndividual}
                 ddl={ddl}
@@ -143,9 +162,17 @@ const withFormRepeat = (Component: ComponentType<any>) => {
         >
           + Agregar grupo
         </a>
-        <div className="w-full mt-3 pt-3 flex justify-end">
+        <ActionButtons {...props} submitAllGroups={submitAllGroups} />
+        {/* <div className="w-full mt-3 pt-3 flex justify-between">
+          {props.backStep ? (
+            <Button onClick={() => setSelectedStep(props.backStep)}>
+              Anterior
+            </Button>
+          ) : (
+            <div></div>
+          )}
           <Button onClick={submitAllGroups}>Siguiente</Button>
-        </div>
+        </div> */}
       </div>
     );
   };
