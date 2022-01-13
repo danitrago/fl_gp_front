@@ -1,17 +1,17 @@
 import classNames from "classnames";
-import React, { ReactNode } from "react";
+import React from "react";
 
-interface ISelectProps {
+interface IInputProps {
   name: string;
   label: string;
-  children: ReactNode;
   errors?: any;
+  cols?: 1 | 2 | 3 | 4;
 }
 
-const Select = React.forwardRef<
-  HTMLSelectElement,
-  ISelectProps & React.SelectHTMLAttributes<HTMLSelectElement>
->(({ onChange, onBlur, name, label, errors, children }, ref) => {
+const Input = React.forwardRef<
+  HTMLInputElement,
+  IInputProps & React.InputHTMLAttributes<HTMLInputElement>
+>(({ onChange, onBlur, name, label, errors, placeholder, type, cols }, ref) => {
   const classing = classNames(
     "border bg-gray-100 rounded mb-1 p-2 h-11",
     {
@@ -21,22 +21,24 @@ const Select = React.forwardRef<
   );
 
   return (
-    <div className="flex flex-col">
+    <div className={cols ? `lg:col-span-${cols}` : ""}>
+      <div className="flex flex-col">
       <label className="mb-2 font-bold text-sm">{label}</label>
-      <select
+      <input
         ref={ref}
         className={classing}
         name={name}
         onChange={onChange}
         onBlur={onBlur}
-      >
-        {children}
-      </select>
+        placeholder={placeholder}
+        type={type}
+      />
       {errors?.[name] && (
         <span className="text-red-400 text-xs">Este campo es requerido</span>
       )}
     </div>
+    </div>
   );
 });
 
-export default Select;
+export default Input;

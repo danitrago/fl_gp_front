@@ -31,7 +31,7 @@ const Wizard = (props: WizardProps) => {
   };
 
   useEffect(() => {
-    console.log("creating steps");
+    // console.log("creating steps");
     let contents: NodeListOf<Element> | undefined =
       wizardRef.current?.querySelectorAll(
         'div[data-role="wizard-step-content"'
@@ -50,7 +50,7 @@ const Wizard = (props: WizardProps) => {
   }, []);
 
   useEffect(() => {
-    console.log("Selecting:", props.selectedStep);
+    // console.log("Selecting:", props.selectedStep);
     if (steps.length > 0) {
       goToStep(props.selectedStep);
       let posTop = wizardRef.current?.offsetTop;

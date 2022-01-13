@@ -1,51 +1,100 @@
-import React from "react";
-import withGropusForm, { IFormGroup } from "../hoc/withGropusForm";
-import { TFormStep } from "../hoc/withGropusForm.types";
-import Button from "../ui-components/Button";
-import GroupRecursos from "./GroupRecursos";
+import React, { useEffect } from "react";
+import { useForm } from "react-hook-form";
+import withFormRepeat from "../hoc/withFormRepeat";
+import { IDdl } from "../interfaces/global";
+import {
+  FieldsGrid,
+  Input,
+  Select,
+  TextArea,
+} from "../ui-components/FormHooked";
 
-const FormRecursos = (props: TFormStep) => {
+const FormRecursos = (props: any) => {
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+    setValue,
+    trigger,
+  } = useForm();
+
+  useEffect(() => {
+    // fill fields
+    if (props.group) {
+      let keys = Object.keys(props.group);
+      keys.map((key) => {
+        setValue(key, props.group[key]);
+      });
+    }
+  }, [props.group]);
+
   return (
-    <div ref={props.groupPanel}>
-      <h3 className="text-lg font-bold">Recursos</h3>
-      <span className="text-sm mb-5 block">
-        Has seleccionado el tipo de solicitud (Recurso), por favor describe los
-        detalles de el/los recursos.
-      </span>
-      {props.formGroup.map((group: IFormGroup, index: number) => {
-        return (
-          <GroupRecursos
-            key={group.id}
-            group={group}
-            index={index}
-            unique={props.formGroup.length === 1}
-            removeGroup={props.removeGroup}
-            onSubmit={props.onSubmit}
-            ddlOptions={props.ddlOptions}
-            deleteButton={props.deleteButton}
+    <div>
+      <form onSubmit={handleSubmit(props.submitIndividual)}>
+        <FieldsGrid gridCols={3}>
+          <Select
+            label="Tipo de consultor*"
+            errors={errors}
+            cols={2}
+            {...register("crcf3_guid_tipo_consultor", {
+              required: true,
+            })}
+          >
+            <option value="">Seleccionar...</option>
+            {props.ddl.tipoConsultores.map((option: IDdl) => (
+              <option key={option.id} value={option.id}>
+                {option.label}
+              </option>
+            ))}
+          </Select>
+          <Select
+            label="Seniority"
+            errors={errors}
+            {...register("crcf3_guid_seniority", {
+              required: true,
+            })}
+          >
+            <option value="">Seleccionar...</option>
+            {props.ddl.listaSeniority.map((option: IDdl) => (
+              <option key={option.id} value={option.id}>
+                {option.label}
+              </option>
+            ))}
+          </Select>
+          <Input
+            label="Cantidad de consultores*"
+            type="number"
+            errors={errors}
+            {...register("crcf3_cantidad_consultores", {
+              required: true,
+            })}
           />
-        );
-      })}
-
-      <a
-        onClick={props.addGroup}
-        className="text-green-500 mx-auto text-center block font-bold cursor-pointer hover:underline underline-offset-4 mb-5"
-      >
-        + Agregar grupo
-      </a>
-
-      <div className="w-full mt-3 pt-3 flex justify-between">
-        <Button onClick={() => props.setSelectedStep("Caracterización")}>
-          Anterior
-        </Button>
-        <Button
-          onClick={() => props.submitAllGroups("recursos", "Requerimientos")}
-        >
-          Siguiente
-        </Button>
-      </div>
+          <Input
+            label="% Dedicación*"
+            type="number"
+            errors={errors}
+            {...register("crcf3_porcentaje_dedicacion", {
+              required: true,
+            })}
+          />
+          <Input
+            label="Tiempo requerido (días calendario)*"
+            type="number"
+            errors={errors}
+            {...register("crcf3_tiempo_requerido", { required: true })}
+          />
+          <TextArea
+            label="Observaciones"
+            errors={errors}
+            cols={3}
+            {...register("crcf3_observaciones")}
+          />
+        </FieldsGrid>
+        <input {...register("crcf3_group_id_front")} hidden />
+        <input type="submit" hidden />
+      </form>
     </div>
   );
 };
 
-export default withGropusForm(FormRecursos);
+export default withFormRepeat(FormRecursos);

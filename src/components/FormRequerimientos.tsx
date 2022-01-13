@@ -1,49 +1,63 @@
-import React from "react";
-import withGropusForm, { IFormGroup } from "../hoc/withGropusForm";
-import { TFormStep } from "../hoc/withGropusForm.types";
-import Button from "../ui-components/Button";
-import GroupRequerimientos from "./GroupRequerimientos";
+import React, { useEffect } from "react";
+import { useForm } from "react-hook-form";
+import withFormRepeat from "../hoc/withFormRepeat";
+import { IDdl } from "../interfaces/global";
+import {
+  FieldsGrid,
+  Input,
+  Select,
+  TextArea,
+} from "../ui-components/FormHooked";
 
-const FormRequerimientos = (props: TFormStep) => {
+const FormRequerimientos = (props: any) => {
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+    setValue,
+    trigger,
+  } = useForm();
+
+  useEffect(() => {
+    // fill fields
+    if (props.group) {
+      let keys = Object.keys(props.group);
+      keys.map((key) => {
+        setValue(key, props.group[key]);
+      });
+    }
+  }, [props.group]);
+
   return (
-    <div ref={props.groupPanel}>
-      <h3 className="text-lg font-bold mb-3">Requerimientos Técnicos</h3>
-      {/* <span className="text-sm mb-5 block">
-        Has seleccionado el tipo de solicitud (Recurso), por favor describe los
-        detalles de el/los recursos.
-      </span> */}
-      {props.formGroup.map((group: IFormGroup, index: number) => {
-        return (
-          <GroupRequerimientos
-            key={group.id}
-            group={group}
-            index={index}
-            unique={props.formGroup.length === 1}
-            removeGroup={props.removeGroup}
-            onSubmit={props.onSubmit}
-            ddlOptions={props.ddlOptions}
-            deleteButton={props.deleteButton}
+    <div>
+      <form onSubmit={handleSubmit(props.submitIndividual)}>
+        <FieldsGrid gridCols={3}>
+          <Select
+            label="Tipo de requerimiento*"
+            errors={errors}
+            {...register("crcf3_guid_tipo_requisito", {
+              required: true,
+            })}
+          >
+            <option value="">Seleccionar...</option>
+            {props.ddl.listaRequisitos.map((option: IDdl) => (
+              <option key={option.id} value={option.id}>
+                {option.label}
+              </option>
+            ))}
+          </Select>
+          <TextArea
+            label="Descripción*"
+            errors={errors}
+            cols={2}
+            {...register("crcf3_titulo", { required: true })}
           />
-        );
-      })}
-
-      <a
-        onClick={props.addGroup}
-        className="text-green-500 mx-auto text-center block font-bold cursor-pointer hover:underline underline-offset-4 mb-5"
-      >
-        + Agregar grupo
-      </a>
-
-      <div className="w-full mt-3 pt-3 flex justify-between">
-        <Button onClick={() => props.setSelectedStep("Recursos")}>
-          Anterior
-        </Button>
-        <Button onClick={() => props.submitAllGroups("requerimientos", "Historias")}>
-          Siguiente
-        </Button>
-      </div>
+        </FieldsGrid>
+        <input {...register("crcf3_group_id_front")} hidden />
+        <input type="submit" hidden />
+      </form>
     </div>
   );
 };
 
-export default withGropusForm(FormRequerimientos);
+export default withFormRepeat(FormRequerimientos);

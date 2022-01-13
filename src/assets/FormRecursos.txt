@@ -43,7 +43,7 @@ const FormRecursos = (props: IFormRecursosProps) => {
 
   const onSubmit: SubmitHandler<IFormRecursos> = (data) => {
     submitedForms++;
-    props.setToSubmitData((prev: IFieldsData | null) => {
+    props.setFormData((prev: IFieldsData | null) => {
       if (prev) {
         if (prev.recursos) {
           let filtered = prev.recursos?.filter(
@@ -78,7 +78,7 @@ const FormRecursos = (props: IFormRecursosProps) => {
     setFormGroup((prev) => {
       return prev.filter((group) => group.id !== id);
     });
-    props.setToSubmitData((prev: IFieldsData | null) => {
+    props.setFormData((prev: IFieldsData | null) => {
       let filtered = prev?.recursos?.filter(
         (group: IFormRecursos) => group.crcf3_group_id_front != id
       );

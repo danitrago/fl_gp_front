@@ -1,50 +1,55 @@
-import React from "react";
-import withGropusForm, { IFormGroup } from "../hoc/withGropusForm";
-import { TFormStep } from "../hoc/withGropusForm.types";
-import Button from "../ui-components/Button";
-import GroupHistorias from "./GroupHistorias";
+import React, { useEffect } from "react";
+import { useForm } from "react-hook-form";
+import withFormRepeat from "../hoc/withFormRepeat";
+import { IDdl } from "../interfaces/global";
+import {
+  FieldsGrid,
+  Input,
+  Select,
+  TextArea,
+} from "../ui-components/FormHooked";
 
-const FormHistorias = (props: TFormStep) => {
+const FormHistorias = (props: any) => {
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+    setValue,
+    trigger,
+  } = useForm();
+
+  useEffect(() => {
+    // fill fields
+    if (props.group) {
+      let keys = Object.keys(props.group);
+      keys.map((key) => {
+        setValue(key, props.group[key]);
+      });
+    }
+  }, [props.group]);
+
   return (
-    <div ref={props.groupPanel}>
-      <h3 className="text-lg font-bold mb-3">Historias de Usuario</h3>
-      {/* <span className="text-sm mb-5 block">
-        Has seleccionado el tipo de solicitud (Recurso), por favor describe los
-        detalles de el/los recursos.
-      </span> */}
-      {props.formGroup.map((group: IFormGroup, index: number) => {
-        return (
-          <GroupHistorias
-            key={group.id}
-            group={group}
-            index={index}
-            unique={props.formGroup.length === 1}
-            removeGroup={props.removeGroup}
-            onSubmit={props.onSubmit}
-            deleteButton={props.deleteButton}
+    <div>
+      <form onSubmit={handleSubmit(props.submitIndividual)}>
+        <FieldsGrid gridCols={3}>
+          <TextArea
+            label="Descripción de la HU*"
+            errors={errors}
+            {...register("crcf3_titulo", { required: true })}
           />
-        );
-      })}
-
-      <a
-        onClick={props.addGroup}
-        className="text-green-500 mx-auto text-center block font-bold cursor-pointer hover:underline underline-offset-4 mb-5"
-      >
-        + Agregar grupo
-      </a>
-
-      <div className="w-full mt-3 pt-3 flex justify-between">
-        <Button onClick={() => props.setSelectedStep("Requerimientos")}>
-          Anterior
-        </Button>
-        <Button
-          onClick={() => props.submitAllGroups("historias", "Historias", true)}
-        >
-          Enviar
-        </Button>
-      </div>
+          <TextArea
+            label="Criterios de aceptación (1 por línea)*"
+            placeholder="1. Criterio de aceptación uno&#x0a;2. Otro criterio de aceptación dos&#x0a;3. Criterio de aceptación tres"
+            errors={errors}
+            cols={2}
+            {...register("crcf3_criterio", { required: true })}
+          />
+        </FieldsGrid>
+        <input {...register("crcf3_group_id_front")} hidden />
+        <input type="submit" hidden />
+      </form>
     </div>
   );
 };
 
-export default withGropusForm(FormHistorias);
+export default withFormRepeat(FormHistorias);
