@@ -55,6 +55,11 @@ const withFormRepeat = (Component: ComponentType<any>) => {
       tempRef.current.dataTemp.push(data);
       if (tempRef.current.counterSubmit === groups.length) {
         setGroups(tempRef.current.dataTemp);
+        setToSubmitData((prev: any) => {
+          let result = { ...prev, [FORM_CONFIG.keyName]: tempRef.current.dataTemp };
+          return result;
+        });
+        props.submitCallback();
       }
     };
 
@@ -84,18 +89,19 @@ const withFormRepeat = (Component: ComponentType<any>) => {
       populateGroupsWithFetch();
     }, [toSubmitData]);
 
-    useEffect(() => {
-      setToSubmitData((prev: any) => {
-        let result = { ...prev, [FORM_CONFIG.keyName]: groups };
-        return result;
-      });
-      if (
-        tempRef.current.counterSubmit === groups.length &&
-        props.submitCallback
-      ) {
-        props.submitCallback();
-      }
-    }, [groups]);
+    // useEffect(() => {
+    //   console.log('RENDER GROUPS')
+    //   setToSubmitData((prev: any) => {
+    //     let result = { ...prev, [FORM_CONFIG.keyName]: groups };
+    //     return result;
+    //   });
+    //   if (
+    //     tempRef.current.counterSubmit === groups.length &&
+    //     props.submitCallback
+    //   ) {
+    //     props.submitCallback();
+    //   }
+    // }, [groups]);
 
     return (
       <div ref={wrapperForms}>

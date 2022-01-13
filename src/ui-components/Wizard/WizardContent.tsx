@@ -5,12 +5,14 @@ interface WizardContentProps {
   title: string;
   children?: ReactNode;
   className?: string;
+  selectedStep: string;
 }
 
 const WizardContent = (props: WizardContentProps) => {
   const [show, setShow] = useState<Boolean>(false);
   const stepContentRef = useRef<HTMLDivElement>(null);
   useEffect(() => {
+    console.log("RENDER");
     const parent: HTMLElement | null | undefined =
       stepContentRef.current?.parentElement;
     if (parent) {
@@ -21,7 +23,7 @@ const WizardContent = (props: WizardContentProps) => {
         setShow(false);
       }
     }
-  });
+  }, [props.selectedStep]);
   return (
     <div
       ref={stepContentRef}

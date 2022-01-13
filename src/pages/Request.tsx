@@ -77,6 +77,7 @@ const Request = () => {
   const [selectedStep, setSelectedStep] = useState<string>("Caracterización");
   const [toSubmitData, setToSubmitData] = useState({});
   const [ddl, setDdl] = useState(ddlFile);
+  const [isLoading, setIsLoading] = useState(false);
 
   const getDdlOptions: () => void = () => {
     axios
@@ -119,11 +120,13 @@ const Request = () => {
   };
 
   useEffect(() => {
+    setIsLoading(true);
     getDdlOptions();
     setTimeout(() => {
       if (demoData) {
         console.log("data fetched");
         setToSubmitData(demoData);
+        setIsLoading(false);
       }
     }, 3000);
   }, []);
@@ -132,47 +135,51 @@ const Request = () => {
     <FormContext.Provider
       value={{ toSubmitData, setToSubmitData, ddl, postFormData }}
     >
-      <div>
-        <Wizard selectedStep={selectedStep}>
-          {/* Step 1 */}
-          <WizardContent title="Caracterización">
-            <FormCaracterizacion
-              querySelector="caracterizacion"
-              submitCallback={() => setSelectedStep("Recursos")}
-            />
-          </WizardContent>
-          {/* Step 2 */}
-          <WizardContent title="Recursos">
-            <FormRecursos
-              title="Recursos"
-              subTitle="Has seleccionado el tipo de solicitud (Recurso), por favor describe los
+      {isLoading ? (
+        "Cargando..."
+      ) : (
+        <div>
+          <Wizard selectedStep={selectedStep}>
+            {/* Step 1 */}
+            <WizardContent title="Caracterización" selectedStep={selectedStep}>
+              <FormCaracterizacion
+                querySelector="caracterizacion"
+                submitCallback={() => setSelectedStep("Recursos")}
+              />
+            </WizardContent>
+            {/* Step 2 */}
+            <WizardContent title="Recursos" selectedStep={selectedStep}>
+              <FormRecursos
+                title="Recursos"
+                subTitle="Has seleccionado el tipo de solicitud (Recurso), por favor describe los
             detalles de el/los recursos."
-              querySelector="recursos"
-              submitCallback={() => setSelectedStep("Requerimientos")}
-            />
-          </WizardContent>
-          {/* Step 3 */}
-          <WizardContent title="Requerimientos">
-            <FormRequerimientos
-              title="Requerimientos"
-              querySelector="requerimientos"
-              submitCallback={() => setSelectedStep("Historias")}
-            />
-          </WizardContent>
-          {/* Step 4 */}
-          <WizardContent title="Historias">
-            <FormHistorias
-              title="Historias"
-              querySelector="historias"
-              submitCallback={() => setSelectedStep("Enviar")}
-            />
-          </WizardContent>
-          {/* Step 5 */}
-          <WizardContent title="Enviar">
-            <button onClick={postFormData}>Enviar Todo</button>
-          </WizardContent>
-        </Wizard>
-      </div>
+                querySelector="recursos"
+                submitCallback={() => setSelectedStep("Requerimientos")}
+              />
+            </WizardContent>
+            {/* Step 3 */}
+            <WizardContent title="Requerimientos" selectedStep={selectedStep}>
+              <FormRequerimientos
+                title="Requerimientos"
+                querySelector="requerimientos"
+                submitCallback={() => setSelectedStep("Historias")}
+              />
+            </WizardContent>
+            {/* Step 4 */}
+            <WizardContent title="Historias" selectedStep={selectedStep}>
+              <FormHistorias
+                title="Historias"
+                querySelector="historias"
+                submitCallback={() => setSelectedStep("Enviar")}
+              />
+            </WizardContent>
+            {/* Step 5 */}
+            <WizardContent title="Enviar" selectedStep={selectedStep}>
+              <button onClick={postFormData}>Enviar Todo</button>
+            </WizardContent>
+          </Wizard>
+        </div>
+      )}
     </FormContext.Provider>
   );
 };
