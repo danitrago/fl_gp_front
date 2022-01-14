@@ -1,5 +1,6 @@
 import React, { useEffect } from "react";
 import { useForm } from "react-hook-form";
+import { fillFields } from "../helpers";
 import withFormRepeat from "../hoc/withFormRepeat";
 import { IDdl, THoCFormChildRepeat } from "../interfaces/global";
 import {
@@ -12,7 +13,7 @@ import GroupHeader from "./GroupHeader";
 import GroupSubmit from "./GroupSubmit";
 
 const FormRecursos = (props: THoCFormChildRepeat) => {
-  const { group } = props;
+  const { group, ddl } = props;
   const {
     register,
     handleSubmit,
@@ -22,12 +23,7 @@ const FormRecursos = (props: THoCFormChildRepeat) => {
 
   useEffect(() => {
     // fill fields
-    if (group) {
-      let keys = Object.keys(group);
-      keys.map((key) => {
-        setValue(key, group[key]);
-      });
-    }
+    fillFields(group, setValue);
   }, [group]);
 
   return (
@@ -36,7 +32,6 @@ const FormRecursos = (props: THoCFormChildRepeat) => {
         <GroupHeader
           title="Grupo de Recursos"
           id={group.crcf3_group_id_front}
-          // id={group.crcf3_group_id_front}
           pos={props.pos}
           fnDelete={props.deleteGroup}
         />
@@ -50,7 +45,7 @@ const FormRecursos = (props: THoCFormChildRepeat) => {
             })}
           >
             <option value="">Seleccionar...</option>
-            {props.ddl.tipoConsultores.map((option: IDdl) => (
+            {ddl.tipoConsultores.map((option: IDdl) => (
               <option key={option.id} value={option.id}>
                 {option.label}
               </option>
@@ -64,7 +59,7 @@ const FormRecursos = (props: THoCFormChildRepeat) => {
             })}
           >
             <option value="">Seleccionar...</option>
-            {props.ddl.listaSeniority.map((option: IDdl) => (
+            {ddl.listaSeniority.map((option: IDdl) => (
               <option key={option.id} value={option.id}>
                 {option.label}
               </option>

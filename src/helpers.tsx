@@ -1,12 +1,14 @@
-import axios from "axios";
+import { FieldValues, UseFormSetValue } from "react-hook-form";
+import { TGroupRepeatingFields } from "./interfaces/form-fields";
 
-export const addGroup = (setter: React.SetStateAction<any>) => {
-  setter((prev: any) => {
-    return [
-      ...prev,
-      {
-        id: Date.now(),
-      },
-    ];
-  });
+export const fillFields = (
+  group: TGroupRepeatingFields,
+  setValue: UseFormSetValue<FieldValues>
+) => {
+  if (group) {
+    let keys: string[] = Object.keys(group);
+    keys.map((key) => {
+      setValue(key, group[key]);
+    });
+  }
 };
