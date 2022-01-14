@@ -51,6 +51,7 @@ export interface IFieldsData {
   historias?: IFieldsHistorias;
 }
 
+// type group for repeating forms
 export type TGroupRepeatingFields =
   | IFieldsRecursos
   | IFieldsRequerimientos
