@@ -7,60 +7,61 @@ import React, {
 } from "react";
 import ActionButtons from "../components/ActionButtons";
 import AddGroupButton from "../components/AddGroupButton";
-import FormContext from "../context/formContext";
-import { THoCForm } from "../interfaces/global";
+import FormContext, { TFormContext } from "../context/formContext";
+import { IFieldsData, TGroupRepeatingFields } from "../interfaces/form-fields";
+import { THoCForm, TTempRepeating } from "../interfaces/global";
 import CardGroup from "../ui-components/FormHooked/CardGroup";
 
 const withFormRepeat = (Component: ComponentType<any>) => {
   // HOC COMPONENT
   const NewComponent = (props: THoCForm) => {
     const { toSubmitData, setToSubmitData, ddl, setSelectedStep } =
-      useContext(FormContext);
+      useContext<TFormContext>(FormContext);
 
-    const [groups, setGroups] = useState([
+    const [groups, setGroups] = useState<TGroupRepeatingFields[]>([
       {
         crcf3_group_id_front: Date.now(),
-      },
+      } as TGroupRepeatingFields,
     ]);
 
-    const FORM_CONFIG = {
-      keyName: props.querySelector,
-    };
+    const KEY_NAME: string = props.querySelector;
 
     const wrapperForms = useRef<HTMLDivElement>(null);
 
-    const tempRef = useRef({
+    const tempRef = useRef<TTempRepeating>({
       counterSubmit: 0,
       dataTemp: new Array(),
     });
 
-    const addGroup = () => {
-      setGroups((prev: any) => {
+    const addGroup: () => void = () => {
+      setGroups((prev: TGroupRepeatingFields[]) => {
         return [
           ...prev,
           {
             crcf3_group_id_front: Date.now(),
-          },
+          } as TGroupRepeatingFields,
         ];
       });
     };
 
-    const deleteGroup = (id: number) => {
-      setGroups((prev: any) => {
-        let dummie = [...prev];
-        return dummie.filter((group) => group.crcf3_group_id_front != id);
+    const deleteGroup: (id: number) => void = (id: number) => {
+      setGroups((prev: TGroupRepeatingFields[]) => {
+        let dummie: TGroupRepeatingFields[] = [...prev];
+        return dummie.filter(
+          (group: TGroupRepeatingFields) => group.crcf3_group_id_front != id
+        );
       });
     };
 
-    const submitIndividual = (data: any) => {
+    const submitIndividual = (data: TGroupRepeatingFields) => {
       tempRef.current.counterSubmit++;
       tempRef.current.dataTemp.push(data);
       if (tempRef.current.counterSubmit === groups.length) {
         setGroups(tempRef.current.dataTemp);
-        setToSubmitData((prev: any) => {
+        setToSubmitData((prev: IFieldsData) => {
           let result = {
             ...prev,
-            [FORM_CONFIG.keyName]: tempRef.current.dataTemp,
+            [KEY_NAME]: tempRef.current.dataTemp,
           };
           return result;
         });
@@ -84,8 +85,8 @@ const withFormRepeat = (Component: ComponentType<any>) => {
     };
 
     const populateGroupsWithFetch = () => {
-      if (toSubmitData[FORM_CONFIG.keyName]) {
-        let data = toSubmitData[FORM_CONFIG.keyName];
+      if (toSubmitData[KEY_NAME]) {
+        let data = toSubmitData[KEY_NAME];
         setGroups(data);
       }
     };

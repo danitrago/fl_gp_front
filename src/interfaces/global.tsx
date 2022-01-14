@@ -17,3 +17,8 @@ export type THoCFormChildRepeat = THoCForm & {
   submitIndividual: (data: any) => void;
   deleteGroup: (id: number) => void;
 };
+
+export type TTempRepeating = {
+  counterSubmit: number;
+  dataTemp: any[];
+};

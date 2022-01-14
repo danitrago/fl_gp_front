@@ -1,7 +1,7 @@
 // PLEASE CONFIGURE THIS FILE
 // PLEASE CONFIGURE THIS FILE
 // PLEASE CONFIGURE THIS FILE
-export interface IFieldsCaracterizacion {
+export type IFieldsCaracterizacion = {
   [key: string]: number | string;
   crcf3_guid_tipo_solicitud: string;
   crcf3_guid_interventor_contrato: string;
@@ -16,9 +16,9 @@ export interface IFieldsCaracterizacion {
   crcf3_prerrequisitos: string;
   // crcf3_guid_estado_solicitud: string;
   // crcf3_guid_solicitante_lider: string;
-}
+};
 
-export interface IFieldsRecursos {
+export type IFieldsRecursos = {
   [key: string]: number | string;
   crcf3_group_id_front: number;
   crcf3_guid_tipo_consultor: string;
@@ -27,29 +27,29 @@ export interface IFieldsRecursos {
   crcf3_porcentaje_dedicacion: number;
   crcf3_tiempo_requerido: number;
   crcf3_observaciones: string;
-}
+};
 
-export interface IFieldsRequerimientos {
+export type IFieldsRequerimientos = {
   [key: string]: number | string;
   crcf3_group_id_front: number;
   crcf3_guid_tipo_requisito: string;
   crcf3_titulo: string;
-}
+};
 
-export interface IFieldsHistorias {
+export type IFieldsHistorias = {
   [key: string]: number | string;
   crcf3_group_id_front: number;
   crcf3_titulo: string;
   crcf3_criterio: string;
-}
+};
 
 // type object to submit
-export interface IFieldsData {
+export type IFieldsData = {
   caracterizacion?: IFieldsCaracterizacion;
   recursos?: IFieldsRecursos;
   requerimientos?: IFieldsRequerimientos;
   historias?: IFieldsHistorias;
-}
+};
 
 // type group for ONLY repeating forms
 export type TGroupRepeatingFields =

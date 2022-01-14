@@ -1,4 +1,12 @@
 import React from "react";
 
-const FormContext = React.createContext<any>({});
+export type TFormContext = {
+  toSubmitData: any;
+  setToSubmitData: any;
+  ddl: any;
+  postFormData: any;
+  setSelectedStep: any;
+};
+
+const FormContext = React.createContext<TFormContext>({} as TFormContext);
 export default FormContext;
