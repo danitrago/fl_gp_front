@@ -69,30 +69,31 @@ const withFormRepeat = (Component: ComponentType<any>) => {
       }
     };
 
-    const submitAllGroups = () => {
+    const submitAllGroups: () => void = () => {
       tempRef.current.counterSubmit = 0;
       tempRef.current.dataTemp = [];
       if (wrapperForms.current) {
         const forms: any = wrapperForms.current.querySelectorAll("form");
-        console.log(forms);
         for (let i = 0; i < forms.length; i++) {
-          console.log("for", i);
-          const groupForm = forms[i];
-          let inputSubmit = groupForm.querySelector('input[type="submit"]');
-          inputSubmit.click();
+          const groupForm: any = forms[i];
+          let inputSubmit: HTMLInputElement = groupForm.querySelector(
+            'input[type="submit"]'
+          );
+          if (inputSubmit) inputSubmit.click();
         }
       }
     };
 
-    const populateGroupsWithFetch = () => {
+    const populateFields: () => void = () => {
       if (toSubmitData[KEY_NAME]) {
-        let data = toSubmitData[KEY_NAME];
+        let data: TGroupRepeatingFields[] = toSubmitData[KEY_NAME];
         setGroups(data);
       }
     };
 
     useEffect(() => {
-      populateGroupsWithFetch();
+      // populate fields, in fetch for example
+      populateFields();
     }, [toSubmitData]);
 
     return (
