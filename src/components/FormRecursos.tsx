@@ -1,36 +1,45 @@
 import React, { useEffect } from "react";
 import { useForm } from "react-hook-form";
 import withFormRepeat from "../hoc/withFormRepeat";
-import { IDdl } from "../interfaces/global";
+import { IDdl, THoCFormChildRepeat } from "../interfaces/global";
 import {
   FieldsGrid,
   Input,
   Select,
   TextArea,
 } from "../ui-components/FormHooked";
+import GroupHeader from "./GroupHeader";
+import GroupSubmit from "./GroupSubmit";
 
-const FormRecursos = (props: any) => {
+const FormRecursos = (props: THoCFormChildRepeat) => {
+  const { group } = props;
   const {
     register,
     handleSubmit,
     formState: { errors },
     setValue,
-    trigger,
   } = useForm();
 
   useEffect(() => {
     // fill fields
-    if (props.group) {
-      let keys = Object.keys(props.group);
+    if (group) {
+      let keys = Object.keys(group);
       keys.map((key) => {
-        setValue(key, props.group[key]);
+        setValue(key, group[key]);
       });
     }
-  }, [props.group]);
+  }, [group]);
 
   return (
     <div>
       <form onSubmit={handleSubmit(props.submitIndividual)}>
+        <GroupHeader
+          title="Grupo de Recursos"
+          id={group.crcf3_group_id_front}
+          // id={group.crcf3_group_id_front}
+          pos={props.pos}
+          fnDelete={props.deleteGroup}
+        />
         <FieldsGrid gridCols={3}>
           <Select
             label="Tipo de consultor*"
@@ -47,7 +56,7 @@ const FormRecursos = (props: any) => {
               </option>
             ))}
           </Select>
-          {/* <Select
+          <Select
             label="Seniority"
             errors={errors}
             {...register("crcf3_guid_seniority", {
@@ -88,10 +97,9 @@ const FormRecursos = (props: any) => {
             errors={errors}
             cols={3}
             {...register("crcf3_observaciones")}
-          /> */}
+          />
         </FieldsGrid>
-        <input {...register("crcf3_group_id_front")} hidden />
-        <input type="submit" hidden />
+        <GroupSubmit register={register} />
       </form>
     </div>
   );

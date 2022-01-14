@@ -1,4 +1,8 @@
+// PLEASE CONFIGURE THIS FILE
+// PLEASE CONFIGURE THIS FILE
+// PLEASE CONFIGURE THIS FILE
 export interface IFieldsCaracterizacion {
+  [key: string]: number | string;
   crcf3_guid_tipo_solicitud: string;
   crcf3_guid_interventor_contrato: string;
   crcf3_guid_tipo_necesidad: string;
@@ -15,6 +19,7 @@ export interface IFieldsCaracterizacion {
 }
 
 export interface IFieldsRecursos {
+  [key: string]: number | string;
   crcf3_group_id_front: number;
   crcf3_guid_tipo_consultor: string;
   crcf3_guid_seniority: string;
@@ -25,12 +30,14 @@ export interface IFieldsRecursos {
 }
 
 export interface IFieldsRequerimientos {
+  [key: string]: number | string;
   crcf3_group_id_front: number;
   crcf3_guid_tipo_requisito: string;
   crcf3_titulo: string;
 }
 
 export interface IFieldsHistorias {
+  [key: string]: number | string;
   crcf3_group_id_front: number;
   crcf3_titulo: string;
   crcf3_criterio: string;
@@ -43,3 +50,8 @@ export interface IFieldsData {
   requerimientos?: IFieldsRequerimientos;
   historias?: IFieldsHistorias;
 }
+
+export type TGroupRepeatingFields =
+  | IFieldsRecursos
+  | IFieldsRequerimientos
+  | IFieldsHistorias;

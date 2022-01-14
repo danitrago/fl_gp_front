@@ -7,6 +7,7 @@ import FormRequerimientos from "../components/FormRequerimientos";
 import FormContext from "../context/formContext";
 import { IFieldsData } from "../interfaces/form-fields";
 import Button from "../ui-components/Button";
+import { Title } from "../ui-components/FormHooked";
 import { Wizard, WizardContent } from "../ui-components/Wizard";
 const ddlFile = require("../assets/ddl.json");
 
@@ -158,7 +159,6 @@ const Request = () => {
             {/* Step 2 */}
             <WizardContent title="Recursos" selectedStep={selectedStep}>
               <FormRecursos
-                title="Recursitos"
                 querySelector="recursos"
                 next="Enviar"
                 prev="Caracterización"
