@@ -5,6 +5,7 @@ import React, {
   useRef,
   useState,
 } from "react";
+import { SubmitHandler } from "react-hook-form";
 import ActionButtons from "../components/ActionButtons";
 import AddGroupButton from "../components/AddGroupButton";
 import FormContext, { TFormContext } from "../context/formContext";
@@ -53,7 +54,9 @@ const withFormRepeat = (Component: ComponentType<any>) => {
       });
     };
 
-    const submitIndividual = (data: TGroupRepeatingFields) => {
+    const submitIndividual: SubmitHandler<TGroupRepeatingFields> = (
+      data: TGroupRepeatingFields
+    ) => {
       tempRef.current.counterSubmit++;
       tempRef.current.dataTemp.push(data);
       if (tempRef.current.counterSubmit === groups.length) {

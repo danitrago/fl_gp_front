@@ -2,6 +2,7 @@ import React, { useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { fillFields } from "../helpers";
 import withFormRepeat from "../hoc/withFormRepeat";
+import { TGroupRepeatingFields } from "../interfaces/form-fields";
 import { IDdl, THoCFormChildRepeat } from "../interfaces/global";
 import {
   FieldsGrid,
@@ -40,7 +41,7 @@ const FormRecursos = (props: THoCFormChildRepeat) => {
             label="Tipo de consultor*"
             errors={errors}
             cols={2}
-            {...register("crcf3_guid_tipo_consultor", {
+            {...register("crcf3_guid_tipo_consultorsas", {
               required: true,
             })}
           >
