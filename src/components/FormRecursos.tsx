@@ -41,7 +41,7 @@ const FormRecursos = (props: THoCFormChildRepeat) => {
             label="Tipo de consultor*"
             errors={errors}
             cols={2}
-            {...register("crcf3_guid_tipo_consultorsas", {
+            {...register("crcf3_guid_tipo_consultor", {
               required: true,
             })}
           >
