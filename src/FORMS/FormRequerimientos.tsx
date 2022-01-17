@@ -10,10 +10,10 @@ import {
   Select,
   TextArea,
 } from "../ui-components/FormHooked";
-import GroupHeader from "./GroupHeader";
-import GroupSubmit from "./GroupSubmit";
+import GroupHeader from "../components/GroupHeader";
+import GroupSubmit from "../components/GroupSubmit";
 
-const FormHistorias = (props: THoCFormChildRepeat) => {
+const FormRequerimientos = (props: THoCFormChildRepeat) => {
   const { group, ddl } = props;
   const {
     register,
@@ -38,17 +38,25 @@ const FormHistorias = (props: THoCFormChildRepeat) => {
         />
         <FieldsGrid gridCols={3}>
           {/* START REPLAING FIELDS HERE */}
-          <TextArea
-            label="Descripción de la HU*"
+          <Select
+            label="Tipo de requerimiento*"
             errors={errors}
-            {...register("crcf3_titulo", { required: true })}
-          />
+            {...register("crcf3_guid_tipo_requisito", {
+              required: true,
+            })}
+          >
+            <option value="">Seleccionar...</option>
+            {ddl.listaRequisitos.map((option: IDdl) => (
+              <option key={option.id} value={option.id}>
+                {option.label}
+              </option>
+            ))}
+          </Select>
           <TextArea
-            label="Criterios de aceptación (1 por línea)*"
-            placeholder="1. Criterio de aceptación uno&#x0a;2. Otro criterio de aceptación dos&#x0a;3. Criterio de aceptación tres"
+            label="Descripción*"
             errors={errors}
             cols={2}
-            {...register("crcf3_criterio", { required: true })}
+            {...register("crcf3_titulo", { required: true })}
           />
           {/* END REPLAING FIELDS HERE */}
         </FieldsGrid>
@@ -58,4 +66,4 @@ const FormHistorias = (props: THoCFormChildRepeat) => {
   );
 };
 
-export default withFormRepeat(FormHistorias);
+export default withFormRepeat(FormRequerimientos);

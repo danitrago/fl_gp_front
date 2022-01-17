@@ -10,8 +10,8 @@ import {
   Select,
   TextArea,
 } from "../ui-components/FormHooked";
-import GroupHeader from "./GroupHeader";
-import GroupSubmit from "./GroupSubmit";
+import GroupHeader from "../components/GroupHeader";
+import GroupSubmit from "../components/GroupSubmit";
 
 const FormRecursos = (props: THoCFormChildRepeat) => {
   const { group, ddl } = props;

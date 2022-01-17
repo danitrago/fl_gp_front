@@ -1,9 +1,9 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
-import FormCaracterizacion from "../components/FormCaracterizacion";
-import FormHistorias from "../components/FormHistorias";
-import FormRecursos from "../components/FormRecursos";
-import FormRequerimientos from "../components/FormRequerimientos";
+import FormCaracterizacion from "../FORMS/FormCaracterizacion";
+import FormHistorias from "../FORMS/FormHistorias";
+import FormRecursos from "../FORMS/FormRecursos";
+import FormRequerimientos from "../FORMS/FormRequerimientos";
 import SendData from "../components/SendData";
 import FormContext from "../context/formContext";
 import { IFieldsData } from "../interfaces/form-fields";
