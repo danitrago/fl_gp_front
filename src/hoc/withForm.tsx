@@ -1,7 +1,7 @@
 import React, { ComponentType, useContext, useEffect } from "react";
 import { useForm } from "react-hook-form";
 import ActionButtons from "../components/ActionButtons";
-import FormContext from "../context/formContext";
+import FormContext from "../contexts/formContext";
 import { IFieldsData } from "../interfaces/FORM-FIELDS";
 import { THoCForm } from "../interfaces/global";
 

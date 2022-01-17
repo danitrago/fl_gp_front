@@ -1,5 +1,5 @@
 import React, { useContext } from "react";
-import FormContext from "../context/formContext";
+import FormContext from "../contexts/formContext";
 import Button from "../ui-components/Button";
 import sendImg from "../assets/send.jpg";
 

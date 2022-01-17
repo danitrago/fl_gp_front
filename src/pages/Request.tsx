@@ -5,7 +5,7 @@ import FormHistorias from "../FORMS/FormHistorias";
 import FormRecursos from "../FORMS/FormRecursos";
 import FormRequerimientos from "../FORMS/FormRequerimientos";
 import SendData from "../components/SendData";
-import FormContext from "../context/formContext";
+import FormContext from "../contexts/formContext";
 import { IFieldsData } from "../interfaces/FORM-FIELDS";
 import Button from "../ui-components/Button";
 import { Title } from "../ui-components/FormHooked";
