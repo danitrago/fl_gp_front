@@ -1,5 +1,5 @@
 import { FieldValues, UseFormSetValue } from "react-hook-form";
-import { TGroupRepeatingFields } from "./interfaces/form-fields";
+import { TGroupRepeatingFields } from "./interfaces/FORM-FIELDS";
 
 export const fillFields = (
   group: TGroupRepeatingFields,

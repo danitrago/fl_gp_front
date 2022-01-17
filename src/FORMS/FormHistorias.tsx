@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { fillFields } from "../helpers";
 import withFormRepeat from "../hoc/withFormRepeat";
-import { TGroupRepeatingFields } from "../interfaces/form-fields";
+import { TGroupRepeatingFields } from "../interfaces/FORM-FIELDS";
 import { IDdl, THoCFormChildRepeat } from "../interfaces/global";
 import {
   FieldsGrid,

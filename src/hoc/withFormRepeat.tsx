@@ -9,7 +9,7 @@ import { SubmitHandler } from "react-hook-form";
 import ActionButtons from "../components/ActionButtons";
 import AddGroupButton from "../components/AddGroupButton";
 import FormContext, { TFormContext } from "../context/formContext";
-import { IFieldsData, TGroupRepeatingFields } from "../interfaces/form-fields";
+import { IFieldsData, TGroupRepeatingFields } from "../interfaces/FORM-FIELDS";
 import { THoCForm, TTempRepeating } from "../interfaces/global";
 import CardGroup from "../ui-components/FormHooked/CardGroup";
 

@@ -1,4 +1,4 @@
-import { TGroupRepeatingFields } from "./form-fields";
+import { TGroupRepeatingFields } from "./FORM-FIELDS";
 
 export interface IDdl {
   id: string;

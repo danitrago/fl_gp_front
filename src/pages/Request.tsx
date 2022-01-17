@@ -6,7 +6,7 @@ import FormRecursos from "../FORMS/FormRecursos";
 import FormRequerimientos from "../FORMS/FormRequerimientos";
 import SendData from "../components/SendData";
 import FormContext from "../context/formContext";
-import { IFieldsData } from "../interfaces/form-fields";
+import { IFieldsData } from "../interfaces/FORM-FIELDS";
 import Button from "../ui-components/Button";
 import { Title } from "../ui-components/FormHooked";
 import { Wizard, WizardContent } from "../ui-components/Wizard";
