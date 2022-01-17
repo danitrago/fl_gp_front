@@ -1,37 +1,43 @@
 import React, { useEffect } from "react";
 import { useForm } from "react-hook-form";
+import { fillFields } from "../helpers";
 import withFormRepeat from "../hoc/withFormRepeat";
-import { IDdl } from "../interfaces/global";
+import { TGroupRepeatingFields } from "../interfaces/form-fields";
+import { IDdl, THoCFormChildRepeat } from "../interfaces/global";
 import {
   FieldsGrid,
   Input,
   Select,
   TextArea,
 } from "../ui-components/FormHooked";
+import GroupHeader from "./GroupHeader";
+import GroupSubmit from "./GroupSubmit";
 
-const FormHistorias = (props: any) => {
+const FormHistorias = (props: THoCFormChildRepeat) => {
+  const { group, ddl } = props;
   const {
     register,
     handleSubmit,
     formState: { errors },
     setValue,
-    trigger,
   } = useForm();
 
   useEffect(() => {
     // fill fields
-    if (props.group) {
-      let keys = Object.keys(props.group);
-      keys.map((key) => {
-        setValue(key, props.group[key]);
-      });
-    }
-  }, [props.group]);
+    fillFields(group, setValue);
+  }, [group]);
 
   return (
     <div>
       <form onSubmit={handleSubmit(props.submitIndividual)}>
+        <GroupHeader
+          title="Grupo de Recursos"
+          id={group.crcf3_group_id_front}
+          pos={props.pos}
+          fnDelete={props.deleteGroup}
+        />
         <FieldsGrid gridCols={3}>
+          {/* START REPLAING FIELDS HERE */}
           <TextArea
             label="Descripción de la HU*"
             errors={errors}
@@ -44,9 +50,9 @@ const FormHistorias = (props: any) => {
             cols={2}
             {...register("crcf3_criterio", { required: true })}
           />
+          {/* END REPLAING FIELDS HERE */}
         </FieldsGrid>
-        <input {...register("crcf3_group_id_front")} hidden />
-        <input type="submit" hidden />
+        <GroupSubmit register={register} />
       </form>
     </div>
   );

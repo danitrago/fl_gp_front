@@ -37,6 +37,7 @@ const FormRecursos = (props: THoCFormChildRepeat) => {
           fnDelete={props.deleteGroup}
         />
         <FieldsGrid gridCols={3}>
+          {/* START REPLAING FIELDS HERE */}
           <Select
             label="Tipo de consultor*"
             errors={errors}
@@ -94,6 +95,7 @@ const FormRecursos = (props: THoCFormChildRepeat) => {
             cols={3}
             {...register("crcf3_observaciones")}
           />
+          {/* END REPLAING FIELDS HERE */}
         </FieldsGrid>
         <GroupSubmit register={register} />
       </form>

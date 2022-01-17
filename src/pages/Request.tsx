@@ -4,6 +4,7 @@ import FormCaracterizacion from "../components/FormCaracterizacion";
 import FormHistorias from "../components/FormHistorias";
 import FormRecursos from "../components/FormRecursos";
 import FormRequerimientos from "../components/FormRequerimientos";
+import SendData from "../components/SendData";
 import FormContext from "../context/formContext";
 import { IFieldsData } from "../interfaces/form-fields";
 import Button from "../ui-components/Button";
@@ -160,13 +161,29 @@ const Request = () => {
             <WizardContent title="Recursos" selectedStep={selectedStep}>
               <FormRecursos
                 querySelector="recursos"
-                next="Enviar"
+                next="Requerimientos"
                 prev="Caracterización"
+              />
+            </WizardContent>
+            {/* Step 3 */}
+            <WizardContent title="Requerimientos" selectedStep={selectedStep}>
+              <FormRequerimientos
+                querySelector="requerimientos"
+                next="Historias"
+                prev="Recursos"
+              />
+            </WizardContent>
+            {/* Step 4 */}
+            <WizardContent title="Historias" selectedStep={selectedStep}>
+              <FormHistorias
+                querySelector="historias"
+                next="Enviar"
+                prev="Requerimientos"
               />
             </WizardContent>
             {/* Step 5 */}
             <WizardContent title="Enviar" selectedStep={selectedStep}>
-              <button onClick={postFormData}>Enviar Todo</button>
+              <SendData prev="Historias" />
             </WizardContent>
           </Wizard>
         </div>
