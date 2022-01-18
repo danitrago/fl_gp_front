@@ -3,6 +3,7 @@ import logo from "./assets/logo.svg";
 import Wizard from "./ui-components/Wizard/Wizard";
 import Request from "./pages/Request";
 import UserContext from "./contexts/userContext";
+import { Route, Routes } from "react-router-dom";
 
 function App() {
   return (
@@ -13,7 +14,14 @@ function App() {
         name: "Daniel Felipe",
       }}
     >
-      <div className="bg-gray-50 h-full">
+      <Routes>
+        <Route path="/" element={<p>DASHBOARD</p>} />
+        <Route path="/all-requests" element={<p>TODAS LAS SOLICITUDES</p>} />
+        <Route path="/my-requests" element={<p>MIS SOLICITUDES</p>} />
+        <Route path="/my-tasks" element={<p>MIS TAREAS</p>} />
+        <Route path="/request" element={<Request />} />
+      </Routes>
+      {/* <div className="bg-gray-50 h-full">
         <div className="container mx-auto px-3 pb-40">
           <div className="w-full flex justify-between py-4 border-b">
             <div className="logo">
@@ -35,7 +43,7 @@ function App() {
             <Request />
           </div>
         </div>
-      </div>
+      </div> */}
     </UserContext.Provider>
   );
 }
