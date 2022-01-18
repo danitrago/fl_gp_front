@@ -1,16 +1,18 @@
 module.exports = {
-  content: [
-    "./src/**/*.{js,jsx,ts,tsx}",
-  ],
+  content: ["./src/**/*.{js,jsx,ts,tsx}", "./safelist.txt"],
   theme: {
     extend: {
       colors: {
-        primary: '#ff277e'
+        primary: "#ff277e",
       },
       borderWidth: {
-        '6': '6px',
-      }
+        6: "6px",
+      },
     },
   },
-  plugins: [],
-}
+  plugins: [
+    require("tailwind-safelist-generator")({
+      patterns: ["{screens}:gap-{gap}", "{screens}:col-span-{gap}"],
+    }),
+  ],
+};
