@@ -1,29 +1,13 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
+import SendData from "../components/SendData";
+import FormContext from "../contexts/formContext";
 import FormCaracterizacion from "../FORMS/FormCaracterizacion";
 import FormHistorias from "../FORMS/FormHistorias";
 import FormRecursos from "../FORMS/FormRecursos";
 import FormRequerimientos from "../FORMS/FormRequerimientos";
-import SendData from "../components/SendData";
-import FormContext from "../contexts/formContext";
-import { IFieldsData } from "../interfaces/FORM-FIELDS";
-import Button from "../ui-components/Button";
-import { Title } from "../ui-components/FormHooked";
 import { Wizard, WizardContent } from "../ui-components/Wizard";
 const ddlFile = require("../assets/ddl.json");
-
-// export type TMainData = {
-//   caracterizacion: {
-//     [key: string]: number | string;
-//     ticket: string;
-//     descripcion: string;
-//   };
-//   recursos: {
-//     id: number;
-//     tipo: string;
-//     cantidad: number;
-//   }[];
-// };
 
 const demoData: any = {
   caracterizacion: {
