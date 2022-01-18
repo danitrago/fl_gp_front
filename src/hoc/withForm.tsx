@@ -1,18 +1,17 @@
 import React, { ComponentType, useContext, useEffect } from "react";
 import { useForm } from "react-hook-form";
 import ActionButtons from "../components/ActionButtons";
-import FormContext from "../contexts/formContext";
-import { IFieldsData } from "../interfaces/FORM-FIELDS";
+import FormContext, { TFormContext } from "../contexts/formContext";
+import { IFieldsData, TFormFields } from "../interfaces/FORM-FIELDS";
 import { THoCForm } from "../interfaces/global";
 
 const withForm = (Component: ComponentType<any>) => {
   // HOC COMPONENT
   const NewComponent = (props: THoCForm) => {
-    const FORM_CONFIG = {
-      keyName: props.querySelector,
-    };
+    const KEY_NAME: string = props.querySelector;
+
     const { toSubmitData, setToSubmitData, ddl, setSelectedStep } =
-      useContext(FormContext);
+      useContext<TFormContext>(FormContext);
 
     const {
       register,
@@ -21,18 +20,17 @@ const withForm = (Component: ComponentType<any>) => {
       setValue,
     } = useForm();
 
-    const onSubmit = (data: any) => {
+    const onSubmit: (data: TFormFields) => void = (data: TFormFields) => {
       setToSubmitData((prev: IFieldsData) => {
-        return { ...prev, [FORM_CONFIG.keyName]: data };
+        return { ...prev, [KEY_NAME]: data };
       });
       if (props.next) setSelectedStep(props.next);
     };
 
-    const fillFields = () => {
-      //   console.log("populating fields", FORM_CONFIG.keyName);
-      if (toSubmitData[FORM_CONFIG.keyName]) {
-        let data = toSubmitData[FORM_CONFIG.keyName];
-        let keys = Object.keys(data);
+    const fillFields: () => void = () => {
+      if (toSubmitData[KEY_NAME]) {
+        let data: TFormFields = toSubmitData[KEY_NAME];
+        let keys: string[] = Object.keys(data);
         keys.map((key) => {
           setValue(key, data[key]);
         });
@@ -52,7 +50,7 @@ const withForm = (Component: ComponentType<any>) => {
             errors={errors}
             register={register}
             ddl={ddl}
-            {...props}
+            // {...props}
           />
           <ActionButtons {...props} />
         </form>

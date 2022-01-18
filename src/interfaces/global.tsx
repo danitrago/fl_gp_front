@@ -10,6 +10,12 @@ export type THoCForm = {
   prev?: any;
 };
 
+export type THoCFormChild = THoCForm & {
+  ddl: any;
+  errors: any;
+  register: any;
+};
+
 export type THoCFormChildRepeat = THoCForm & {
   pos: number;
   group: TGroupRepeatingFields;

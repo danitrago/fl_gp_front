@@ -110,7 +110,7 @@ const withFormRepeat = (Component: ComponentType<any>) => {
                 ddl={ddl}
                 submitIndividual={submitIndividual}
                 deleteGroup={deleteGroup}
-                {...props}
+                // {...props}
               />
             </CardGroup>
           );

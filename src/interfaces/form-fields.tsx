@@ -43,6 +43,10 @@ export type IFieldsHistorias = {
   crcf3_criterio: string;
 };
 
+// PLEASE CONFIGURE THIS FILE
+// PLEASE CONFIGURE THIS FILE
+// PLEASE CONFIGURE THIS FILE
+
 // type object to submit
 export type IFieldsData = {
   caracterizacion?: IFieldsCaracterizacion;
@@ -51,7 +55,10 @@ export type IFieldsData = {
   historias?: IFieldsHistorias;
 };
 
-// type group for ONLY repeating forms
+// type for ONLY NOrepeating forms
+export type TFormFields = IFieldsCaracterizacion; // OR necessary
+
+// type for ONLY repeating group forms
 export type TGroupRepeatingFields =
   | IFieldsRecursos
   | IFieldsRequerimientos
