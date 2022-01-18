@@ -1,6 +1,4 @@
-// PLEASE CONFIGURE THIS FILE
-// PLEASE CONFIGURE THIS FILE
-// PLEASE CONFIGURE THIS FILE
+// 1. Configure los "types" de los campos para cada una de las partes del formulario "Wizard"
 export type IFieldsCaracterizacion = {
   [key: string]: number | string;
   crcf3_guid_tipo_solicitud: string;
@@ -20,7 +18,7 @@ export type IFieldsCaracterizacion = {
 
 export type IFieldsRecursos = {
   [key: string]: number | string;
-  crcf3_group_id_front: number;
+  crcf3_group_id_front: number; // Para elementos repetitivos, se debe incluir este campo
   crcf3_guid_tipo_consultor: string;
   crcf3_guid_seniority: string;
   crcf3_cantidad_consultores: number;
@@ -31,23 +29,19 @@ export type IFieldsRecursos = {
 
 export type IFieldsRequerimientos = {
   [key: string]: number | string;
-  crcf3_group_id_front: number;
+  crcf3_group_id_front: number; // Para elementos repetitivos, se debe incluir este campo
   crcf3_guid_tipo_requisito: string;
   crcf3_titulo: string;
 };
 
 export type IFieldsHistorias = {
   [key: string]: number | string;
-  crcf3_group_id_front: number;
+  crcf3_group_id_front: number; // Para elementos repetitivos, se debe incluir este campo
   crcf3_titulo: string;
   crcf3_criterio: string;
 };
 
-// PLEASE CONFIGURE THIS FILE
-// PLEASE CONFIGURE THIS FILE
-// PLEASE CONFIGURE THIS FILE
-
-// type object to submit
+// 2. Configure el type del objeto para enviar en el submit del formulario, los campos repetitivos terminan en "[]"
 export type IFieldsData = {
   caracterizacion?: IFieldsCaracterizacion;
   recursos?: IFieldsRecursos[];
@@ -55,10 +49,10 @@ export type IFieldsData = {
   historias?: IFieldsHistorias[];
 };
 
-// type for ONLY NOrepeating forms
-export type TFormFields = IFieldsCaracterizacion; // OR necessary
+// 3. type para las partes del formulario que NO son grupos de campos repetitivos
+export type TFormFields = IFieldsCaracterizacion; // OR los necesarios
 
-// type for ONLY repeating group forms
+// 4. type para las partes del formulario que SÍ son grupos de campos repetitivos
 export type TGroupRepeatingFields =
   | IFieldsRecursos
   | IFieldsRequerimientos
