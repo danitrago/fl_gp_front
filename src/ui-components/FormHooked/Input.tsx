@@ -23,20 +23,20 @@ const Input = React.forwardRef<
   return (
     <div className={cols ? `lg:col-span-${cols}` : ""}>
       <div className="flex flex-col">
-      <label className="mb-2 font-bold text-sm">{label}</label>
-      <input
-        ref={ref}
-        className={classing}
-        name={name}
-        onChange={onChange}
-        onBlur={onBlur}
-        placeholder={placeholder}
-        type={type}
-      />
-      {errors?.[name] && (
-        <span className="text-red-400 text-xs">Este campo es requerido</span>
-      )}
-    </div>
+        <label className="mb-2 font-bold text-sm">{label}</label>
+        <input
+          ref={ref}
+          className={classing}
+          name={name}
+          onChange={onChange}
+          onBlur={onBlur}
+          placeholder={placeholder}
+          type={type}
+        />
+        {errors?.[name] && (
+          <span className="text-red-400 text-xs">Este campo es requerido</span>
+        )}
+      </div>
     </div>
   );
 });
