@@ -1,17 +1,14 @@
 import React, { useEffect } from "react";
 import { useForm } from "react-hook-form";
-import { fillFields } from "../helpers";
-import withFormRepeat from "../hoc/withFormRepeat";
-import { TGroupRepeatingFields } from "../interfaces/form-fields";
-import { IDdl, THoCFormChildRepeat } from "../interfaces/global";
-import {
-  FieldsGrid,
-  Input,
-  Select,
-  TextArea,
-} from "../ui-components/FormHooked";
 import GroupHeader from "../components/GroupHeader";
 import GroupSubmit from "../components/GroupSubmit";
+import { fillFields } from "../helpers";
+import withFormRepeat from "../hoc/withFormRepeat";
+import { IDdl, THoCFormChildRepeat } from "../interfaces/global";
+import {
+  FieldsGrid, Select,
+  TextArea
+} from "../ui-components/FormHooked";
 
 const FormRequerimientos = (props: THoCFormChildRepeat) => {
   const { group, ddl } = props;

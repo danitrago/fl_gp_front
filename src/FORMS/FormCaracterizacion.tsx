@@ -6,7 +6,7 @@ import {
   Input,
   Select,
   TextArea,
-  Title,
+  Title
 } from "../ui-components/FormHooked";
 
 const FormCaracterizacion = (props: THoCFormChild) => {
