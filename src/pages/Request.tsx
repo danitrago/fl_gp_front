@@ -2,14 +2,16 @@ import axios from "axios";
 import React, { useEffect, useState } from "react";
 import SendData from "../components/SendData";
 import FormContext from "../contexts/formContext";
-import FormCaracterizacion from "../FORMS/FormCaracterizacion";
-import FormHistorias from "../FORMS/FormHistorias";
-import FormRecursos from "../FORMS/FormRecursos";
-import FormRequerimientos from "../FORMS/FormRequerimientos";
+import FormCaracterizacion from "../forms/FormCaracterizacion";
+import FormHistorias from "../forms/FormHistorias";
+import FormRecursos from "../forms/FormRecursos";
+import FormRequerimientos from "../forms/FormRequerimientos";
+import { IFieldsData } from "../interfaces/form-fields";
+import { IDdl } from "../interfaces/global";
 import { Wizard, WizardContent } from "../ui-components/Wizard";
 const ddlFile = require("../assets/ddl.json");
 
-const demoData: any = {
+const demoData: IFieldsData = {
   caracterizacion: {
     crcf3_guid_tipo_solicitud: "3ca21c8b-62df-4598-904b-eb0c2481356f",
     crcf3_guid_interventor_contrato: "6ec4853b-e332-466e-b7c0-99c80831be4f",
@@ -27,34 +29,34 @@ const demoData: any = {
     {
       crcf3_guid_tipo_consultor: "7768d2ba-4739-4d8f-8007-2e316231666e",
       crcf3_guid_seniority: "5a6dad49-b5bd-450e-9d2b-25c3a7c7218a",
-      crcf3_cantidad_consultores: "3",
-      crcf3_porcentaje_dedicacion: "3",
-      crcf3_tiempo_requerido: "43",
+      crcf3_cantidad_consultores: 3,
+      crcf3_porcentaje_dedicacion: 3,
+      crcf3_tiempo_requerido: 43,
       crcf3_observaciones: "gdf",
-      crcf3_group_id_front: "1641911004719",
+      crcf3_group_id_front: 1641911004719,
     },
     {
       crcf3_guid_tipo_consultor: "b5ee0ab2-44d8-475b-a4b6-838665d87f05",
       crcf3_guid_seniority: "d707fb44-e1f9-4497-a4ff-b1b3090b544a",
-      crcf3_cantidad_consultores: "43",
-      crcf3_porcentaje_dedicacion: "43",
-      crcf3_tiempo_requerido: "564",
+      crcf3_cantidad_consultores: 43,
+      crcf3_porcentaje_dedicacion: 43,
+      crcf3_tiempo_requerido: 564,
       crcf3_observaciones: "gfdg",
-      crcf3_group_id_front: "1641911029931",
+      crcf3_group_id_front: 1641911029931,
     },
   ],
   requerimientos: [
     {
       crcf3_guid_tipo_requisito: "c340af98-a2c8-4f56-ba03-e2b3befce603",
       crcf3_titulo: "gfd",
-      crcf3_group_id_front: "1641911004722",
+      crcf3_group_id_front: 1641911004722,
     },
   ],
   historias: [
     {
       crcf3_titulo: "gfdgfd",
       crcf3_criterio: "1fds\n2fdsgfd\n3gfgdf",
-      crcf3_group_id_front: "1641911004723",
+      crcf3_group_id_front: 1641911004723,
     },
   ],
 };
@@ -62,9 +64,11 @@ const demoData: any = {
 const Request = () => {
   // console.log("render Request");
   const [selectedStep, setSelectedStep] = useState<string>("Caracterización");
-  const [toSubmitData, setToSubmitData] = useState({});
-  const [ddl, setDdl] = useState(ddlFile);
-  const [isLoading, setIsLoading] = useState(false);
+  const [toSubmitData, setToSubmitData] = useState<IFieldsData>(
+    {} as IFieldsData
+  );
+  const [ddl, setDdl] = useState<IDdl[]>(ddlFile);
+  const [isLoading, setIsLoading] = useState<boolean>(false);
 
   const getDdlOptions: () => void = () => {
     axios
@@ -107,7 +111,7 @@ const Request = () => {
   };
 
   useEffect(() => {
-    // setIsLoading(true);
+    setIsLoading(true);
     getDdlOptions();
     setTimeout(() => {
       if (demoData) {

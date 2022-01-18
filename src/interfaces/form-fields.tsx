@@ -6,7 +6,7 @@ export type IFieldsCaracterizacion = {
   crcf3_guid_tipo_solicitud: string;
   crcf3_guid_interventor_contrato: string;
   crcf3_guid_tipo_necesidad: string;
-  crcf3_numero_ticket_servicio: number;
+  crcf3_numero_ticket_servicio: string;
   crcf3_fecha_limite: string;
   crcf3_modulo_funcionalidad: string;
   crcf3_guid_complejidad: string;
@@ -50,9 +50,9 @@ export type IFieldsHistorias = {
 // type object to submit
 export type IFieldsData = {
   caracterizacion?: IFieldsCaracterizacion;
-  recursos?: IFieldsRecursos;
-  requerimientos?: IFieldsRequerimientos;
-  historias?: IFieldsHistorias;
+  recursos?: IFieldsRecursos[];
+  requerimientos?: IFieldsRequerimientos[];
+  historias?: IFieldsHistorias[];
 };
 
 // type for ONLY NOrepeating forms
