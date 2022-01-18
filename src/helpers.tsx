@@ -17,7 +17,7 @@ export const fillFields: (
 };
 
 export const stringToOrderedList: (text: string) => string = (text: string) => {
-  text = text.replace(/[0-9]. /g, "");
+  text = text.replace(/[0-9]\. /g, "");
   var lines = text.split("\n");
   var result = lines
     .filter((line) => line.trim() !== "")
