@@ -1,7 +1,10 @@
 import { FieldValues, UseFormSetValue } from "react-hook-form";
 import { TGroupRepeatingFields } from "./interfaces/form-fields";
 
-export const fillFields = (
+export const fillFields: (
+  group: TGroupRepeatingFields,
+  setValue: UseFormSetValue<FieldValues>
+) => void = (
   group: TGroupRepeatingFields,
   setValue: UseFormSetValue<FieldValues>
 ) => {
@@ -13,7 +16,7 @@ export const fillFields = (
   }
 };
 
-export const stringToOrderedList = (text: string) => {
+export const stringToOrderedList: (text: string) => string = (text: string) => {
   text = text.replace(/[0-9]. /g, "");
   var lines = text.split("\n");
   var result = lines
