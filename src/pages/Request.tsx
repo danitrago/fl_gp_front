@@ -1,14 +1,15 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
 import SendData from "../components/SendData";
 import FormContext from "../contexts/formContext";
 import FormCaracterizacion from "../forms/FormCaracterizacion";
 import FormHistorias from "../forms/FormHistorias";
 import FormRecursos from "../forms/FormRecursos";
 import FormRequerimientos from "../forms/FormRequerimientos";
+import Layout from "../layout/Layout";
 import { IFieldsData } from "../types/form-fields";
 import { IDdl } from "../types/global";
-import Layout from "../layout/Layout";
 import { Wizard, WizardContent } from "../ui-components/Wizard";
 const ddlFile = require("../assets/ddl.json");
 
@@ -71,22 +72,52 @@ const Request = () => {
   const [ddl, setDdl] = useState<IDdl[]>(ddlFile);
   const [isLoading, setIsLoading] = useState<boolean>(false);
 
+  let { requestId } = useParams();
+
   const getDdlOptions: () => void = () => {
-    axios
-      .get(
-        `${
-          process.env.NODE_ENV === "development"
-            ? process.env.REACT_APP_API_DEVELOP
-            : process.env.REACT_APP_API_PRODUCTION
-        }/api/ddl-fl-gp`
-      )
-      .then((response) => {
-        setDdl(response.data);
-      })
-      .catch((e) => {
-        // alert("Error al cargar las opciones");
-        console.log(e);
-      });
+    return new Promise((resolve, reject) => {
+      axios
+        .get(
+          `${
+            process.env.NODE_ENV === "development"
+              ? process.env.REACT_APP_API_DEVELOP
+              : process.env.REACT_APP_API_PRODUCTION
+          }/api/ddl-fl-gp`
+        )
+        .then((response) => {
+          resolve(response.data);
+        })
+        .catch((e) => {
+          // alert("Error al cargar las opciones");
+          console.log(e);
+          resolve(ddlFile);
+        });
+    });
+  };
+
+  const getFormData = (uid: string) => {
+    return new Promise((resolve, reject) => {
+      setTimeout(() => {
+        axios
+          .get(
+            `${
+              process.env.NODE_ENV === "development"
+                ? process.env.REACT_APP_API_DEVELOP
+                : process.env.REACT_APP_API_PRODUCTION
+            }/api/get-solicitud-xxx/${uid}`
+          )
+          .then((response) => {
+            resolve(response.data);
+          })
+          .catch((e) => {
+            if (demoData) {
+              console.log("data fetched");
+              resolve(demoData);
+            }
+            console.log(e);
+          });
+      }, 1000);
+    });
   };
 
   const postFormData = () => {
@@ -113,14 +144,20 @@ const Request = () => {
 
   useEffect(() => {
     setIsLoading(true);
-    getDdlOptions();
-    setTimeout(() => {
-      if (demoData) {
-        console.log("data fetched");
-        setToSubmitData(demoData);
+    if (requestId) {
+      Promise.all([getDdlOptions(), getFormData(requestId)]).then(
+        (values: any) => {
+          setDdl(values[0]);
+          setToSubmitData(values[1]);
+          setIsLoading(false);
+        }
+      );
+    } else {
+      Promise.all([getDdlOptions()]).then((values: any) => {
+        setDdl(values[0]);
         setIsLoading(false);
-      }
-    }, 1000);
+      });
+    }
   }, []);
 
   return (

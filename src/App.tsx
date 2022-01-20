@@ -20,6 +20,7 @@ function App() {
         <Route path="/my-requests" element={<p>MIS SOLICITUDES</p>} />
         <Route path="/my-tasks" element={<p>MIS TAREAS</p>} />
         <Route path="/request" element={<Request />} />
+        <Route path="/request/:requestId" element={<Request />} />
       </Routes>
       
     </UserContext.Provider>
