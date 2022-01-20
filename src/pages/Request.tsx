@@ -8,6 +8,7 @@ import FormRecursos from "../forms/FormRecursos";
 import FormRequerimientos from "../forms/FormRequerimientos";
 import { IFieldsData } from "../interfaces/form-fields";
 import { IDdl } from "../interfaces/global";
+import Layout from "../layout/Layout";
 import { Wizard, WizardContent } from "../ui-components/Wizard";
 const ddlFile = require("../assets/ddl.json");
 
@@ -123,60 +124,65 @@ const Request = () => {
   }, []);
 
   return (
-    <FormContext.Provider
-      value={{
-        toSubmitData,
-        setToSubmitData,
-        ddl,
-        postFormData,
-        setSelectedStep,
-      }}
-    >
-      {isLoading ? (
-        "Cargando..."
-      ) : (
-        <div>
-          <Wizard selectedStep={selectedStep}>
-            {/* Step 1 */}
-            <WizardContent title="Caracterización" selectedStep={selectedStep}>
-              <FormCaracterizacion
-                querySelector="caracterizacion"
-                next="Recursos"
-                // prev="Recursos"
-              />
-            </WizardContent>
-            {/* Step 2 */}
-            <WizardContent title="Recursos" selectedStep={selectedStep}>
-              <FormRecursos
-                querySelector="recursos"
-                next="Requerimientos"
-                prev="Caracterización"
-              />
-            </WizardContent>
-            {/* Step 3 */}
-            <WizardContent title="Requerimientos" selectedStep={selectedStep}>
-              <FormRequerimientos
-                querySelector="requerimientos"
-                next="Historias"
-                prev="Recursos"
-              />
-            </WizardContent>
-            {/* Step 4 */}
-            <WizardContent title="Historias" selectedStep={selectedStep}>
-              <FormHistorias
-                querySelector="historias"
-                next="Enviar"
-                prev="Requerimientos"
-              />
-            </WizardContent>
-            {/* Step 5 */}
-            <WizardContent title="Enviar" selectedStep={selectedStep}>
-              <SendData prev="Historias" />
-            </WizardContent>
-          </Wizard>
-        </div>
-      )}
-    </FormContext.Provider>
+    <Layout>
+      <FormContext.Provider
+        value={{
+          toSubmitData,
+          setToSubmitData,
+          ddl,
+          postFormData,
+          setSelectedStep,
+        }}
+      >
+        {isLoading ? (
+          "Cargando..."
+        ) : (
+          <div>
+            <Wizard selectedStep={selectedStep}>
+              {/* Step 1 */}
+              <WizardContent
+                title="Caracterización"
+                selectedStep={selectedStep}
+              >
+                <FormCaracterizacion
+                  querySelector="caracterizacion"
+                  next="Recursos"
+                  // prev="Recursos"
+                />
+              </WizardContent>
+              {/* Step 2 */}
+              <WizardContent title="Recursos" selectedStep={selectedStep}>
+                <FormRecursos
+                  querySelector="recursos"
+                  next="Requerimientos"
+                  prev="Caracterización"
+                />
+              </WizardContent>
+              {/* Step 3 */}
+              <WizardContent title="Requerimientos" selectedStep={selectedStep}>
+                <FormRequerimientos
+                  querySelector="requerimientos"
+                  next="Historias"
+                  prev="Recursos"
+                />
+              </WizardContent>
+              {/* Step 4 */}
+              <WizardContent title="Historias" selectedStep={selectedStep}>
+                <FormHistorias
+                  querySelector="historias"
+                  next="Enviar"
+                  prev="Requerimientos"
+                />
+              </WizardContent>
+              {/* Step 5 */}
+              <WizardContent title="Enviar" selectedStep={selectedStep}>
+                <SendData prev="Historias" />
+              </WizardContent>
+            </Wizard>
+          </div>
+        )}
+      </FormContext.Provider>
+    </Layout>
   );
 };
 
