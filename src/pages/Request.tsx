@@ -76,22 +76,24 @@ const Request = () => {
 
   const getDdlOptions: () => void = () => {
     return new Promise((resolve, reject) => {
-      axios
-        .get(
-          `${
-            process.env.NODE_ENV === "development"
-              ? process.env.REACT_APP_API_DEVELOP
-              : process.env.REACT_APP_API_PRODUCTION
-          }/api/ddl-fl-gp`
-        )
-        .then((response) => {
-          resolve(response.data);
-        })
-        .catch((e) => {
-          // alert("Error al cargar las opciones");
-          console.log(e);
-          resolve(ddlFile);
-        });
+      setTimeout(() => {
+        axios
+          .get(
+            `${
+              process.env.NODE_ENV === "development"
+                ? process.env.REACT_APP_API_DEVELOP
+                : process.env.REACT_APP_API_PRODUCTION
+            }/api/ddl-fl-gp`
+          )
+          .then((response) => {
+            resolve(response.data);
+          })
+          .catch((e) => {
+            // alert("Error al cargar las opciones");
+            console.log(e);
+            resolve(ddlFile);
+          });
+      }, 1000);
     });
   };
 
