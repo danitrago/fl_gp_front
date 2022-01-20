@@ -1,6 +1,6 @@
 import React from "react";
 import withForm from "../hoc/withForm";
-import { IDdl, THoCFormChild } from "../interfaces/global";
+import { IDdl, THoCFormChild } from "../types/global";
 import {
   FieldsGrid,
   Input,

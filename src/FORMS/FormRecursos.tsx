@@ -4,7 +4,7 @@ import GroupHeader from "../components/GroupHeader";
 import GroupSubmit from "../components/GroupSubmit";
 import { fillFields } from "../helpers";
 import withFormRepeat from "../hoc/withFormRepeat";
-import { IDdl, THoCFormChildRepeat } from "../interfaces/global";
+import { IDdl, THoCFormChildRepeat } from "../types/global";
 import {
   FieldsGrid,
   Input,

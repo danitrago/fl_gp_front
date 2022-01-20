@@ -4,7 +4,7 @@ import GroupHeader from "../components/GroupHeader";
 import GroupSubmit from "../components/GroupSubmit";
 import { fillFields, stringToOrderedList } from "../helpers";
 import withFormRepeat from "../hoc/withFormRepeat";
-import { THoCFormChildRepeat } from "../interfaces/global";
+import { THoCFormChildRepeat } from "../types/global";
 import { FieldsGrid, TextArea } from "../ui-components/FormHooked";
 
 const FormHistorias = (props: THoCFormChildRepeat) => {

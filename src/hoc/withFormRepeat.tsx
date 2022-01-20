@@ -9,8 +9,8 @@ import { SubmitHandler } from "react-hook-form";
 import ActionButtons from "../components/ActionButtons";
 import AddGroupButton from "../components/AddGroupButton";
 import FormContext, { TFormContext } from "../contexts/formContext";
-import { IFieldsData, TGroupRepeatingFields } from "../interfaces/form-fields";
-import { THoCForm, TTempRepeating } from "../interfaces/global";
+import { IFieldsData, TGroupRepeatingFields } from "../types/form-fields";
+import { THoCForm, TTempRepeating } from "../types/global";
 import CardGroup from "../ui-components/FormHooked/CardGroup";
 
 const withFormRepeat = (Component: ComponentType<any>) => {

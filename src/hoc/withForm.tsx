@@ -2,8 +2,8 @@ import React, { ComponentType, useContext, useEffect } from "react";
 import { useForm } from "react-hook-form";
 import ActionButtons from "../components/ActionButtons";
 import FormContext, { TFormContext } from "../contexts/formContext";
-import { IFieldsData, TFormFields } from "../interfaces/form-fields";
-import { THoCForm } from "../interfaces/global";
+import { IFieldsData, TFormFields } from "../types/form-fields";
+import { THoCForm } from "../types/global";
 
 const withForm = (Component: ComponentType<any>) => {
   // HOC COMPONENT
