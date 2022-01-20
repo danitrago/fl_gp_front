@@ -1,5 +1,5 @@
 import React, { ReactNode } from "react";
-import logo from "../assets/logo.svg";
+import Header from "./Header";
 
 type TLayoutProps = {
   children: ReactNode;
@@ -10,14 +10,7 @@ const Layout = (props: TLayoutProps) => {
   return (
     <div className="bg-gray-50 h-full">
       <div className="container mx-auto px-3 pb-40">
-        <div className="w-full flex justify-between py-4 border-b">
-          <div className="logo">
-            <img src={logo} alt="Logo COMFAMA" />
-          </div>
-          <div>
-            <span className="font-bold">Hola, Daniel</span>
-          </div>
-        </div>
+        <Header />
         <div className="w-full py-3 mb-3">
           <h2 className="text-sm font-bold">Gestión de Proveedores de Ti</h2>
         </div>

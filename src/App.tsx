@@ -1,9 +1,7 @@
 import React from "react";
-import logo from "./assets/logo.svg";
-import Wizard from "./ui-components/Wizard/Wizard";
-import Request from "./pages/Request";
-import UserContext from "./contexts/userContext";
 import { Route, Routes } from "react-router-dom";
+import UserContext from "./contexts/userContext";
+import Request from "./pages/Request";
 
 function App() {
   return (
@@ -11,7 +9,7 @@ function App() {
       value={{
         email: "danielfmolina@comfama.com.co",
         uid: "123-456-789",
-        name: "Daniel Felipe",
+        name: "Mile",
       }}
     >
       <Routes>
@@ -22,7 +20,6 @@ function App() {
         <Route path="/request" element={<Request />} />
         <Route path="/request/:requestId" element={<Request />} />
       </Routes>
-      
     </UserContext.Provider>
   );
 }
