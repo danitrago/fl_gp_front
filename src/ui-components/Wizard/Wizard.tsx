@@ -6,11 +6,14 @@ interface WizardProps {
   children?: ReactNode;
   selectedStep: string;
   className?: string;
+  offsetTop?: number;
 }
 
 const Wizard = (props: WizardProps) => {
   const [steps, setSteps] = useState<StepProps[]>([]);
   const wizardRef = useRef<HTMLDivElement>(null);
+
+  const { offsetTop = 0 } = props;
 
   const goToStep: (target: string) => void = (target: string) => {
     const pos: number = steps.findIndex((step) => step.label === target);
@@ -55,7 +58,7 @@ const Wizard = (props: WizardProps) => {
       goToStep(props.selectedStep);
       let posTop = wizardRef.current?.offsetTop;
       if (posTop) {
-        window.scrollTo(0, posTop - 40);
+        window.scrollTo(0, posTop - offsetTop);
       }
     }
   }, [props.selectedStep]);

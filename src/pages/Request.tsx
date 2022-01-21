@@ -10,6 +10,7 @@ import FormRequerimientos from "../forms/FormRequerimientos";
 import Layout from "../layout/Layout";
 import { IFieldsData } from "../types/form-fields";
 import { IDdl } from "../types/global";
+import Title from "../ui-components/Title/Title";
 import { Wizard, WizardContent } from "../ui-components/Wizard";
 const ddlFile = require("../assets/ddl.json");
 
@@ -164,6 +165,7 @@ const Request = () => {
 
   return (
     <Layout>
+      <Title variant="h1">Nueva Solicitud</Title>
       <FormContext.Provider
         value={{
           toSubmitData,
@@ -177,7 +179,7 @@ const Request = () => {
           "Cargando..."
         ) : (
           <div>
-            <Wizard selectedStep={selectedStep}>
+            <Wizard selectedStep={selectedStep} offsetTop={120}>
               {/* Step 1 */}
               <WizardContent
                 title="Caracterización"
