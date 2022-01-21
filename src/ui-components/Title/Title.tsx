@@ -1,6 +1,6 @@
 import classNames from "classnames";
 import React, { ReactNode } from "react";
-import { TGlobalColors } from "../globalTypes";
+import { TGlobalColors } from "../UiTypes";
 
 type TTitleProps = {
   variant: "h1" | "h2" | "h3";
