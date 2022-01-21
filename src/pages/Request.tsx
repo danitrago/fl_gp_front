@@ -10,6 +10,7 @@ import FormRequerimientos from "../forms/FormRequerimientos";
 import Layout from "../layout/Layout";
 import { IFieldsData } from "../types/form-fields";
 import { IDdl } from "../types/global";
+import Spinner from "../ui-components/Spinner";
 import Title from "../ui-components/Title/Title";
 import { Wizard, WizardContent } from "../ui-components/Wizard";
 const ddlFile = require("../assets/ddl.json");
@@ -176,51 +177,46 @@ const Request = () => {
         }}
       >
         {isLoading ? (
-          "Cargando..."
+          <Spinner />
         ) : (
-          <div>
-            <Wizard selectedStep={selectedStep} offsetTop={120}>
-              {/* Step 1 */}
-              <WizardContent
-                title="Caracterización"
-                selectedStep={selectedStep}
-              >
-                <FormCaracterizacion
-                  querySelector="caracterizacion"
-                  next="Recursos"
-                  // prev="Recursos"
-                />
-              </WizardContent>
-              {/* Step 2 */}
-              <WizardContent title="Recursos" selectedStep={selectedStep}>
-                <FormRecursos
-                  querySelector="recursos"
-                  next="Requerimientos"
-                  prev="Caracterización"
-                />
-              </WizardContent>
-              {/* Step 3 */}
-              <WizardContent title="Requerimientos" selectedStep={selectedStep}>
-                <FormRequerimientos
-                  querySelector="requerimientos"
-                  next="Historias"
-                  prev="Recursos"
-                />
-              </WizardContent>
-              {/* Step 4 */}
-              <WizardContent title="Historias" selectedStep={selectedStep}>
-                <FormHistorias
-                  querySelector="historias"
-                  next="Enviar"
-                  prev="Requerimientos"
-                />
-              </WizardContent>
-              {/* Step 5 */}
-              <WizardContent title="Enviar" selectedStep={selectedStep}>
-                <SendData prev="Historias" />
-              </WizardContent>
-            </Wizard>
-          </div>
+          <Wizard selectedStep={selectedStep} offsetTop={120}>
+            {/* Step 1 */}
+            <WizardContent title="Caracterización" selectedStep={selectedStep}>
+              <FormCaracterizacion
+                querySelector="caracterizacion"
+                next="Recursos"
+                // prev="Recursos"
+              />
+            </WizardContent>
+            {/* Step 2 */}
+            <WizardContent title="Recursos" selectedStep={selectedStep}>
+              <FormRecursos
+                querySelector="recursos"
+                next="Requerimientos"
+                prev="Caracterización"
+              />
+            </WizardContent>
+            {/* Step 3 */}
+            <WizardContent title="Requerimientos" selectedStep={selectedStep}>
+              <FormRequerimientos
+                querySelector="requerimientos"
+                next="Historias"
+                prev="Recursos"
+              />
+            </WizardContent>
+            {/* Step 4 */}
+            <WizardContent title="Historias" selectedStep={selectedStep}>
+              <FormHistorias
+                querySelector="historias"
+                next="Enviar"
+                prev="Requerimientos"
+              />
+            </WizardContent>
+            {/* Step 5 */}
+            <WizardContent title="Enviar" selectedStep={selectedStep}>
+              <SendData prev="Historias" />
+            </WizardContent>
+          </Wizard>
         )}
       </FormContext.Provider>
     </Layout>
