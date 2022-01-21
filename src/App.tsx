@@ -2,6 +2,7 @@ import React from "react";
 import { Route, Routes } from "react-router-dom";
 import UserContext from "./contexts/userContext";
 import Request from "./pages/Request";
+import Spinner from "./ui-components/Spinner";
 
 function App() {
   return (

@@ -179,7 +179,11 @@ const Request = () => {
         {isLoading ? (
           <Spinner />
         ) : (
-          <Wizard selectedStep={selectedStep} offsetTop={120}>
+          <Wizard
+            selectedStep={selectedStep}
+            offsetTop={120}
+            className="animate__animated animate__fadeIn"
+          >
             {/* Step 1 */}
             <WizardContent title="Caracterización" selectedStep={selectedStep}>
               <FormCaracterizacion
