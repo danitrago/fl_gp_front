@@ -58,7 +58,7 @@ const Table = (props: TTableProps) => {
         </div>
       </div>
       <div className="w-full overflow-auto">
-        <table {...getTableProps()}>
+        <table className="w-full" {...getTableProps()}>
           <thead className="bg-dark text-white">
             {
               // Loop over the header rows
