@@ -57,7 +57,7 @@ const Table = (props: TTableProps) => {
           />
         </div>
       </div>
-      <div className="w-full overflow-auto">
+      <div className="w-full overflow-auto rounded-md">
         <table className="w-full" {...getTableProps()}>
           <thead className="bg-dark text-white">
             {
@@ -133,16 +133,16 @@ const Table = (props: TTableProps) => {
       </div>
       <div className="mt-3">
         <button onClick={() => gotoPage(0)} disabled={!canPreviousPage}>
-          {"<<"}
+          <i className="text-primary fa fa-arrow-left"></i>
         </button>{" "}
         <button onClick={() => previousPage()} disabled={!canPreviousPage}>
-          {"<"}
+          <i className="text-primary fa fa-chevron-circle-left"></i>
         </button>{" "}
         <button onClick={() => nextPage()} disabled={!canNextPage}>
-          {">"}
+          <i className="text-primary fa fa-chevron-circle-right"></i>
         </button>{" "}
         <button onClick={() => gotoPage(pageCount - 1)} disabled={!canNextPage}>
-          {">>"}
+          <i className="text-primary fa fa-arrow-right"></i>
         </button>{" "}
         <span>
           Página{" "}
