@@ -70,7 +70,7 @@ const Table = (props: TTableProps) => {
                     headerGroup.headers.map((column: any) => (
                       // Apply the header cell props
                       <th
-                        className="py-3 px-5 whitespace-nowrap text-left text-sm md:text-base"
+                        className="py-3 px-5 whitespace-nowrap text-left text-sm"
                         {...column.getHeaderProps()}
                       >
                         {
@@ -115,7 +115,7 @@ const Table = (props: TTableProps) => {
                     footerGroup.headers.map((column: any) => (
                       // Apply the header cell props
                       <th
-                        className="py-3 px-5 whitespace-nowrap text-left text-sm md:text-base"
+                        className="py-3 px-5 whitespace-nowrap text-left text-sm"
                         {...column.getHeaderProps()}
                       >
                         {
