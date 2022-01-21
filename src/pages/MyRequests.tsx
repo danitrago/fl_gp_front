@@ -1,5 +1,6 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 import Layout from "../layout/Layout";
 import { IFieldsData } from "../types/form-fields";
 import { IDdl } from "../types/global";
@@ -66,9 +67,9 @@ const MyRequests = () => {
     () => [
       {
         col1: (
-          <a href="#" className="text-primary">
+          <Link to="/request/123" className="text-primary">
             Hello
-          </a>
+          </Link>
         ),
         col2: "World",
       },

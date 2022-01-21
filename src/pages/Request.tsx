@@ -166,7 +166,9 @@ const Request = () => {
 
   return (
     <Layout>
-      <Title variant="h1">Nueva Solicitud</Title>
+      <Title variant="h1">
+        {requestId ? "Editar Solicitud" : "Nueva Solicitud"}
+      </Title>
       <FormContext.Provider
         value={{
           toSubmitData,
