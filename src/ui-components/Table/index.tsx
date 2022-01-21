@@ -57,9 +57,9 @@ const Table = (props: TTableProps) => {
           />
         </div>
       </div>
-      <div className="w-full overflow-auto rounded-md">
+      <div className="w-full overflow-auto rounded-md border shadow-sm">
         <table className="w-full" {...getTableProps()}>
-          <thead className="bg-dark text-white">
+          <thead className="bg-gray-800 text-white">
             {
               // Loop over the header rows
               headerGroups.map((headerGroup: any) => (
@@ -104,7 +104,7 @@ const Table = (props: TTableProps) => {
               );
             })}
           </tbody>
-          <tfoot className="bg-dark text-white">
+          <tfoot className="bg-gray-400 text-white">
             {
               // Loop over the header rows
               footerGroups.map((footerGroup: any) => (
