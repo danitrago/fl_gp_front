@@ -1,7 +1,7 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import Layout from "../layout/Layout";
+import Layout from "../templates/PageTemplate";
 import Spinner from "../ui-components/Spinner";
 import Table from "../ui-components/Table";
 import Title from "../ui-components/Title/Title";
