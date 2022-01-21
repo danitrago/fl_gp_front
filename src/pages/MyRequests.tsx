@@ -4,6 +4,7 @@ import Layout from "../layout/Layout";
 import { IFieldsData } from "../types/form-fields";
 import { IDdl } from "../types/global";
 import Spinner from "../ui-components/Spinner";
+import Table from "../ui-components/Table";
 import Title from "../ui-components/Title/Title";
 const ddlFile = require("../assets/ddl.json");
 
@@ -61,6 +62,42 @@ const MyRequests = () => {
   const [ddl, setDdl] = useState<IDdl[]>(ddlFile);
   const [isLoading, setIsLoading] = useState<boolean>(false);
 
+  const data = React.useMemo(
+    () => [
+      {
+        col1: (
+          <a href="#" className="text-primary">
+            Hello
+          </a>
+        ),
+        col2: "World",
+      },
+      {
+        col1: "react-table",
+        col2: "rocks",
+      },
+      {
+        col1: "whatever",
+        col2: "you want",
+      },
+    ],
+    []
+  );
+
+  const columns: any = React.useMemo(
+    () => [
+      {
+        Header: "Column 1",
+        accessor: "col1", // accessor is the "key" in the data
+      },
+      {
+        Header: "Column 2",
+        accessor: "col2",
+      },
+    ],
+    []
+  );
+
   const getRequests: () => void = () => {
     return new Promise((resolve, reject) => {
       setTimeout(() => {
@@ -95,7 +132,13 @@ const MyRequests = () => {
   return (
     <Layout>
       <Title variant="h1">Mis Solicitudes</Title>
-      {isLoading ? <Spinner /> : "tabla solicitudes"}
+      {isLoading ? (
+        <Spinner />
+      ) : (
+        <div className="animate__animated animate__fadeIn">
+          <Table columns={columns} data={data} />
+        </div>
+      )}
     </Layout>
   );
 };

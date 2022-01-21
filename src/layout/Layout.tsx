@@ -8,7 +8,7 @@ type TLayoutProps = {
 const Layout = (props: TLayoutProps) => {
   const { children } = props;
   return (
-    <div className="bg-gray-50 h-full">
+    <div className="bg-gray-50 h-full animate__animated animate__fadeIn">
       <Header />
       <div className="container mx-auto px-3 pb-20">
         <div className="w-full xl:w-4/5 mx-auto">{children}</div>

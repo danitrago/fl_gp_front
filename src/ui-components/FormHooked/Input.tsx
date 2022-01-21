@@ -3,7 +3,7 @@ import React from "react";
 
 interface IInputProps {
   name: string;
-  label: string;
+  label?: string;
   errors?: any;
   cols?: 1 | 2 | 3 | 4;
 }
@@ -23,7 +23,7 @@ const Input = React.forwardRef<
   return (
     <div className={cols ? `lg:col-span-${cols}` : ""}>
       <div className="flex flex-col">
-        <label className="mb-2 font-bold text-sm">{label}</label>
+        {label && <label className="mb-2 font-bold text-sm">{label}</label>}
         <input
           ref={ref}
           className={classing}
