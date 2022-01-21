@@ -21,10 +21,8 @@ const Header = () => {
       </div>
       <div className="w-full py-2">
         <h2 className="text-sm font-bold">
-          <Link to="/">
-            <a href="#" className="text-primary mr-3">
-              <i className="fa fa-arrow-left"></i> Inicio
-            </a>
+          <Link to="/" className="text-primary mr-3">
+            <i className="fa fa-arrow-left"></i> Inicio
           </Link>
           Gestión de Proveedores de Ti
         </h2>

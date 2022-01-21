@@ -17,17 +17,14 @@ function App() {
         <Route
           path="/"
           element={
-            <p>
-              DASHBOARD
-              <ul>
-                <li>
-                  <Link to="/request">Nueva solicitud</Link>
-                </li>
-                <li>
-                  <Link to="/my-requests">Mis solicitudes</Link>
-                </li>
-              </ul>
-            </p>
+            <ul>
+              <li>
+                <Link to="/request">Nueva solicitud</Link>
+              </li>
+              <li>
+                <Link to="/my-requests">Mis solicitudes</Link>
+              </li>
+            </ul>
           }
         />
         <Route path="/all-requests" element={<p>TODAS LAS SOLICITUDES</p>} />
