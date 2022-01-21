@@ -1,5 +1,5 @@
 import React from "react";
-import { Column, useTable, useGlobalFilter } from "react-table";
+import { Column, useTable, useGlobalFilter, usePagination } from "react-table";
 import Button from "../Button";
 import { Input } from "../FormHooked";
 
@@ -11,7 +11,11 @@ type TTableProps = {
 const Table = (props: TTableProps) => {
   const { columns, data } = props;
 
-  const tableInstance = useTable({ columns, data }, useGlobalFilter);
+  const tableInstance = useTable(
+    { columns, data },
+    useGlobalFilter,
+    usePagination
+  );
 
   const {
     getTableProps,
@@ -20,11 +24,21 @@ const Table = (props: TTableProps) => {
     footerGroups,
     rows,
     prepareRow,
-    state,
     setGlobalFilter,
+    // pagination
+    page,
+    canPreviousPage,
+    canNextPage,
+    pageOptions,
+    pageCount,
+    gotoPage,
+    nextPage,
+    previousPage,
+    setPageSize,
+    state,
   } = tableInstance;
 
-  const { globalFilter } = state;
+  const { globalFilter, pageIndex, pageSize } = state;
 
   return (
     <>
@@ -69,35 +83,20 @@ const Table = (props: TTableProps) => {
         </thead>
         {/* Apply the table body props */}
         <tbody {...getTableBodyProps()}>
-          {
-            // Loop over the table rows
-            rows.map((row: any) => {
-              // Prepare the row for display
-              prepareRow(row);
-              return (
-                // Apply the row props
-                <tr className="even:bg-slate-200" {...row.getRowProps()}>
-                  {
-                    // Loop over the rows cells
-                    row.cells.map((cell: any) => {
-                      // Apply the cell props
-                      return (
-                        <td
-                          className="w-60 p-2 text-left"
-                          {...cell.getCellProps()}
-                        >
-                          {
-                            // Render the cell contents
-                            cell.render("Cell")
-                          }
-                        </td>
-                      );
-                    })
-                  }
-                </tr>
-              );
-            })
-          }
+          {page.map((row, i) => {
+            prepareRow(row);
+            return (
+              <tr className="even:bg-slate-200" {...row.getRowProps()}>
+                {row.cells.map((cell) => {
+                  return (
+                    <td className="w-60 p-2 text-left" {...cell.getCellProps()}>
+                      {cell.render("Cell")}
+                    </td>
+                  );
+                })}
+              </tr>
+            );
+          })}
         </tbody>
         <tfoot className="bg-dark text-white">
           {
@@ -125,6 +124,50 @@ const Table = (props: TTableProps) => {
           }
         </tfoot>
       </table>
+      <div className="pagination">
+        <button onClick={() => gotoPage(0)} disabled={!canPreviousPage}>
+          {"<<"}
+        </button>{" "}
+        <button onClick={() => previousPage()} disabled={!canPreviousPage}>
+          {"<"}
+        </button>{" "}
+        <button onClick={() => nextPage()} disabled={!canNextPage}>
+          {">"}
+        </button>{" "}
+        <button onClick={() => gotoPage(pageCount - 1)} disabled={!canNextPage}>
+          {">>"}
+        </button>{" "}
+        <span>
+          Page{" "}
+          <strong>
+            {pageIndex + 1} of {pageOptions.length}
+          </strong>{" "}
+        </span>
+        <span>
+          | Go to page:{" "}
+          <input
+            type="number"
+            defaultValue={pageIndex + 1}
+            onChange={(e) => {
+              const page = e.target.value ? Number(e.target.value) - 1 : 0;
+              gotoPage(page);
+            }}
+            style={{ width: "100px" }}
+          />
+        </span>{" "}
+        <select
+          value={pageSize}
+          onChange={(e) => {
+            setPageSize(Number(e.target.value));
+          }}
+        >
+          {[10, 20, 30, 40, 50].map((pageSize) => (
+            <option key={pageSize} value={pageSize}>
+              Show {pageSize}
+            </option>
+          ))}
+        </select>
+      </div>
     </>
   );
 };
