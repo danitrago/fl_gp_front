@@ -63,27 +63,33 @@ const MyRequests = () => {
   const [ddl, setDdl] = useState<IDdl[]>(ddlFile);
   const [isLoading, setIsLoading] = useState<boolean>(false);
 
-  const data = React.useMemo(
-    () => [
-      {
+  const fetchedData = [
+    {
+      col1: "Hello",
+      col2: "World",
+    },
+    {
+      col1: "react-table",
+      col2: "rocks",
+    },
+    {
+      col1: "whatever",
+      col2: "you want",
+    },
+  ];
+
+  const data = React.useMemo(() => {
+    return fetchedData.map((item) => {
+      return {
+        ...item,
         col1: (
-          <Link to="/request/123" className="text-primary">
-            Hello
+          <Link to={`/request/${item.col1}`} className="text-primary">
+            {item.col1}
           </Link>
         ),
-        col2: "World",
-      },
-      {
-        col1: "react-table",
-        col2: "rocks",
-      },
-      {
-        col1: "whatever",
-        col2: "you want",
-      },
-    ],
-    []
-  );
+      };
+    });
+  }, []);
 
   const columns: any = React.useMemo(
     () => [
