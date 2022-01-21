@@ -1,6 +1,7 @@
 import React from "react";
 import { Link, Route, Routes } from "react-router-dom";
 import UserContext from "./contexts/userContext";
+import Dashboard from "./pages/Dashboard";
 import MyRequests from "./pages/MyRequests";
 import Request from "./pages/Request";
 
@@ -14,19 +15,7 @@ function App() {
       }}
     >
       <Routes>
-        <Route
-          path="/"
-          element={
-            <ul>
-              <li>
-                <Link to="/request">Nueva solicitud</Link>
-              </li>
-              <li>
-                <Link to="/my-requests">Mis solicitudes</Link>
-              </li>
-            </ul>
-          }
-        />
+        <Route path="/" element={<Dashboard />} />
         <Route path="/all-requests" element={<p>TODAS LAS SOLICITUDES</p>} />
         <Route path="/my-requests" element={<MyRequests />} />
         <Route path="/my-tasks" element={<p>MIS TAREAS</p>} />
