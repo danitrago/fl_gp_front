@@ -1,8 +1,8 @@
 import React from "react";
-import { Route, Routes } from "react-router-dom";
+import { Link, Route, Routes } from "react-router-dom";
 import UserContext from "./contexts/userContext";
+import MyRequests from "./pages/MyRequests";
 import Request from "./pages/Request";
-import Spinner from "./ui-components/Spinner";
 
 function App() {
   return (
@@ -14,9 +14,24 @@ function App() {
       }}
     >
       <Routes>
-        <Route path="/" element={<p>DASHBOARD</p>} />
+        <Route
+          path="/"
+          element={
+            <p>
+              DASHBOARD
+              <ul>
+                <li>
+                  <Link to="/request">Nueva solicitud</Link>
+                </li>
+                <li>
+                  <Link to="/my-requests">Mis solicitudes</Link>
+                </li>
+              </ul>
+            </p>
+          }
+        />
         <Route path="/all-requests" element={<p>TODAS LAS SOLICITUDES</p>} />
-        <Route path="/my-requests" element={<p>MIS SOLICITUDES</p>} />
+        <Route path="/my-requests" element={<MyRequests />} />
         <Route path="/my-tasks" element={<p>MIS TAREAS</p>} />
         <Route path="/request" element={<Request />} />
         <Route path="/request/:requestId" element={<Request />} />
