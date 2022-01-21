@@ -17,10 +17,26 @@ const MyRequests = () => {
       return {
         ...item,
         crcf3_guid_tipo_solicitud: (
-          <Link to={`/request/${item.id}`} target="_blank" className="text-primary">
+          <Link
+            to={`/request/${item.id}`}
+            target="_blank"
+            className="text-primary"
+          >
             {item.crcf3_guid_tipo_solicitud}
           </Link>
         ),
+        crcf3_estado:
+          Math.random() > 0.5 ? (
+            <span>
+              <i className="fa fa-check-circle text-green-500"></i>{" "}
+              <small>Completa</small>
+            </span>
+          ) : (
+            <span>
+              <i className="fa fa-exclamation-circle text-yellow-500"></i>{" "}
+              <small>Incompleta</small>
+            </span>
+          ),
       };
     });
   }, [requestsList]);
@@ -34,6 +50,10 @@ const MyRequests = () => {
       {
         Header: "Tipo",
         accessor: "crcf3_guid_tipo_solicitud",
+      },
+      {
+        Header: "Estado",
+        accessor: "crcf3_estado",
       },
       {
         Header: "Interventor",

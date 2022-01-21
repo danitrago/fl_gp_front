@@ -167,7 +167,24 @@ const Request = () => {
   return (
     <Layout>
       <Title variant="h1">
-        {requestId ? "Editar Solicitud" : "Nueva Solicitud"}
+        {requestId ? (
+          <>
+            Editar Solicitud
+            {Math.random() > 0.5 ? (
+              <small className="text-dark ml-3">
+                <i className="fa fa-check-circle text-green-500"></i>{" "}
+                <small>Completa</small>
+              </small>
+            ) : (
+              <small className="text-dark ml-3">
+                <i className="fa fa-exclamation-circle text-yellow-500"></i>{" "}
+                <small>Incompleta</small>
+              </small>
+            )}
+          </>
+        ) : (
+          "Nueva Solicitud"
+        )}
       </Title>
       <FormContext.Provider
         value={{
