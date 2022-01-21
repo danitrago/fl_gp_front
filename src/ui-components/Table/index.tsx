@@ -42,8 +42,13 @@ const Table = (props: TTableProps) => {
 
   return (
     <>
-      <div className="flex justify-between align-baseline border-b pb-3 mb-4">
+      <div className="flex justify-between align-baseline mb-4">
         <div>
+          <Button>Descargar</Button>
+        </div>
+        <div className="flex items-center">
+          <i className="fa fa-search text-primary mr-2 mb-1"></i>
+          {/* <span className="mb-1 text-primary font-bold mr-3"><i className="fa fa-search mr-1"></i> Buscar</span> */}
           <Input
             name="buscar"
             placeholder="Buscar en la tabla..."
@@ -51,80 +56,82 @@ const Table = (props: TTableProps) => {
             onChange={(e) => setGlobalFilter(e.target.value)}
           />
         </div>
-        <div>
-          <Button>Descargar</Button>
-        </div>
       </div>
-      <table {...getTableProps()}>
-        <thead className="bg-dark text-white">
-          {
-            // Loop over the header rows
-            headerGroups.map((headerGroup: any) => (
-              // Apply the header row props
-              <tr {...headerGroup.getHeaderGroupProps()}>
-                {
-                  // Loop over the headers in each row
-                  headerGroup.headers.map((column: any) => (
-                    // Apply the header cell props
-                    <th
-                      className="w-60 p-2 text-left"
-                      {...column.getHeaderProps()}
-                    >
-                      {
-                        // Render the header
-                        column.render("Header")
-                      }
-                    </th>
-                  ))
-                }
-              </tr>
-            ))
-          }
-        </thead>
-        {/* Apply the table body props */}
-        <tbody {...getTableBodyProps()}>
-          {page.map((row, i) => {
-            prepareRow(row);
-            return (
-              <tr className="even:bg-slate-200" {...row.getRowProps()}>
-                {row.cells.map((cell) => {
-                  return (
-                    <td className="w-60 p-2 text-left" {...cell.getCellProps()}>
-                      {cell.render("Cell")}
-                    </td>
-                  );
-                })}
-              </tr>
-            );
-          })}
-        </tbody>
-        <tfoot className="bg-dark text-white">
-          {
-            // Loop over the header rows
-            footerGroups.map((footerGroup: any) => (
-              // Apply the header row props
-              <tr {...footerGroup.getHeaderGroupProps()}>
-                {
-                  // Loop over the headers in each row
-                  footerGroup.headers.map((column: any) => (
-                    // Apply the header cell props
-                    <th
-                      className="w-60 p-2 text-left"
-                      {...column.getHeaderProps()}
-                    >
-                      {
-                        // Render the header
-                        column.render("Header")
-                      }
-                    </th>
-                  ))
-                }
-              </tr>
-            ))
-          }
-        </tfoot>
-      </table>
-      <div className="pagination">
+      <div className="w-full overflow-auto">
+        <table {...getTableProps()}>
+          <thead className="bg-dark text-white">
+            {
+              // Loop over the header rows
+              headerGroups.map((headerGroup: any) => (
+                // Apply the header row props
+                <tr {...headerGroup.getHeaderGroupProps()}>
+                  {
+                    // Loop over the headers in each row
+                    headerGroup.headers.map((column: any) => (
+                      // Apply the header cell props
+                      <th
+                        className="py-3 px-5 whitespace-nowrap text-left text-sm md:text-base"
+                        {...column.getHeaderProps()}
+                      >
+                        {
+                          // Render the header
+                          column.render("Header")
+                        }
+                      </th>
+                    ))
+                  }
+                </tr>
+              ))
+            }
+          </thead>
+          {/* Apply the table body props */}
+          <tbody {...getTableBodyProps()}>
+            {page.map((row, i) => {
+              prepareRow(row);
+              return (
+                <tr className="even:bg-slate-100" {...row.getRowProps()}>
+                  {row.cells.map((cell) => {
+                    return (
+                      <td
+                        className="py-3 px-5 whitespace-nowrap text-left text-sm md:text-base"
+                        {...cell.getCellProps()}
+                      >
+                        {cell.render("Cell")}
+                      </td>
+                    );
+                  })}
+                </tr>
+              );
+            })}
+          </tbody>
+          <tfoot className="bg-dark text-white">
+            {
+              // Loop over the header rows
+              footerGroups.map((footerGroup: any) => (
+                // Apply the header row props
+                <tr {...footerGroup.getHeaderGroupProps()}>
+                  {
+                    // Loop over the headers in each row
+                    footerGroup.headers.map((column: any) => (
+                      // Apply the header cell props
+                      <th
+                        className="py-3 px-5 whitespace-nowrap text-left text-sm md:text-base"
+                        {...column.getHeaderProps()}
+                      >
+                        {
+                          // Render the header
+                          column.render("Header")
+                        }
+                      </th>
+                    ))
+                  }
+                </tr>
+              ))
+            }
+          </tfoot>
+        </table>
+      </div>
+      <div className="mt-3">
         <button onClick={() => gotoPage(0)} disabled={!canPreviousPage}>
           {"<<"}
         </button>{" "}
@@ -138,12 +145,12 @@ const Table = (props: TTableProps) => {
           {">>"}
         </button>{" "}
         <span>
-          Page{" "}
+          Página{" "}
           <strong>
-            {pageIndex + 1} of {pageOptions.length}
+            {pageIndex + 1} de {pageOptions.length}
           </strong>{" "}
         </span>
-        <span>
+        {/* <span>
           | Go to page:{" "}
           <input
             type="number"
@@ -154,7 +161,7 @@ const Table = (props: TTableProps) => {
             }}
             style={{ width: "100px" }}
           />
-        </span>{" "}
+        </span>{" "} */}
         <select
           value={pageSize}
           onChange={(e) => {
@@ -163,7 +170,7 @@ const Table = (props: TTableProps) => {
         >
           {[10, 20, 30, 40, 50].map((pageSize) => (
             <option key={pageSize} value={pageSize}>
-              Show {pageSize}
+              Mostrar: {pageSize}
             </option>
           ))}
         </select>

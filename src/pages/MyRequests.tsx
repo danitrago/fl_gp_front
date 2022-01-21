@@ -2,8 +2,6 @@ import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import Layout from "../layout/Layout";
-import { IFieldsData } from "../types/form-fields";
-import { IDdl } from "../types/global";
 import Spinner from "../ui-components/Spinner";
 import Table from "../ui-components/Table";
 import Title from "../ui-components/Title/Title";
@@ -18,9 +16,9 @@ const MyRequests = () => {
     return requestsList.map((item: any) => {
       return {
         ...item,
-        id: (
-          <Link to={`/request/${item.id}`} className="text-primary">
-            {item.id}
+        crcf3_guid_tipo_solicitud: (
+          <Link to={`/request/${item.id}`} target="_blank" className="text-primary">
+            {item.crcf3_guid_tipo_solicitud}
           </Link>
         ),
       };
