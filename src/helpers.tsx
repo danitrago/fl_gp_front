@@ -29,3 +29,9 @@ export const stringToOrderedList: (text: string) => string = (text: string) => {
     .join("");
   return result;
 };
+
+export const getApiUrl = () => {
+  return process.env.NODE_ENV === "development"
+    ? process.env.REACT_APP_API_DEVELOP
+    : process.env.REACT_APP_API_PRODUCTION;
+};

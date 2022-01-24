@@ -1,11 +1,10 @@
-import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import { getMyRequests } from "../services/requests";
 import Layout from "../templates/PageTemplate";
 import Spinner from "../ui-components/Spinner";
 import Table from "../ui-components/Table";
 import Title from "../ui-components/Title/Title";
-const fetchedData = require("../assets/solicitudes-data.json");
 
 const MyRequests = () => {
   // const [ddl, setDdl] = useState<IDdl[]>(ddlFile);
@@ -83,35 +82,18 @@ const MyRequests = () => {
     []
   );
 
-  const getRequests: () => void = () => {
-    return new Promise((resolve, reject) => {
-      setTimeout(() => {
-        axios
-          .get(
-            `${
-              process.env.NODE_ENV === "development"
-                ? process.env.REACT_APP_API_DEVELOP
-                : process.env.REACT_APP_API_PRODUCTION
-            }/api/get-requests-xxx`
-          )
-          .then((response) => {
-            resolve(response.data);
-          })
-          .catch((e) => {
-            // alert("Error al cargar las opciones");
-            console.log(e);
-            resolve(fetchedData);
-          });
-      }, 1000);
-    });
-  };
-
   useEffect(() => {
     setIsLoading(true);
-    Promise.all([getRequests()]).then((values: any) => {
-      setRequestsList(values[0]);
-      setIsLoading(false);
-    });
+    Promise.all([getMyRequests()])
+      .then(([myRequestsList]) => {
+        setRequestsList(myRequestsList);
+      })
+      .catch((e) => console.log("¡Ups!:", e))
+      .finally(() =>
+        setTimeout(() => {
+          setIsLoading(false);
+        }, 500)
+      );
   }, []);
 
   return (
