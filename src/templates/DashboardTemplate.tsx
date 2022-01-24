@@ -9,7 +9,7 @@ type TDashboardTemplateProps = {
 
 const DashboardTemplate = (props: TDashboardTemplateProps) => {
   const { children } = props;
-  const { name } = useContext(UserContext);
+  const { user } = useContext(UserContext);
   return (
     <div className="flex flex-col w-full min-h-screen">
       <div className="bg-white px-3 sticky top-0 z-10 shadow-sm">
@@ -21,7 +21,7 @@ const DashboardTemplate = (props: TDashboardTemplateProps) => {
           </div>
           <div>
             <p className="font-bold">
-              Hola, <span className="text-primary">{name}</span>
+              Hola, <span className="text-primary">{user}</span>
             </p>
           </div>
         </div>

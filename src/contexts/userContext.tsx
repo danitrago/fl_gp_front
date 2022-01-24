@@ -1,9 +1,10 @@
 import React from "react";
 
 export type TUserContext = {
-  name: string;
+  id: string;
+  user: string;
   email: string;
-  uid: string;
+  role: string;
 };
 
 const UserContext = React.createContext<TUserContext>({} as TUserContext);

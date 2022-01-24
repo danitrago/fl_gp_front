@@ -9,7 +9,7 @@ type TPageTemplateProps = {
 
 const PageTemplate = (props: TPageTemplateProps) => {
   const { children } = props;
-  const { name } = useContext(UserContext);
+  const { user } = useContext(UserContext);
   return (
     <div className="bg-gray-50 h-full animate__animated animate__fadeIn">
       <div className="bg-white px-3 sticky top-0 z-10 shadow-sm mb-4">
@@ -21,7 +21,7 @@ const PageTemplate = (props: TPageTemplateProps) => {
           </div>
           <div>
             <p className="font-bold">
-              Hola, <span className="text-primary">{name}</span>
+              Hola, <span className="text-primary">{user}</span>
             </p>
           </div>
         </div>
