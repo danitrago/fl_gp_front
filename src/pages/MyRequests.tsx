@@ -91,7 +91,7 @@ const MyRequests = () => {
       .finally(() =>
         setTimeout(() => {
           setIsLoading(false);
-        }, 500)
+        }, 800)
       );
   }, []);
 

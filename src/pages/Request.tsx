@@ -35,7 +35,7 @@ const Request = () => {
         .finally(() =>
           setTimeout(() => {
             setIsLoading(false);
-          }, 500)
+          }, 800)
         );
     } else {
       Promise.all([getDdlOptions()])
@@ -45,7 +45,7 @@ const Request = () => {
         .finally(() =>
           setTimeout(() => {
             setIsLoading(false);
-          }, 500)
+          }, 800)
         );
     }
   }, []);
