@@ -27,7 +27,7 @@ const Dashboard = () => {
     },
     {
       label: "Lista Interventores",
-      link: "/interventores",
+      link: "https://comfamaadm.sharepoint.com/sites/AutoFLujos/Lists/FL_GL_004_Lista_Interventor/AllItems.aspx?viewpath=%2Fsites%2FAutoFLujos%2FLists%2FFL%5FGL%5F004%5FLista%5FInterventor%2FAllItems%2Easpx",
       icon: "users",
       roles: ["admin"],
       external: true,
