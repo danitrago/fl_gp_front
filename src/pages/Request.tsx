@@ -28,9 +28,9 @@ const Request = () => {
   useEffect(() => {
     if (requestId) {
       Promise.all([getDdlOptions(), getFormData(requestId)])
-        .then((values: any) => {
-          setDdl(values[0]);
-          setToSubmitData(values[1]);
+        .then(([ddl, requestData]) => {
+          setDdl(ddl);
+          setToSubmitData(requestData);
         })
         .finally(() =>
           setTimeout(() => {
@@ -39,8 +39,8 @@ const Request = () => {
         );
     } else {
       Promise.all([getDdlOptions()])
-        .then((values: any) => {
-          setDdl(values[0]);
+        .then(([ddl]) => {
+          setDdl(ddl);
         })
         .finally(() =>
           setTimeout(() => {
