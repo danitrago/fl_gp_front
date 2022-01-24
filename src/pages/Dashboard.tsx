@@ -43,7 +43,7 @@ const Dashboard = () => {
         <div className="flex flex-col justify-center">
           <Title variant="h2">Bienvenido al,</Title>
           <Title variant="h1" color="dark">
-            Flujo de Gestión de Proveedores - {role}
+            Flujo de Gestión de Proveedores
           </Title>
           <p>
             Anim anim esse eu in labore irure nostrud dolore. Officia eiusmod
@@ -62,21 +62,6 @@ const Dashboard = () => {
               external={option.external}
             />
           ))}
-          {/* <DashButtonBig
-            label="Nueva Solicitud"
-            link="/request"
-            icon="plus-circle"
-          />
-          <DashButtonBig
-            label="Mis Solicitudes"
-            link="/my-requests"
-            icon="list"
-          />
-          <DashButtonBig
-            label="Mis Pendientes"
-            link="/pendings"
-            icon="briefcase"
-          /> */}
         </div>
       </div>
     </DashboardTemplate>
