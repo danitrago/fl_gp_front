@@ -14,7 +14,7 @@ export const getUserContract = (token: string) => {
         id: "132-456-789",
         user: "Daniel Molina",
         email: "danielfmolina@comfama.com.co",
-        role: "admin",
+        role: "leader",
       };
     });
 };
