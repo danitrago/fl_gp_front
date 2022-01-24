@@ -1,5 +1,6 @@
 import axios from "axios";
 import { getApiUrl } from "../helpers";
+import { IFieldsData } from "../types/form-fields";
 const ddlFile = require("../assets/ddl.json");
 const solicitudDemo = require("../assets/solicitud.json");
 const fetchedData = require("../assets/solicitudes-data.json");
@@ -18,7 +19,7 @@ export const getFormData = (id: string) => {
     .catch(() => solicitudDemo);
 };
 
-export const postFormData = (data: any) => {
+export const postFormData = (data: IFieldsData) => {
   return axios
     .post(`${getApiUrl()}/api/fl-gp-solicitudes`, data)
     .then(() => alert("¡Hecho! Tu solicitud ha sido creada."))
