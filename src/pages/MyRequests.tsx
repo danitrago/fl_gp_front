@@ -9,7 +9,7 @@ import Title from "../ui-components/Title/Title";
 const MyRequests = () => {
   // const [ddl, setDdl] = useState<IDdl[]>(ddlFile);
   const [requestsList, setRequestsList] = useState([]);
-  const [isLoading, setIsLoading] = useState<boolean>(false);
+  const [isLoading, setIsLoading] = useState<boolean>(true);
 
   const data = React.useMemo(() => {
     return requestsList.map((item: any) => {
@@ -83,7 +83,6 @@ const MyRequests = () => {
   );
 
   useEffect(() => {
-    setIsLoading(true);
     Promise.all([getMyRequests()])
       .then(([myRequestsList]) => {
         setRequestsList(myRequestsList);
