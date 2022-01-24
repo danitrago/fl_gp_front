@@ -26,12 +26,12 @@ export const postFormData = (data: IFieldsData) => {
     .catch(() => alert("Error al crear la solicitud."));
 };
 
-// export const updateFormData = (data:any) => {
-//   return axios
-//     .put(`${getApiUrl()}/api/request/${id}`)
-//     .then((res) => res.data)
-//     .catch(() => solicitudDemo);
-// };
+export const updateFormData = (data: IFieldsData) => {
+  return axios
+    .put(`${getApiUrl()}/api/fl-gp-solicitudes`, data)
+    .then(() => alert("¡Hecho! Tu solicitud ha sido modificada."))
+    .catch(() => alert("Error al modificar la solicitud."));
+};
 
 export const getMyRequests = () => {
   return axios
