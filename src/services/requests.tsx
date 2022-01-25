@@ -21,7 +21,7 @@ export const getFormData = (id: string) => {
 
 export const postFormData = (data: IFieldsData) => {
   return axios
-    .post(`${getApiUrl()}/api/solicitudes`, data) 
+    .post(`${getApiUrl()}/api/solicitudes`, JSON.stringify(data)) 
     .then(() => alert("¡Hecho! Tu solicitud ha sido creada."))
     .catch(() => alert("Error al crear la solicitud."));
 };
