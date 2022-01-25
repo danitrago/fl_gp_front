@@ -7,7 +7,7 @@ const fetchedData = require("../assets/solicitudes-data.json");
 
 export const getDdlOptions = () => {
   return axios
-    .get(`${getApiUrl()}/api/ddl-fl-gp`)
+    .get(`${getApiUrl()}/api/list/ddl-fl-gp`)
     .then((res) => res.data)
     .catch(() => ddlFile);
 };
