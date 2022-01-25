@@ -18,7 +18,7 @@ export type IFieldsCaracterizacion = {
 
 export type IFieldsRecursos = {
   [key: string]: number | string;
-  crcf3_group_id_front: string; // Para elementos repetitivos, se debe incluir este campo
+  crcf3_group_id_front: number; // Para elementos repetitivos, se debe incluir este campo
   crcf3_id_tipo_consultor: string;
   crcf3_id_seniority: string;
   crcf3_cantidad_consultores: number;
@@ -29,14 +29,14 @@ export type IFieldsRecursos = {
 
 export type IFieldsRequerimientos = {
   [key: string]: number | string;
-  crcf3_group_id_front: string; // Para elementos repetitivos, se debe incluir este campo
+  crcf3_group_id_front: number; // Para elementos repetitivos, se debe incluir este campo
   crcf3_id_tipo_requisito: string;
   crcf3_titulo: string;
 };
 
 export type IFieldsHistorias = {
   [key: string]: number | string;
-  crcf3_group_id_front: string; // Para elementos repetitivos, se debe incluir este campo
+  crcf3_group_id_front: number; // Para elementos repetitivos, se debe incluir este campo
   crcf3_titulo: string;
   crcf3_criterio: string;
 };

@@ -19,10 +19,10 @@ const withFormRepeat = (Component: ComponentType<any>) => {
     const { toSubmitData, setToSubmitData, ddl, setSelectedStep } =
       useContext<TFormContext>(FormContext);
 
-    const generateId = () => {
+    const generateId: () => number = () => {
       let a = Date.now();
       let number = a.toString().slice(-5);
-      return number;
+      return parseInt(number);
     };
 
     const [groups, setGroups] = useState<TGroupRepeatingFields[]>([
@@ -51,7 +51,7 @@ const withFormRepeat = (Component: ComponentType<any>) => {
       });
     };
 
-    const deleteGroup: (id: string) => void = (id: string) => {
+    const deleteGroup: (id: number) => void = (id: number) => {
       setGroups((prev: TGroupRepeatingFields[]) => {
         let dummie: TGroupRepeatingFields[] = [...prev];
         return dummie.filter(
