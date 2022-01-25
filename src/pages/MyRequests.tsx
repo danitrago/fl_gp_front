@@ -15,13 +15,13 @@ const MyRequests = () => {
     return requestsList.map((item: any) => {
       return {
         ...item,
-        crcf3_guid_tipo_solicitud: (
+        crcf3_id_tipo_solicitud: (
           <Link
             to={`/request/${item.id}`}
             target="_blank"
             className="text-primary"
           >
-            {item.crcf3_guid_tipo_solicitud}
+            {item.crcf3_id_tipo_solicitud}
           </Link>
         ),
         crcf3_estado:
@@ -48,7 +48,7 @@ const MyRequests = () => {
       },
       {
         Header: "Tipo",
-        accessor: "crcf3_guid_tipo_solicitud",
+        accessor: "crcf3_id_tipo_solicitud",
       },
       {
         Header: "Estado",
@@ -56,11 +56,11 @@ const MyRequests = () => {
       },
       {
         Header: "Interventor",
-        accessor: "crcf3_guid_interventor_contrato",
+        accessor: "crcf3_id_interventor_contrato",
       },
       {
         Header: "Tipo Necesidad",
-        accessor: "crcf3_guid_tipo_necesidad",
+        accessor: "crcf3_id_tipo_necesidad",
       },
       {
         Header: "Ticket Servicio",
@@ -76,7 +76,7 @@ const MyRequests = () => {
       },
       {
         Header: "Complejidad",
-        accessor: "crcf3_guid_complejidad",
+        accessor: "crcf3_id_complejidad",
       },
     ],
     []

@@ -18,7 +18,7 @@ const FormCaracterizacion = (props: THoCFormChild) => {
         <Select
           label="Tipo solicitud*"
           errors={errors}
-          {...register("crcf3_guid_tipo_solicitud", {
+          {...register("crcf3_id_tipo_solicitud", {
             required: true,
           })}
         >
@@ -32,7 +32,7 @@ const FormCaracterizacion = (props: THoCFormChild) => {
         <Select
           label="Interventor del contrato*"
           errors={errors}
-          {...register("crcf3_guid_interventor_contrato", {
+          {...register("crcf3_id_interventor_contrato", {
             required: true,
           })}
           cols={2}
@@ -47,7 +47,7 @@ const FormCaracterizacion = (props: THoCFormChild) => {
         <Select
           label="Tipo de necesidad*"
           errors={errors}
-          {...register("crcf3_guid_tipo_necesidad", {
+          {...register("crcf3_id_tipo_necesidad", {
             required: true,
           })}
         >
@@ -84,7 +84,7 @@ const FormCaracterizacion = (props: THoCFormChild) => {
         <Select
           label="Prioridad*"
           errors={errors}
-          {...register("crcf3_guid_complejidad", {
+          {...register("crcf3_id_complejidad", {
             required: true,
           })}
         >

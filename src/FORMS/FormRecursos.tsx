@@ -40,7 +40,7 @@ const FormRecursos = (props: THoCFormChildRepeat) => {
           label="Tipo de consultor*"
           errors={errors}
           cols={2}
-          {...register("crcf3_guid_tipo_consultor", {
+          {...register("crcf3_id_tipo_consultor", {
             required: true,
           })}
         >
@@ -54,7 +54,7 @@ const FormRecursos = (props: THoCFormChildRepeat) => {
         <Select
           label="Seniority"
           errors={errors}
-          {...register("crcf3_guid_seniority", {
+          {...register("crcf3_id_seniority", {
             required: true,
           })}
         >

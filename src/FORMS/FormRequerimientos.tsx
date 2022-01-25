@@ -34,7 +34,7 @@ const FormRequerimientos = (props: THoCFormChildRepeat) => {
         <Select
           label="Tipo de requerimiento*"
           errors={errors}
-          {...register("crcf3_guid_tipo_requisito", {
+          {...register("crcf3_id_tipo_requisito", {
             required: true,
           })}
         >
