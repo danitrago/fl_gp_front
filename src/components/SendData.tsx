@@ -8,7 +8,7 @@ type TSendDataProps = {
 };
 
 const SendData = (props: TSendDataProps) => {
-  const { postFormData, setSelectedStep } = useContext(FormContext);
+  const { toSubmitData, postFormData, setSelectedStep } = useContext(FormContext);
   return (
     <div className="pt-5">
       <img src={sendImg} alt="Enviar formulario" className="w-1/5 mx-auto mb-5" />
@@ -20,7 +20,7 @@ const SendData = (props: TSendDataProps) => {
       </p>
       <div className="flex justify-between mt-8">
         <Button onClick={() => setSelectedStep(props.prev)}>Volver</Button>
-        <Button onClick={postFormData}>Enviar</Button>
+        <Button onClick={()=>postFormData(toSubmitData)}>Enviar</Button>
       </div>
     </div>
   );
