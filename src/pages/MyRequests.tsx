@@ -17,7 +17,7 @@ const MyRequests = () => {
         ...item,
         crcf3_id_tipo_solicitud: (
           <Link
-            to={`/request/${item.id}`}
+            to={`/request/${item.crcf3_fl_gp_008_solicitudid}`}
             target="_blank"
             className="text-primary"
           >
@@ -44,7 +44,7 @@ const MyRequests = () => {
     () => [
       {
         Header: "ID",
-        accessor: "id",
+        accessor: "crcf3_id_solicitud",
       },
       {
         Header: "Tipo",
@@ -52,7 +52,7 @@ const MyRequests = () => {
       },
       {
         Header: "Estado",
-        accessor: "crcf3_estado",
+        accessor: "crcf3_id_estado_solicitud",
       },
       {
         Header: "Interventor",
