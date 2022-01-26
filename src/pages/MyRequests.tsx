@@ -24,7 +24,7 @@ const MyRequests = () => {
             {item.crcf3_id_tipo_solicitud}
           </Link>
         ),
-        crcf3_estado:
+        crcf3_id_estado_solicitud:
           Math.random() > 0.5 ? (
             <span>
               <i className="fa fa-check-circle text-green-500"></i>{" "}
