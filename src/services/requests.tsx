@@ -35,7 +35,7 @@ export const updateFormData = (data: IFieldsData) => {
 
 export const getMyRequests = () => {
   return axios
-    .get(`${getApiUrl()}/api/get-my-requests`)
+    .get(`${getApiUrl()}/api/solicitudes/owner/123-456-789`)
     .then((res) => res.data)
     .catch(() => fetchedData);
 };
