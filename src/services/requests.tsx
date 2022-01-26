@@ -14,7 +14,7 @@ export const getDdlOptions = () => {
 
 export const getFormData = (id: string) => {
   return axios
-    .get(`${getApiUrl()}/api/request/${id}`)
+    .get(`${getApiUrl()}/api/solicitudes/${id}`)
     .then((res) => res.data)
     .catch(() => solicitudDemo);
 };
