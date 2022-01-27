@@ -1,5 +1,5 @@
 import axios from "axios";
-import { getApiUrl } from "../helpers";
+import { getApiUrl, processData } from "../helpers";
 import { IFieldsData } from "../types/form-fields";
 const ddlFile = require("../assets/ddl.json");
 const solicitudDemo = require("../assets/solicitud.json");
@@ -21,14 +21,24 @@ export const getFormData = (id: string) => {
 
 export const postFormData = (data: IFieldsData) => {
   return axios
-    .post(`${getApiUrl()}/api/solicitudes`, data) 
+    .post(`${getApiUrl()}/api/solicitudes`, data)
     .then(() => alert("¡Hecho! Tu solicitud ha sido creada."))
     .catch(() => alert("Error al crear la solicitud."));
 };
 
+export const updateRequestStatus = (id: string, newStatus: number) => {
+  let payload = {
+    crcf3_id_estado_solicitud: newStatus,
+  };
+  return axios
+    .patch(`${getApiUrl()}/api/solicitudes${id}`, payload)
+    .then(() => alert("¡Hecho! Tu solicitud ha sido modificada."))
+    .catch(() => alert("Error al modificar la solicitud."));
+};
+
 export const updateFormData = (data: IFieldsData) => {
   return axios
-    .put(`${getApiUrl()}/api/fl-gp-solicitudes`, data)
+    .patch(`${getApiUrl()}/api/solicitudes`, processData(data))
     .then(() => alert("¡Hecho! Tu solicitud ha sido modificada."))
     .catch(() => alert("Error al modificar la solicitud."));
 };

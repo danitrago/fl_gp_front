@@ -10,7 +10,8 @@
     "crcf3_situacionactual": "fds",
     "crcf3_justificacion": "fds",
     "crcf3_descripcion_necesidad": "fds",
-    "crcf3_prerrequisitos": "fsd"
+    "crcf3_prerrequisitos": "fsd",
+    "crcf3_id_estado_solicitud": 4
   },
   "recursos": [
     {

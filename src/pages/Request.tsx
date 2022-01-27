@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
+import ActionsInterventor from "../components/ActionsInterventor";
+import ActionsLeader from "../components/ActionsLeader";
 import SendData from "../components/SendData";
 import FormContext from "../contexts/formContext";
 import FormCaracterizacion from "../forms/FormCaracterizacion";
@@ -24,6 +26,19 @@ const Request = () => {
   const [isLoading, setIsLoading] = useState<boolean>(true);
 
   let { requestId } = useParams();
+
+  const renderActions = () => {
+    switch (toSubmitData?.caracterizacion?.crcf3_id_estado_solicitud) {
+      case 1:
+        return <ActionsInterventor prev="Historias" />;
+      case 4:
+        return <ActionsLeader prev="Historias" />;
+      case undefined:
+        return <ActionsLeader prev="Historias" />;
+      default:
+        return "Sin acciones disponibles";
+    }
+  };
 
   useEffect(() => {
     if (requestId) {
@@ -79,6 +94,7 @@ const Request = () => {
           ddl,
           postFormData,
           setSelectedStep,
+          requestId,
         }}
       >
         {isLoading ? (
@@ -123,7 +139,7 @@ const Request = () => {
             </WizardContent>
             {/* Step 5 */}
             <WizardContent title="Enviar" selectedStep={selectedStep}>
-              <SendData prev="Historias" />
+              {renderActions()}
             </WizardContent>
           </Wizard>
         )}

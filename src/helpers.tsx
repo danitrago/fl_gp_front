@@ -1,5 +1,9 @@
 import { FieldValues, UseFormSetValue } from "react-hook-form";
-import { TGroupRepeatingFields } from "./types/form-fields";
+import {
+  IFieldsData,
+  TFormFields,
+  TGroupRepeatingFields,
+} from "./types/form-fields";
 
 export const fillFields: (
   group: TGroupRepeatingFields,
@@ -34,4 +38,15 @@ export const getApiUrl = () => {
   return process.env.NODE_ENV === "development"
     ? process.env.REACT_APP_API_DEVELOP
     : process.env.REACT_APP_API_PRODUCTION;
+};
+
+export const processData = (original: IFieldsData) => {
+  let process = {
+    ...original.caracterizacion,
+    crcf3_solicitud_recursos: original.recursos,
+    crcf3_solicitud_requisitos: original.requerimientos,
+    crcf3_solicitud_hus: original.historias,
+  };
+
+  return process;
 };
