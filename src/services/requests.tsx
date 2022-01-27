@@ -36,9 +36,9 @@ export const updateRequestStatus = (id: string, newStatus: number) => {
     .catch(() => alert("Error al modificar la solicitud."));
 };
 
-export const updateFormData = (data: IFieldsData) => {
+export const updateFormData = (id: string, data: IFieldsData) => {
   return axios
-    .patch(`${getApiUrl()}/api/solicitudes`, processData(data))
+    .patch(`${getApiUrl()}/api/solicitudes/${id}`, processData(data))
     .then(() => alert("¡Hecho! Tu solicitud ha sido modificada."))
     .catch(() => alert("Error al modificar la solicitud."));
 };
