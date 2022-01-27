@@ -31,7 +31,7 @@ export const updateRequestStatus = (id: string, newStatus: number) => {
     crcf3_id_estado_solicitud: newStatus,
   };
   return axios
-    .patch(`${getApiUrl()}/api/solicitudes${id}`, payload)
+    .patch(`${getApiUrl()}/api/solicitudes/${id}`, payload)
     .then(() => alert("¡Hecho! Tu solicitud ha sido modificada."))
     .catch(() => alert("Error al modificar la solicitud."));
 };
