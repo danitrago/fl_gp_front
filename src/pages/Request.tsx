@@ -12,6 +12,7 @@ import { getDdlOptions, getFormData, postFormData } from "../services/requests";
 import Layout from "../templates/PageTemplate";
 import { IFieldsData } from "../types/form-fields";
 import { IDdl } from "../types/global";
+import Button from "../ui-components/Button";
 import Spinner from "../ui-components/Spinner";
 import Title from "../ui-components/Title/Title";
 import { Wizard, WizardContent } from "../ui-components/Wizard";
@@ -71,6 +72,10 @@ const Request = () => {
         {requestId ? (
           <>
             Editar Solicitud
+            <small className="text-dark ml-3">
+              <i className="fa fa-check-circle text-green-500"></i>{" "}
+              <small>Estado: {toSubmitData.caracterizacion?.crcf3_id_tipo_solicitud}</small>
+            </small>
             {/* {Math.random() > 0.5 ? (
               <small className="text-dark ml-3">
                 <i className="fa fa-check-circle text-green-500"></i>{" "}
@@ -110,16 +115,29 @@ const Request = () => {
               <FormCaracterizacion
                 querySelector="caracterizacion"
                 next="Recursos"
-                // prev="Recursos"
               />
             </WizardContent>
             {/* Step 2 */}
             <WizardContent title="Recursos" selectedStep={selectedStep}>
-              <FormRecursos
-                querySelector="recursos"
-                next="Requerimientos"
-                prev="Caracterización"
-              />
+              {toSubmitData.caracterizacion?.crcf3_id_tipo_solicitud === 1 ? (
+                <FormRecursos
+                  querySelector="recursos"
+                  next="Requerimientos"
+                  prev="Caracterización"
+                />
+              ) : (
+                <>
+                  <p>No debes asignar recursos a esta solicitud</p>
+                  <div className="flex justify-between pt-5">
+                    <Button onClick={() => setSelectedStep("Caracterización")}>
+                      Volver
+                    </Button>
+                    <Button onClick={() => setSelectedStep("Requerimientos")}>
+                      Continuar
+                    </Button>
+                  </div>
+                </>
+              )}
             </WizardContent>
             {/* Step 3 */}
             <WizardContent title="Requerimientos" selectedStep={selectedStep}>

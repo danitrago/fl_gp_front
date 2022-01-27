@@ -1,8 +1,8 @@
 {
   "tipoSolicitudes": [
-    { "id": "3ca21c8b-62df-4598-904b-eb0c2481356f", "label": "Recurso" },
-    { "id": "6e6be6bb-f679-490e-b1f3-69fdb3157189", "label": "Requerimiento" },
-    { "id": "801860a2-ca7c-42cd-916f-85d47e1f38ba", "label": "Incidente" }
+    { "id": 1, "label": "Recurso" },
+    { "id": 2, "label": "Requerimiento" },
+    { "id": 3, "label": "Incidente" }
   ],
   "tipoConsultores": [
     { "id": "3d3b89e9-916c-4ddb-87b7-5bfa072c8025", "label": "ABAP" },

@@ -1,7 +1,7 @@
 // 1. Configure los "types" de los campos para cada una de las partes del formulario "Wizard"
 export type IFieldsCaracterizacion = {
   [key: string]: number | string;
-  crcf3_id_tipo_solicitud: string;
+  crcf3_id_tipo_solicitud: number;
   crcf3_id_interventor_contrato: string;
   crcf3_id_tipo_necesidad: string;
   crcf3_numero_ticket_servicio: string;

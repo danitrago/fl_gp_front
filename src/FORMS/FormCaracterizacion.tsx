@@ -82,7 +82,7 @@ const FormCaracterizacion = (props: THoCFormChild) => {
           })}
         />
         <Select
-          label="Prioridad*"
+          label="Complejidad*"
           errors={errors}
           {...register("crcf3_id_complejidad", {
             required: true,
