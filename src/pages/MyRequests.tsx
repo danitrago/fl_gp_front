@@ -24,18 +24,18 @@ const MyRequests = () => {
             {item.crcf3_id_tipo_solicitud}
           </Link>
         ),
-        crcf3_id_estado_solicitud:
-          Math.random() > 0.5 ? (
-            <span>
-              <i className="fa fa-check-circle text-green-500"></i>{" "}
-              <small>Completa</small>
-            </span>
-          ) : (
-            <span>
-              <i className="fa fa-exclamation-circle text-yellow-500"></i>{" "}
-              <small>Incompleta</small>
-            </span>
-          ),
+        // crcf3_id_estado_solicitud:
+        //   Math.random() > 0.5 ? (
+        //     <span>
+        //       <i className="fa fa-check-circle text-green-500"></i>{" "}
+        //       <small>Completa</small>
+        //     </span>
+        //   ) : (
+        //     <span>
+        //       <i className="fa fa-exclamation-circle text-yellow-500"></i>{" "}
+        //       <small>Incompleta</small>
+        //     </span>
+        //   ),
       };
     });
   }, [requestsList]);
