@@ -71,7 +71,7 @@ const Request = () => {
         {requestId ? (
           <>
             Editar Solicitud
-            {Math.random() > 0.5 ? (
+            {/* {Math.random() > 0.5 ? (
               <small className="text-dark ml-3">
                 <i className="fa fa-check-circle text-green-500"></i>{" "}
                 <small>Completa</small>
@@ -81,7 +81,7 @@ const Request = () => {
                 <i className="fa fa-exclamation-circle text-yellow-500"></i>{" "}
                 <small>Incompleta</small>
               </small>
-            )}
+            )} */}
           </>
         ) : (
           "Nueva Solicitud"
