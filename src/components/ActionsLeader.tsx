@@ -11,7 +11,7 @@ type TActionsLeaderProps = {
 const ActionsLeader = (props: TActionsLeaderProps) => {
   const { toSubmitData, postFormData, setSelectedStep, requestId } =
     useContext(FormContext);
-  if (toSubmitData.caracterizacion.crcf3_id_estado_solicitud === 4)
+  if (toSubmitData?.caracterizacion?.crcf3_id_estado_solicitud === 4)
     return (
       <div className="pt-5">
         {/* <img

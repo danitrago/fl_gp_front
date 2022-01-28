@@ -3,6 +3,7 @@ import { useParams } from "react-router-dom";
 import ActionsInterventor from "../components/ActionsInterventor";
 import ActionsLeader from "../components/ActionsLeader";
 import SendData from "../components/SendData";
+import UnnecessaryStep from "../components/UnnecessaryStep";
 import FormContext from "../contexts/formContext";
 import FormCaracterizacion from "../forms/FormCaracterizacion";
 import FormHistorias from "../forms/FormHistorias";
@@ -74,7 +75,9 @@ const Request = () => {
             Editar Solicitud
             <small className="text-dark ml-3">
               <i className="fa fa-check-circle text-green-500"></i>{" "}
-              <small>Estado: {toSubmitData.caracterizacion?.crcf3_id_tipo_solicitud}</small>
+              <small>
+                Estado: {toSubmitData.caracterizacion?.crcf3_id_tipo_solicitud}
+              </small>
             </small>
             {/* {Math.random() > 0.5 ? (
               <small className="text-dark ml-3">
@@ -119,24 +122,14 @@ const Request = () => {
             </WizardContent>
             {/* Step 2 */}
             <WizardContent title="Recursos" selectedStep={selectedStep}>
-              {toSubmitData.caracterizacion?.crcf3_id_tipo_solicitud === 1 ? (
+              {toSubmitData.caracterizacion?.crcf3_id_tipo_solicitud == 1 ? (
                 <FormRecursos
                   querySelector="recursos"
                   next="Requerimientos"
                   prev="Caracterización"
                 />
               ) : (
-                <>
-                  <p>No debes asignar recursos a esta solicitud</p>
-                  <div className="flex justify-between pt-5">
-                    <Button onClick={() => setSelectedStep("Caracterización")}>
-                      Volver
-                    </Button>
-                    <Button onClick={() => setSelectedStep("Requerimientos")}>
-                      Continuar
-                    </Button>
-                  </div>
-                </>
+                <UnnecessaryStep msg="No es necesario que asignes recursos" prev="Caracterización" next="Requerimientos" />
               )}
             </WizardContent>
             {/* Step 3 */}

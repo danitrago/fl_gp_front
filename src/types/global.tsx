@@ -1,13 +1,13 @@
 import { TGroupRepeatingFields } from "./form-fields";
 
 export interface IDdl {
-  id: string;
+  id: number;
   label: string;
 }
 export type THoCForm = {
   querySelector: string;
-  next: any;
-  prev?: any;
+  next: string;
+  prev?: string;
 };
 
 export type THoCFormChild = THoCForm & {
@@ -20,11 +20,11 @@ export type THoCFormChildRepeat = THoCForm & {
   pos: number;
   group: TGroupRepeatingFields;
   ddl: any;
-  submitIndividual: (data: any) => void;
+  submitIndividual: (data: TGroupRepeatingFields) => void;
   deleteGroup: (id: number) => void;
 };
 
 export type TTempRepeating = {
   counterSubmit: number;
-  dataTemp: any[];
+  dataTemp: TGroupRepeatingFields[];
 };
