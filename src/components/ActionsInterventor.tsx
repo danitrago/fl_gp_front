@@ -12,25 +12,30 @@ const ActionsInterventor = (props: TActionsInterventorProps) => {
   const { toSubmitData, postFormData, setSelectedStep, requestId } =
     useContext(FormContext);
   return (
-    <div className="pt-5">
-      {/* <img src={sendImg} alt="Enviar formulario" className="w-1/5 mx-auto mb-5" /> */}
+    <div className="pt-6">
+      <p className="text-center text-8xl mb-6 text-green-300">
+        <i className="fa fa-briefcase animate-pulse"></i>
+      </p>
       <h2 className="text-primary text-center font-bold text-xl">
         Gestionar Solicitud
       </h2>
-      <p className="text-center">
-        Por favor indica qué deseas hacer con esta solicitud:
-      </p>
-      <div className="flex justify-between mt-8">
-        <Button onClick={() => setSelectedStep(props.prev)}>Volver</Button>
+      <p className="text-center">¿Qué deseas hacer con esta solicitud?</p>
+      <div className="flex justify-center mt-5">
         <Button onClick={() => updateRequestStatus(requestId, 3)}>
           Rechazar
         </Button>
-        <Button onClick={() => updateRequestStatus(requestId, 4)}>
-          Devolver por Incompleta
+        <Button
+          className="mx-2"
+          onClick={() => updateRequestStatus(requestId, 4)}
+        >
+          Devolver
         </Button>
         <Button onClick={() => updateRequestStatus(requestId, 2)}>
-          Enviar a Proveedor
+          Aprobar
         </Button>
+      </div>
+      <div className="flex justify-between mt-8 border-t pt-5">
+        <Button onClick={() => setSelectedStep(props.prev)}>Volver</Button>
       </div>
     </div>
   );

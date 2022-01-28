@@ -18,13 +18,14 @@ import { Wizard, WizardContent } from "../ui-components/Wizard";
 
 const Request = () => {
   // console.log("render Request");
-  const [selectedStep, setSelectedStep] = useState<string>("Caracterización");
+  const [selectedStep, setSelectedStep] = useState<string>("Enviar");
+  // const [selectedStep, setSelectedStep] = useState<string>("Caracterización");
   const [toSubmitData, setToSubmitData] = useState<IFieldsData>({
     caracterizacion: {
       crcf3_id_estado_solicitud: 0,
     },
   } as IFieldsData);
-  const [ddl, setDdl] = useState<IDdl[]>([] as IDdl[]);
+  const [ddl, setDdl] = useState<any>({});
   const [isLoading, setIsLoading] = useState<boolean>(true);
 
   let { requestId } = useParams();
@@ -40,6 +41,20 @@ const Request = () => {
       default:
         return "Sin acciones disponibles";
     }
+  };
+
+  const renderState = (statusId: number) => {
+    if (statusId) {
+      return (
+        <small>
+          {
+            ddl?.estadoSolicitud?.filter((item: any) => item.id === statusId)[0]
+              .label
+          }
+        </small>
+      );
+    }
+    return null;
   };
 
   useEffect(() => {
@@ -72,13 +87,12 @@ const Request = () => {
       <Title variant="h1">
         {requestId ? (
           <>
-            Editar Solicitud
-            <small className="text-dark ml-3">
-              <i className="fa fa-check-circle text-green-500"></i>{" "}
-              <small>
-                Estado: {toSubmitData.caracterizacion?.crcf3_id_estado_solicitud}
-              </small>
-            </small>
+            Detalle de Solicitud
+            <span className="text-dark ml-2 text-lg">
+              ({renderState(
+                toSubmitData.caracterizacion?.crcf3_id_estado_solicitud || 0
+              )})
+            </span>
           </>
         ) : (
           "Nueva Solicitud"

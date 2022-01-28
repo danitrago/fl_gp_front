@@ -44,7 +44,7 @@ const ActionsLeader = (props: TActionsLeaderProps) => {
     );
   return (
     <div className="pt-6">
-      <p className="text-center text-9xl mb-6 text-green-300">
+      <p className="text-center text-8xl mb-6 text-green-300">
         <i className="fa fa-paper-plane animate-pulse"></i>
       </p>
       <h2 className="text-primary text-center font-bold text-xl">
