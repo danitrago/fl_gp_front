@@ -2,7 +2,12 @@ import React, { useContext } from "react";
 import FormContext from "../contexts/formContext";
 import Button from "../ui-components/Button";
 
-const ActionButtons = (props: any) => {
+type TActionButtonsProps = {
+  prev?: string;
+  submitAllGroups?: () => void;
+};
+
+const ActionButtons = (props: TActionButtonsProps) => {
   const { setSelectedStep } = useContext(FormContext);
   return (
     <div
@@ -15,9 +20,13 @@ const ActionButtons = (props: any) => {
         <div></div>
       )}
       {props.submitAllGroups ? (
-        <Button onClick={props.submitAllGroups}>Continuar</Button>
+        <Button onClick={props.submitAllGroups}>
+          Continuar <i className="fa fa-arrow-right ml-2"></i>
+        </Button>
       ) : (
-        <Button type="submit">Continuar</Button>
+        <Button type="submit">
+          Continuar <i className="fa fa-arrow-right ml-2"></i>
+        </Button>
       )}
     </div>
   );
