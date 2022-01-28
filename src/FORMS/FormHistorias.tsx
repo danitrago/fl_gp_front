@@ -24,7 +24,7 @@ const FormHistorias = (props: THoCFormChildRepeat) => {
   return (
     <form onSubmit={handleSubmit(props.submitIndividual)}>
       <GroupHeader
-        title="Grupo de Recursos"
+        title="Historia"
         id={group.crcf3_group_id_front}
         pos={props.pos}
         fnDelete={props.deleteGroup}
