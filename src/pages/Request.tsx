@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import ActionsInterventor from "../components/ActionsInterventor";
 import ActionsLeader from "../components/ActionsLeader";
-import SendData from "../components/SendData";
 import UnnecessaryStep from "../components/UnnecessaryStep";
 import FormContext from "../contexts/formContext";
 import FormCaracterizacion from "../forms/FormCaracterizacion";
@@ -13,7 +12,6 @@ import { getDdlOptions, getFormData, postFormData } from "../services/requests";
 import Layout from "../templates/PageTemplate";
 import { IFieldsData } from "../types/form-fields";
 import { IDdl } from "../types/global";
-import Button from "../ui-components/Button";
 import Spinner from "../ui-components/Spinner";
 import Title from "../ui-components/Title/Title";
 import { Wizard, WizardContent } from "../ui-components/Wizard";
@@ -21,9 +19,11 @@ import { Wizard, WizardContent } from "../ui-components/Wizard";
 const Request = () => {
   // console.log("render Request");
   const [selectedStep, setSelectedStep] = useState<string>("Caracterización");
-  const [toSubmitData, setToSubmitData] = useState<IFieldsData>(
-    {} as IFieldsData
-  );
+  const [toSubmitData, setToSubmitData] = useState<IFieldsData>({
+    caracterizacion: {
+      crcf3_id_estado_solicitud: 0,
+    },
+  } as IFieldsData);
   const [ddl, setDdl] = useState<IDdl[]>([] as IDdl[]);
   const [isLoading, setIsLoading] = useState<boolean>(true);
 
@@ -35,7 +35,7 @@ const Request = () => {
         return <ActionsInterventor prev="Historias" />;
       case 4:
         return <ActionsLeader prev="Historias" />;
-      case undefined:
+      case 0:
         return <ActionsLeader prev="Historias" />;
       default:
         return "Sin acciones disponibles";
@@ -76,20 +76,9 @@ const Request = () => {
             <small className="text-dark ml-3">
               <i className="fa fa-check-circle text-green-500"></i>{" "}
               <small>
-                Estado: {toSubmitData.caracterizacion?.crcf3_id_tipo_solicitud}
+                Estado: {toSubmitData.caracterizacion?.crcf3_id_estado_solicitud}
               </small>
             </small>
-            {/* {Math.random() > 0.5 ? (
-              <small className="text-dark ml-3">
-                <i className="fa fa-check-circle text-green-500"></i>{" "}
-                <small>Completa</small>
-              </small>
-            ) : (
-              <small className="text-dark ml-3">
-                <i className="fa fa-exclamation-circle text-yellow-500"></i>{" "}
-                <small>Incompleta</small>
-              </small>
-            )} */}
           </>
         ) : (
           "Nueva Solicitud"
@@ -129,7 +118,11 @@ const Request = () => {
                   prev="Caracterización"
                 />
               ) : (
-                <UnnecessaryStep msg="No es necesario que asignes recursos" prev="Caracterización" next="Requerimientos" />
+                <UnnecessaryStep
+                  msg="No es necesario que asignes recursos"
+                  prev="Caracterización"
+                  next="Requerimientos"
+                />
               )}
             </WizardContent>
             {/* Step 3 */}
