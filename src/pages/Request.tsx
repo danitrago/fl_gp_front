@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import ActionsInterventor from "../components/ActionsInterventor";
 import ActionsLeader from "../components/ActionsLeader";
+import NoActionsAvaiable from "../components/NoActionsAvaiable";
 import UnnecessaryStep from "../components/UnnecessaryStep";
 import FormContext from "../contexts/formContext";
 import FormCaracterizacion from "../forms/FormCaracterizacion";
@@ -17,9 +18,8 @@ import Title from "../ui-components/Title/Title";
 import { Wizard, WizardContent } from "../ui-components/Wizard";
 
 const Request = () => {
-  // console.log("render Request");
-  const [selectedStep, setSelectedStep] = useState<string>("Enviar");
-  // const [selectedStep, setSelectedStep] = useState<string>("Caracterización");
+  const [selectedStep, setSelectedStep] = useState<string>("Caracterización");
+  // const [selectedStep, setSelectedStep] = useState<string>("Enviar");
   const [toSubmitData, setToSubmitData] = useState<IFieldsData>({
     caracterizacion: {
       crcf3_id_estado_solicitud: 0,
@@ -39,7 +39,7 @@ const Request = () => {
       case 0:
         return <ActionsLeader prev="Historias" />;
       default:
-        return "Sin acciones disponibles";
+        return <NoActionsAvaiable prev="Historias" />;
     }
   };
 
@@ -89,9 +89,11 @@ const Request = () => {
           <>
             Detalle de Solicitud
             <span className="text-dark ml-2 text-lg">
-              ({renderState(
+              (
+              {renderState(
                 toSubmitData.caracterizacion?.crcf3_id_estado_solicitud || 0
-              )})
+              )}
+              )
             </span>
           </>
         ) : (
