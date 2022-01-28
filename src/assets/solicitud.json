@@ -1,22 +1,22 @@
 {
   "caracterizacion": {
     "crcf3_id_tipo_solicitud": 1,
-    "crcf3_id_interventor_contrato": "6ec4853b-e332-466e-b7c0-99c80831be4f",
-    "crcf3_id_tipo_necesidad": "76f41ba3-f349-4e3c-ae77-8c378d9365f9",
+    "crcf3_id_interventor_contrato": 2,
+    "crcf3_id_tipo_necesidad": 2,
     "crcf3_numero_ticket_servicio": "hgf",
     "crcf3_fecha_limite": "2022-01-13",
     "crcf3_modulo_funcionalidad": "fsd",
-    "crcf3_id_complejidad": "508e2c25-9191-464d-9b37-e78fc268a2ba",
+    "crcf3_id_complejidad": 3,
     "crcf3_situacionactual": "fds",
     "crcf3_justificacion": "fds",
     "crcf3_descripcion_necesidad": "fds",
     "crcf3_prerrequisitos": "fsd",
-    "crcf3_id_estado_solicitud": 2
+    "crcf3_id_estado_solicitud": 1
   },
   "recursos": [
     {
-      "crcf3_id_tipo_consultor": "7768d2ba-4739-4d8f-8007-2e316231666e",
-      "crcf3_id_seniority": "5a6dad49-b5bd-450e-9d2b-25c3a7c7218a",
+      "crcf3_id_tipo_consultor": 11,
+      "crcf3_id_seniority": 2,
       "crcf3_cantidad_consultores": 3,
       "crcf3_porcentaje_dedicacion": 3,
       "crcf3_tiempo_requerido": 43,
@@ -24,8 +24,8 @@
       "crcf3_group_id_front": 1641911004719
     },
     {
-      "crcf3_id_tipo_consultor": "b5ee0ab2-44d8-475b-a4b6-838665d87f05",
-      "crcf3_id_seniority": "d707fb44-e1f9-4497-a4ff-b1b3090b544a",
+      "crcf3_id_tipo_consultor": 12,
+      "crcf3_id_seniority": 1,
       "crcf3_cantidad_consultores": 43,
       "crcf3_porcentaje_dedicacion": 43,
       "crcf3_tiempo_requerido": 564,
@@ -35,7 +35,7 @@
   ],
   "requerimientos": [
     {
-      "crcf3_id_tipo_requisito": "c340af98-a2c8-4f56-ba03-e2b3befce603",
+      "crcf3_id_tipo_requisito": 2,
       "crcf3_titulo": "gfd",
       "crcf3_group_id_front": 1641911004722
     }
