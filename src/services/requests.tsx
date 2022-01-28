@@ -20,6 +20,8 @@ export const getFormData = (id: string) => {
 };
 
 export const postFormData = (data: IFieldsData) => {
+  console.log('Posting...');
+  console.log(data);
   return axios
     .post(`${getApiUrl()}/api/solicitudes`, data)
     .then(() => alert("¡Hecho! Tu solicitud ha sido creada."))

@@ -31,7 +31,9 @@ const ActionsLeader = (props: TActionsLeaderProps) => {
                 requestId,
                 (() => {
                   let dummie = { ...toSubmitData };
-                  dummie.caracterizacion.crcf3_id_estado_solicitud = 1;
+                  if (dummie.caracterizacion) {
+                    dummie.caracterizacion.crcf3_id_estado_solicitud = 1;
+                  }
                   return dummie;
                 })()
               )

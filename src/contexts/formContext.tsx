@@ -1,7 +1,8 @@
 import React from "react";
+import { IFieldsData } from "../types/form-fields";
 
 export type TFormContext = {
-  toSubmitData: any;
+  toSubmitData: IFieldsData;
   setToSubmitData: any;
   ddl: any;
   postFormData: any;

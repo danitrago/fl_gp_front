@@ -43,6 +43,7 @@ export type IFieldsHistorias = {
 
 // 2. Configure el type del objeto para enviar en el submit del formulario, los campos repetitivos terminan en "[]"
 export type IFieldsData = {
+  [key: string]: any;
   caracterizacion?: IFieldsCaracterizacion;
   recursos?: IFieldsRecursos[];
   requerimientos?: IFieldsRequerimientos[];
