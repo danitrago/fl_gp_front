@@ -15,10 +15,19 @@ const ActionButtons = (props: TActionButtonsProps) => {
       className="w-full mt-3 pt-3 flex justify-between"
     >
       {props.prev ? (
-        <Button onClick={() => setSelectedStep(props.prev)}>Anterior</Button>
+        <Button
+          onClick={() => {
+            if (props.prev) {
+              setSelectedStep(props.prev);
+            }
+          }}
+        >
+          Anterior
+        </Button>
       ) : (
         <div></div>
       )}
+
       {props.submitAllGroups ? (
         <Button onClick={props.submitAllGroups}>
           Continuar <i className="fa fa-arrow-right ml-2"></i>

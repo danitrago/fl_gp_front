@@ -1,8 +1,7 @@
 import React, { useContext } from "react";
 import FormContext from "../contexts/formContext";
-import Button from "../ui-components/Button";
-import sendImg from "../assets/send.jpg";
 import { updateRequestStatus } from "../services/requests";
+import Button from "../ui-components/Button";
 
 type TActionsInterventorProps = {
   prev: string;
@@ -21,16 +20,16 @@ const ActionsInterventor = (props: TActionsInterventorProps) => {
       </h2>
       <p className="text-center">¿Qué deseas hacer con esta solicitud?</p>
       <div className="flex justify-center mt-5">
-        <Button onClick={() => updateRequestStatus(requestId, 3)}>
+        <Button onClick={() => requestId && updateRequestStatus(requestId, 3)}>
           Rechazar
         </Button>
         <Button
           className="mx-2"
-          onClick={() => updateRequestStatus(requestId, 4)}
+          onClick={() => requestId && updateRequestStatus(requestId, 4)}
         >
           Devolver
         </Button>
-        <Button onClick={() => updateRequestStatus(requestId, 2)}>
+        <Button onClick={() => requestId && updateRequestStatus(requestId, 2)}>
           Aprobar
         </Button>
       </div>

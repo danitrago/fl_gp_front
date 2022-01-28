@@ -10,6 +10,15 @@ type TActionsLeaderProps = {
 const ActionsLeader = (props: TActionsLeaderProps) => {
   const { toSubmitData, postFormData, setSelectedStep, requestId } =
     useContext(FormContext);
+
+  const updateRequestStatus = () => {
+    let dummie = { ...toSubmitData };
+    if (dummie.caracterizacion) {
+      dummie.caracterizacion.crcf3_id_estado_solicitud = 1;
+    }
+    return dummie;
+  };
+
   if (toSubmitData?.caracterizacion?.crcf3_id_estado_solicitud === 4)
     return (
       <div className="pt-6">
@@ -26,18 +35,11 @@ const ActionsLeader = (props: TActionsLeaderProps) => {
         <div className="flex justify-between mt-8">
           <Button onClick={() => setSelectedStep(props.prev)}>Volver</Button>
           <Button
-            onClick={() =>
-              updateFormData(
-                requestId,
-                (() => {
-                  let dummie = { ...toSubmitData };
-                  if (dummie.caracterizacion) {
-                    dummie.caracterizacion.crcf3_id_estado_solicitud = 1;
-                  }
-                  return dummie;
-                })()
-              )
-            }
+            onClick={() => {
+              if (requestId) {
+                updateFormData(requestId, updateRequestStatus());
+              }
+            }}
           >
             Enviar
           </Button>

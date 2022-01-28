@@ -3,11 +3,11 @@ import { IFieldsData } from "../types/form-fields";
 
 export type TFormContext = {
   toSubmitData: IFieldsData;
-  setToSubmitData: any;
+  setToSubmitData: (value: React.SetStateAction<IFieldsData>) => void;
   ddl: any;
-  postFormData: any;
-  setSelectedStep: any;
-  requestId: any;
+  postFormData: (data: IFieldsData) => Promise<void>;
+  setSelectedStep: React.Dispatch<React.SetStateAction<string>>;
+  requestId?: string;
 };
 
 const FormContext = React.createContext<TFormContext>({} as TFormContext);

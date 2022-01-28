@@ -39,6 +39,8 @@ export const updateRequestStatus = (id: string, newStatus: number) => {
 };
 
 export const updateFormData = (id: string, data: IFieldsData) => {
+  console.log('Patching...');
+  console.log(data);
   return axios
     .patch(`${getApiUrl()}/api/solicitudes/${id}`, processData(data))
     .then(() => alert("¡Hecho! Tu solicitud ha sido modificada."))
