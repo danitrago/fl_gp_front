@@ -1,10 +1,11 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import ActionsInterventor from "../components/ActionsInterventor";
 import ActionsLeader from "../components/ActionsLeader";
 import NoActionsAvaiable from "../components/NoActionsAvaiable";
 import UnnecessaryStep from "../components/UnnecessaryStep";
 import FormContext from "../contexts/formContext";
+import UserContext from "../contexts/userContext";
 import FormCaracterizacion from "../forms/FormCaracterizacion";
 import FormHistorias from "../forms/FormHistorias";
 import FormRecursos from "../forms/FormRecursos";
@@ -27,8 +28,17 @@ const Request = () => {
   } as IFieldsData);
   const [ddl, setDdl] = useState<any>({});
   const [isLoading, setIsLoading] = useState<boolean>(true);
+  const { role } = useContext(UserContext);
 
   let { requestId } = useParams();
+
+  let disableFields =
+    (toSubmitData.caracterizacion?.crcf3_id_estado_solicitud === 0 &&
+      role === "leader") ||
+    (toSubmitData.caracterizacion?.crcf3_id_estado_solicitud === 4 &&
+      role === "leader")
+      ? false
+      : true;
 
   const renderActions = () => {
     switch (toSubmitData?.caracterizacion?.crcf3_id_estado_solicitud) {
@@ -108,6 +118,7 @@ const Request = () => {
           postFormData,
           setSelectedStep,
           requestId,
+          disableFields,
         }}
       >
         {isLoading ? (
