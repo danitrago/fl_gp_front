@@ -1,0 +1,5 @@
+https://comfama-frontbackoffice-dev.cfapps.us21.hana.ondemand.com
+ClientID: 42c59d10-d4c9-489b-a841-85f9c6c561ce
+SecertID: *42c59d10-_d4c9.-489b-+a841-85f9c6c561ce=
+https://aaz0175.my.idaptive.app/GESTION_PROVEEDORES_TI_DEV/.well-known/openid-configuration
+
