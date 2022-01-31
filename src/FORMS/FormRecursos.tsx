@@ -1,27 +1,22 @@
-import React, { useContext, useEffect } from "react";
-import { useForm } from "react-hook-form";
+import React, { useEffect } from "react";
 import GroupHeader from "../components/GroupHeader";
 import GroupSubmit from "../components/GroupSubmit";
-import FormContext from "../contexts/formContext";
 import { fillFields } from "../helpers";
 import withFormRepeat from "../hoc/withFormRepeat";
+import useRepeatingForm from "../hooks/useRepeatingForm";
 import { IDdl, THoCFormChildRepeat } from "../types/global";
 import {
   FieldsGrid,
   Input,
   Select,
-  TextArea,
+  TextArea
 } from "../ui-components/FormHooked";
 
 const FormRecursos = (props: THoCFormChildRepeat) => {
-  const { group, ddl } = props;
-  const { disableFields } = useContext(FormContext);
-  const {
-    register,
-    handleSubmit,
-    formState: { errors },
-    setValue,
-  } = useForm();
+  const { group } = props;
+
+  const { ddl, disableFields, register, handleSubmit, errors, setValue } =
+    useRepeatingForm();
 
   useEffect(() => {
     // fill fields
@@ -37,7 +32,7 @@ const FormRecursos = (props: THoCFormChildRepeat) => {
         fnDelete={props.deleteGroup}
       />
       <FieldsGrid gridCols={3} disabled={disableFields}>
-        {/* START REPLAING FIELDS HERE */}
+        {/* START REPLACING FIELDS HERE */}
         <Select
           label="Tipo de consultor*"
           errors={errors}
@@ -95,7 +90,7 @@ const FormRecursos = (props: THoCFormChildRepeat) => {
           cols={3}
           {...register("crcf3_observaciones")}
         />
-        {/* END REPLAING FIELDS HERE */}
+        {/* END REPLACING FIELDS HERE */}
       </FieldsGrid>
       <GroupSubmit register={register} />
     </form>

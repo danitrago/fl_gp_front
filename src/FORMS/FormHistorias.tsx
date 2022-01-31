@@ -1,22 +1,17 @@
-import React, { useContext, useEffect } from "react";
-import { useForm } from "react-hook-form";
+import React, { useEffect } from "react";
 import GroupHeader from "../components/GroupHeader";
 import GroupSubmit from "../components/GroupSubmit";
-import FormContext from "../contexts/formContext";
 import { fillFields, stringToOrderedList } from "../helpers";
 import withFormRepeat from "../hoc/withFormRepeat";
+import useRepeatingForm from "../hooks/useRepeatingForm";
 import { THoCFormChildRepeat } from "../types/global";
 import { FieldsGrid, TextArea } from "../ui-components/FormHooked";
 
 const FormHistorias = (props: THoCFormChildRepeat) => {
-  const { group, ddl } = props;
-  const { disableFields } = useContext(FormContext);
-  const {
-    register,
-    handleSubmit,
-    formState: { errors },
-    setValue,
-  } = useForm();
+  const { group } = props;
+
+  const { ddl, disableFields, register, handleSubmit, errors, setValue } =
+    useRepeatingForm();
 
   useEffect(() => {
     // fill fields
@@ -32,7 +27,7 @@ const FormHistorias = (props: THoCFormChildRepeat) => {
         fnDelete={props.deleteGroup}
       />
       <FieldsGrid gridCols={3} disabled={disableFields}>
-        {/* START REPLAING FIELDS HERE */}
+        {/* START REPLACING FIELDS HERE */}
         <TextArea
           label="Descripción de la HU*"
           errors={errors}
@@ -48,7 +43,7 @@ const FormHistorias = (props: THoCFormChildRepeat) => {
             setValue("crcf3_criterio", stringToOrderedList(e.target.value));
           }}
         />
-        {/* END REPLAING FIELDS HERE */}
+        {/* END REPLACING FIELDS HERE */}
       </FieldsGrid>
       <GroupSubmit register={register} />
     </form>
