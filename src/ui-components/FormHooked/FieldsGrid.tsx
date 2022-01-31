@@ -3,6 +3,7 @@ import React, { ReactNode } from "react";
 type TFieldsGridProps = {
   children?: ReactNode;
   gridCols?: 1 | 2 | 3 | 4;
+  disabled?: boolean;
 };
 
 const calculateCols = (gridCols: number = 1) => {
@@ -19,10 +20,14 @@ const calculateCols = (gridCols: number = 1) => {
 };
 
 const FieldsGrid = (props: TFieldsGridProps) => {
+  const { disabled = false } = props;
   return (
-    <div className={`grid ${calculateCols(props.gridCols)} gap-4 mb-6`}>
+    <fieldset
+      disabled={disabled}
+      className={`grid ${calculateCols(props.gridCols)} gap-4 mb-6`}
+    >
       {props.children}
-    </div>
+    </fieldset>
   );
 };
 

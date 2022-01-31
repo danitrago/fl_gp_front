@@ -10,8 +10,13 @@ const withForm = (Component: ComponentType<any>) => {
   const NewComponent = (props: THoCForm) => {
     const KEY_NAME: string = props.querySelector;
 
-    const { toSubmitData, setToSubmitData, ddl, setSelectedStep } =
-      useContext<TFormContext>(FormContext);
+    const {
+      toSubmitData,
+      setToSubmitData,
+      ddl,
+      setSelectedStep,
+      disableFields,
+    } = useContext<TFormContext>(FormContext);
 
     const {
       register,
@@ -44,14 +49,16 @@ const withForm = (Component: ComponentType<any>) => {
     return (
       <>
         <form onSubmit={handleSubmit(onSubmit)}>
-          <Component
-            handleSubmit={handleSubmit}
-            onSubmit={onSubmit}
-            errors={errors}
-            register={register}
-            ddl={ddl}
-            // {...props}
-          />
+          <fieldset disabled={disableFields}>
+            <Component
+              handleSubmit={handleSubmit}
+              onSubmit={onSubmit}
+              errors={errors}
+              register={register}
+              ddl={ddl}
+              // {...props}
+            />
+          </fieldset>
           <ActionButtons {...props} />
         </form>
       </>
