@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Link, Route, Routes } from "react-router-dom";
 import UserContext, { TUserContext } from "./contexts/userContext";
+import useAthentication from "./hooks/useAthentication";
 import Dashboard from "./pages/Dashboard";
 import MyRequests from "./pages/MyRequests";
 import Request from "./pages/Request";
@@ -12,7 +13,11 @@ function App() {
     {} as TUserContext
   );
   const [isLoading, setIsLoading] = useState(true);
+
+  const { autenticate } = useAthentication();
+
   useEffect(() => {
+    // autenticate();
     Promise.all([getUserContract("token")])
       .then(([userContractData]) => {
         setUserContract(userContractData);
