@@ -4,12 +4,13 @@ import ActionsLeader from "../components/ActionsLeader";
 import NoActionsAvaiable from "../components/NoActionsAvaiable";
 import FormContext from "../contexts/formContext";
 import UserContext from "../contexts/userContext";
+import { rolesMatrix } from "../types/global";
 
 const RenderActions = () => {
   const { userId, role } = useContext(UserContext);
   const { toSubmitData } = useContext(FormContext);
 
-  let rolesInteractions: any = {
+  let rolesInteractions: rolesMatrix = {
     leader: {
       selector: "crcf3_id_solicitante_lider",
       statusOn: [0, 4],
@@ -23,10 +24,12 @@ const RenderActions = () => {
   };
 
   const showOptions = () => {
-    const selector = rolesInteractions[role].selector;
-    const idParticipant = toSubmitData.caracterizacion?.[selector];
-    const isRequestInStatus = rolesInteractions[role].statusOn.includes(
-      toSubmitData.caracterizacion?.crcf3_id_estado_solicitud
+    const selector: string = rolesInteractions[role].selector;
+    const idParticipant: any = toSubmitData.caracterizacion?.[selector];
+    const isRequestInStatus: boolean = rolesInteractions[
+      role
+    ].statusOn.includes(
+      toSubmitData.caracterizacion?.crcf3_id_estado_solicitud || 0
     );
     if (idParticipant === userId && isRequestInStatus) {
       return rolesInteractions[role].component;
