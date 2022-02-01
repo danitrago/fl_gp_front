@@ -1,8 +1,8 @@
 {
   "caracterizacion": {
     "crcf3_id_tipo_solicitud": 1,
+    "crcf3_id_solicitante_lider": 1,
     "crcf3_id_interventor_contrato": 2,
-    "crcf3_id_solicitante_lider": 6,
     "crcf3_id_tipo_necesidad": 2,
     "crcf3_numero_ticket_servicio": "ticket genial",
     "crcf3_fecha_limite": "2022-01-13",
@@ -12,7 +12,7 @@
     "crcf3_justificacion": "fds",
     "crcf3_descripcion_necesidad": "fds",
     "crcf3_prerrequisitos": "fsd",
-    "crcf3_id_estado_solicitud": 4
+    "crcf3_id_estado_solicitud": 1
   },
   "recursos": [
     {
