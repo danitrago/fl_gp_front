@@ -1,3 +1,4 @@
+import { ReactNode } from "react";
 import { TGroupRepeatingFields } from "./form-fields";
 
 export interface IDdl {
@@ -27,4 +28,17 @@ export type THoCFormChildRepeat = THoCForm & {
 export type TTempRepeating = {
   counterSubmit: number;
   dataTemp: TGroupRepeatingFields[];
+};
+
+type roleOptions = {
+  [key: string]: string | number[] | ReactNode;
+  selector: string;
+  statusOn: number[];
+  component: JSX.Element;
+};
+
+export type rolesMatrix = {
+  [key: string]: roleOptions;
+  leader: roleOptions;
+  controller: roleOptions;
 };

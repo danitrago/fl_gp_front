@@ -11,19 +11,19 @@ const Dashboard = () => {
       label: "Nueva Solicitud",
       link: "/request",
       icon: "plus-circle",
-      roles: ["admin", "leader", "interventor"],
+      roles: ["leader"],
     },
     {
       label: "Mis Solicitudes",
       link: "/my-requests",
       icon: "list",
-      roles: ["admin", "leader", "interventor"],
+      roles: ["leader"],
     },
     {
       label: "Mis Pendientes",
       link: "/pendings",
       icon: "briefcase",
-      roles: ["admin", "leader", "interventor"],
+      roles: ["controller"],
     },
     {
       label: "Lista Interventores",

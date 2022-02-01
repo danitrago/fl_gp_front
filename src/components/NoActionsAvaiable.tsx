@@ -17,7 +17,7 @@ const NoActionsAvaiable = (props: TNoActionsAvaiableProps) => {
         ¡Todo Al Día!
       </h2>
       <p className="text-center">
-        No hay acciones disponibles sobre esta solicitud.
+        No tienes acciones disponibles sobre esta solicitud.
       </p>
       <div className="flex justify-between mt-8">
         <Button onClick={() => setSelectedStep(props.prev)}>Volver</Button>

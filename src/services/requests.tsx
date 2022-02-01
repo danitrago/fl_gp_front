@@ -16,11 +16,15 @@ export const getFormData = (id: string) => {
   return axios
     .get(`${getApiUrl()}/api/solicitudes/${id}`)
     .then((res) => res.data)
-    .catch(() => solicitudDemo);
+    .catch((err) => {
+      // alert("No tienes permisos para ver esta información.");
+      // window.location.href = "/FlujoGestionTI";
+      return solicitudDemo;
+    });
 };
 
 export const postFormData = (data: IFieldsData) => {
-  console.log('Posting...');
+  console.log("Posting...");
   console.log(data);
   return axios
     .post(`${getApiUrl()}/api/solicitudes`, data)
@@ -39,7 +43,7 @@ export const updateRequestStatus = (id: string, newStatus: number) => {
 };
 
 export const updateFormData = (id: string, data: IFieldsData) => {
-  console.log('Patching...');
+  console.log("Patching...");
   console.log(data);
   return axios
     .patch(`${getApiUrl()}/api/solicitudes/${id}`, processData(data))
