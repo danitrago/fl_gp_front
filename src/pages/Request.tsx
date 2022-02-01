@@ -1,8 +1,6 @@
 import React, { useContext, useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import ActionsInterventor from "../components/ActionsInterventor";
-import ActionsLeader from "../components/ActionsLeader";
-import NoActionsAvaiable from "../components/NoActionsAvaiable";
+import RenderActions from "../components/RenderActions";
 import UnnecessaryStep from "../components/UnnecessaryStep";
 import FormContext from "../contexts/formContext";
 import UserContext from "../contexts/userContext";
@@ -13,17 +11,18 @@ import FormRequerimientos from "../forms/FormRequerimientos";
 import { getDdlOptions, getFormData, postFormData } from "../services/requests";
 import Layout from "../templates/PageTemplate";
 import { IFieldsData } from "../types/form-fields";
-import { IDdl } from "../types/global";
 import Spinner from "../ui-components/Spinner";
 import Title from "../ui-components/Title/Title";
 import { Wizard, WizardContent } from "../ui-components/Wizard";
 
 const Request = () => {
-  const [selectedStep, setSelectedStep] = useState<string>("Caracterización");
-  // const [selectedStep, setSelectedStep] = useState<string>("Enviar");
+  // const [selectedStep, setSelectedStep] = useState<string>("Caracterización");
+  const [selectedStep, setSelectedStep] = useState<string>("Enviar");
+  const { userId } = useContext(UserContext);
   const [toSubmitData, setToSubmitData] = useState<IFieldsData>({
     caracterizacion: {
       crcf3_id_estado_solicitud: 0,
+      crcf3_id_solicitante_lider: userId,
     },
   } as IFieldsData);
   const [ddl, setDdl] = useState<any>({});
@@ -39,19 +38,6 @@ const Request = () => {
       role === "leader")
       ? false
       : true;
-
-  const renderActions = () => {
-    switch (toSubmitData?.caracterizacion?.crcf3_id_estado_solicitud) {
-      case 1:
-        return <ActionsInterventor prev="Historias" />;
-      case 4:
-        return <ActionsLeader prev="Historias" />;
-      case 0:
-        return <ActionsLeader prev="Historias" />;
-      default:
-        return <NoActionsAvaiable prev="Historias" />;
-    }
-  };
 
   const renderState = (statusId: number) => {
     if (statusId) {
@@ -170,7 +156,7 @@ const Request = () => {
             </WizardContent>
             {/* Step 5 */}
             <WizardContent title="Enviar" selectedStep={selectedStep}>
-              {renderActions()}
+              <RenderActions />
             </WizardContent>
           </Wizard>
         )}
