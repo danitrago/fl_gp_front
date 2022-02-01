@@ -1,7 +1,7 @@
 import React from "react";
 
 export type TUserContext = {
-  userId: string;
+  userId: number;
   user: string;
   email: string;
   role: string;

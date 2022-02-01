@@ -7,7 +7,7 @@ const fetchedData = require("../assets/solicitudes-data.json");
 
 export const getDdlOptions = () => {
   return axios
-    .get(`${getApiUrl()}/api/list/ddl-fl-gp`)
+    .get(`${getApiUrl()}/api/list/ddl`)
     .then((res) => res.data)
     .catch(() => ddlFile);
 };
@@ -51,9 +51,11 @@ export const updateFormData = (id: string, data: IFieldsData) => {
     .catch(() => alert("Error al modificar la solicitud."));
 };
 
-export const getMyRequests = () => {
-  return axios
-    .get(`${getApiUrl()}/api/solicitudes/owner/123-456-789`)
-    .then((res) => res.data)
-    .catch(() => fetchedData);
+export const getMyRequests = (userId: number) => {
+  return (
+    axios
+      .get(`${getApiUrl()}/api/solicitudes/owner/${userId}`)
+      .then((res) => res.data)
+      .catch(() => fetchedData)
+  );
 };

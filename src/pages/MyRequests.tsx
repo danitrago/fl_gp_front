@@ -1,5 +1,6 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import UserContext from "../contexts/userContext";
 import { getMyRequests } from "../services/requests";
 import Layout from "../templates/PageTemplate";
 import Spinner from "../ui-components/Spinner";
@@ -10,6 +11,7 @@ const MyRequests = () => {
   // const [ddl, setDdl] = useState<IDdl[]>(ddlFile);
   const [requestsList, setRequestsList] = useState([]);
   const [isLoading, setIsLoading] = useState<boolean>(true);
+  const { userId } = useContext(UserContext);
 
   const data = React.useMemo(() => {
     return requestsList.map((item: any) => {
@@ -83,7 +85,7 @@ const MyRequests = () => {
   );
 
   useEffect(() => {
-    Promise.all([getMyRequests()])
+    Promise.all([getMyRequests(userId)])
       .then(([myRequestsList]) => {
         setRequestsList(myRequestsList);
       })

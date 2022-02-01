@@ -13,7 +13,7 @@ export type IFieldsCaracterizacion = {
   crcf3_descripcion_necesidad: string;
   crcf3_prerrequisitos: string;
   crcf3_id_estado_solicitud: number;
-  crcf3_id_solicitante_lider: string;
+  crcf3_id_solicitante_lider: number;
 };
 
 export type IFieldsRecursos = {

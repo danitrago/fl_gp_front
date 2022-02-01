@@ -10,6 +10,12 @@ export const getUserContract = (token: string) => {
     })
     .then((res) => res.data)
     .catch(() => {
+      // return {
+      //   userId: 6,
+      //   user: "Daniel Molina",
+      //   email: "danielfmolina@comfama.com.co",
+      //   role: "controller", 
+      // };
       return {
         userId: 1,
         user: "Daniel Molina",
