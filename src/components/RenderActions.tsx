@@ -14,12 +14,12 @@ const RenderActions = () => {
     leader: {
       selector: "crcf3_id_solicitante_lider",
       statusOn: [0, 4],
-      component: <ActionsLeader prev="historias" />,
+      component: <ActionsLeader prev="Historias" />,
     },
     controller: {
       selector: "crcf3_id_interventor_contrato",
       statusOn: [1],
-      component: <ActionsInterventor prev="historias" />,
+      component: <ActionsInterventor prev="Historias" />,
     },
   };
 

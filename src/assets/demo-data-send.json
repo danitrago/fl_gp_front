@@ -1,0 +1,66 @@
+{
+  "caracterizacion": {
+    "crcf3_id_tipo_solicitud": "1",
+    "crcf3_id_interventor_contrato": "15",
+    "crcf3_id_tipo_necesidad": "1",
+    "crcf3_numero_ticket_servicio": "456-123",
+    "crcf3_fecha_limite": "2022-02-23",
+    "crcf3_modulo_funcionalidad": "Módulo MVM",
+    "crcf3_id_complejidad": "1",
+    "crcf3_situacionactual": "Situación Aliqua eu Lorem nulla culpa dolore commodo duis. Laborum aute consectetur non cillum aute officia reprehenderit occaecat cupidatat labore excepteur quis nostrud. Aliquip voluptate fugiat magna do officia. Laboris non veniam et enim irure id do in veniam nulla do laboris deserunt fugiat. Nostrud consequat adipisicing est ad culpa eiusmod aute sit sunt.",
+    "crcf3_justificacion": "Justificación Aliqua eu Lorem nulla culpa dolore commodo duis. Laborum aute consectetur non cillum aute officia reprehenderit occaecat cupidatat labore excepteur quis nostrud. Aliquip voluptate fugiat magna do officia. Laboris non veniam et enim irure id do in veniam nulla do laboris deserunt fugiat. Nostrud consequat adipisicing est ad culpa eiusmod aute sit sunt.",
+    "crcf3_descripcion_necesidad": "Desc. Necesidad Aliqua eu Lorem nulla culpa dolore commodo duis. Laborum aute consectetur non cillum aute officia reprehenderit occaecat cupidatat labore excepteur quis nostrud. Aliquip voluptate fugiat magna do officia. Laboris non veniam et enim irure id do in veniam nulla do laboris deserunt fugiat. Nostrud consequat adipisicing est ad culpa eiusmod aute sit sunt.",
+    "crcf3_prerrequisitos": "Pre req Aliqua eu Lorem nulla culpa dolore commodo duis. Laborum aute consectetur non cillum aute officia reprehenderit occaecat cupidatat labore excepteur quis nostrud. Aliquip voluptate fugiat magna do officia. Laboris non veniam et enim irure id do in veniam nulla do laboris deserunt fugiat. Nostrud consequat adipisicing est ad culpa eiusmod aute sit sunt.",
+    "crcf3_id_estado_solicitud": 0,
+    "crcf3_id_solicitante_lider": 1
+  },
+  "recursos": [
+    {
+      "crcf3_id_tipo_consultor": "11",
+      "crcf3_id_seniority": "1",
+      "crcf3_cantidad_consultores": "1",
+      "crcf3_porcentaje_dedicacion": "50",
+      "crcf3_tiempo_requerido": "30",
+      "crcf3_observaciones": "Aliqua eu Lorem nulla culpa dolore commodo duis. Laborum aute consectetur non cillum aute officia reprehenderit occaecat cupidatat labore excepteur quis nostrud. Aliquip voluptate fugiat magna do officia. Laboris non veniam et enim irure id do in veniam nulla do laboris deserunt fugiat. Nostrud consequat adipisicing est ad culpa eiusmod aute sit sunt.",
+      "crcf3_group_id_front": 67576
+    },
+    {
+      "crcf3_id_tipo_consultor": "12",
+      "crcf3_id_seniority": "3",
+      "crcf3_cantidad_consultores": "5",
+      "crcf3_porcentaje_dedicacion": "100",
+      "crcf3_tiempo_requerido": "60",
+      "crcf3_observaciones": "Aliqua eu Lorem nulla culpa dolore commodo duis. Laborum aute consectetur non cillum aute officia reprehenderit occaecat cupidatat labore excepteur quis nostrud. Aliquip voluptate fugiat magna do officia. Laboris non veniam et enim irure id do in veniam nulla do laboris deserunt fugiat. Nostrud consequat adipisicing est ad culpa eiusmod aute sit sunt.",
+      "crcf3_group_id_front": 78393
+    }
+  ],
+  "requerimientos": [
+    {
+      "crcf3_id_tipo_requisito": "2",
+      "crcf3_titulo": "Aliqua eu Lorem nulla culpa dolore commodo duis. Laborum aute consectetur non cillum aute officia reprehenderit occaecat cupidatat labore excepteur quis nostrud. Aliquip voluptate fugiat magna do officia. Laboris non veniam et enim irure id do in veniam nulla do laboris deserunt fugiat. Nostrud consequat adipisicing est ad culpa eiusmod aute sit sunt.",
+      "crcf3_group_id_front": 94781
+    },
+    {
+      "crcf3_id_tipo_requisito": "3",
+      "crcf3_titulo": "Aliqua eu Lorem nulla culpa dolore commodo duis. Laborum aute consectetur non cillum aute officia reprehenderit occaecat cupidatat labore excepteur quis nostrud. Aliquip voluptate fugiat magna do officia. Laboris non veniam et enim irure id do in veniam nulla do laboris deserunt fugiat. Nostrud consequat adipisicing est ad culpa eiusmod aute sit sunt.",
+      "crcf3_group_id_front": 96338
+    },
+    {
+      "crcf3_id_tipo_requisito": "4",
+      "crcf3_titulo": "Aliqua eu Lorem nulla culpa dolore commodo duis. Laborum aute consectetur non cillum aute officia reprehenderit occaecat cupidatat labore excepteur quis nostrud. Aliquip voluptate fugiat magna do officia. Laboris non veniam et enim irure id do in veniam nulla do laboris deserunt fugiat. Nostrud consequat adipisicing est ad culpa eiusmod aute sit sunt.",
+      "crcf3_group_id_front": 1212
+    }
+  ],
+  "historias": [
+    {
+      "crcf3_titulo": "Historia Uno",
+      "crcf3_criterio": "1. Criterio a\n2. Criterio b",
+      "crcf3_group_id_front": 94784
+    },
+    {
+      "crcf3_titulo": "Historia dos",
+      "crcf3_criterio": "1. Criterio c\n2. Critedio d",
+      "crcf3_group_id_front": 19181
+    }
+  ]
+}

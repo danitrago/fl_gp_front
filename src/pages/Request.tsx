@@ -8,6 +8,7 @@ import FormCaracterizacion from "../forms/FormCaracterizacion";
 import FormHistorias from "../forms/FormHistorias";
 import FormRecursos from "../forms/FormRecursos";
 import FormRequerimientos from "../forms/FormRequerimientos";
+import { alertMsg } from "../helpers";
 import { getDdlOptions, getFormData, postFormData } from "../services/requests";
 import Layout from "../templates/PageTemplate";
 import { IFieldsData } from "../types/form-fields";
@@ -16,8 +17,8 @@ import Title from "../ui-components/Title/Title";
 import { Wizard, WizardContent } from "../ui-components/Wizard";
 
 const Request = () => {
-  // const [selectedStep, setSelectedStep] = useState<string>("Caracterización");
-  const [selectedStep, setSelectedStep] = useState<string>("Enviar");
+  const [selectedStep, setSelectedStep] = useState<string>("Caracterización");
+  // const [selectedStep, setSelectedStep] = useState<string>("Enviar");
   const { userId } = useContext(UserContext);
   const [toSubmitData, setToSubmitData] = useState<IFieldsData>({
     caracterizacion: {
@@ -64,7 +65,14 @@ const Request = () => {
           setTimeout(() => {
             setIsLoading(false);
           }, 800)
-        );
+        )
+        .catch(() => {
+          alertMsg(
+            "¡Ups!",
+            "Hubo un error trayendo los datos, intenta más tarde.",
+            "error"
+          );
+        });
     } else {
       Promise.all([getDdlOptions()])
         .then(([ddl]) => {
@@ -74,7 +82,14 @@ const Request = () => {
           setTimeout(() => {
             setIsLoading(false);
           }, 800)
-        );
+        )
+        .catch(() => {
+          alertMsg(
+            "¡Ups!",
+            "Hubo un error trayendo los datos, intenta más tarde.",
+            "error"
+          );
+        });
     }
   }, []);
 
