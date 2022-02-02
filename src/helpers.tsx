@@ -4,6 +4,7 @@ import {
   TFormFields,
   TGroupRepeatingFields,
 } from "./types/form-fields";
+import swal from "sweetalert";
 
 export const fillFields: (
   group: TGroupRepeatingFields,
@@ -49,4 +50,12 @@ export const processData = (original: IFieldsData) => {
   };
 
   return process;
+};
+
+export const alertMsg = (
+  title: string,
+  msg: string,
+  type: "error" | "warning" | "success"
+) => {
+  swal(title, msg, type);
 };
