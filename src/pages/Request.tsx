@@ -17,8 +17,8 @@ import Title from "../ui-components/Title/Title";
 import { Wizard, WizardContent } from "../ui-components/Wizard";
 
 const Request = () => {
-  const [selectedStep, setSelectedStep] = useState<string>("Caracterización");
-  // const [selectedStep, setSelectedStep] = useState<string>("Enviar");
+  // const [selectedStep, setSelectedStep] = useState<string>("Caracterización");
+  const [selectedStep, setSelectedStep] = useState<string>("Enviar");
   const { userId } = useContext(UserContext);
   const [toSubmitData, setToSubmitData] = useState<IFieldsData>({
     caracterizacion: {
