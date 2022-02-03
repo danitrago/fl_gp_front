@@ -42,7 +42,9 @@ export const postFormData = (data: IFieldsData) => {
 
 export const updateRequestStatus = (id: string, newStatus: number) => {
   let payload = {
-    crcf3_id_estado_solicitud: newStatus,
+    caracterizacion: {
+      crcf3_id_estado_solicitud: newStatus,
+    },
   };
   return axios
     .patch(`${getApiUrl()}/api/solicitudes/${id}`, payload)

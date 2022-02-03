@@ -44,7 +44,7 @@ const Table = (props: TTableProps) => {
     <>
       <div className="flex justify-between align-baseline mb-4">
         <div>
-          <Button>Descargar</Button>
+          {/* <Button>Descargar</Button> */}
         </div>
         <div className="flex items-center">
           <i className="fa fa-search text-primary mr-2 mb-1"></i>
