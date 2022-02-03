@@ -8,24 +8,28 @@ const Dashboard = () => {
   const { role } = useContext(UserContext);
   const options = [
     {
+      id: 1,
       label: "Nueva Solicitud",
       link: "/request",
       icon: "plus-circle",
       roles: ["leader"],
     },
     {
+      id: 2,
       label: "Mis Solicitudes",
       link: "/my-requests",
       icon: "list",
       roles: ["leader"],
     },
     {
+      id: 3,
       label: "Mis Pendientes",
-      link: "/pendings",
+      link: "/my-tasks",
       icon: "briefcase",
-      roles: ["controller"],
+      roles: ["leader", "controller"],
     },
     {
+      id: 4,
       label: "Lista Interventores",
       link: "https://comfamaadm.sharepoint.com/sites/AutoFLujos/Lists/FL_GL_004_Lista_Interventor/AllItems.aspx?viewpath=%2Fsites%2FAutoFLujos%2FLists%2FFL%5FGL%5F004%5FLista%5FInterventor%2FAllItems%2Easpx",
       icon: "users",
@@ -56,6 +60,7 @@ const Dashboard = () => {
         <div className="my-4 grid gap-4 grid-cols-2 lg:grid-cols-3">
           {optionsByRole(role).map((option) => (
             <DashButtonBig
+              key={option.id}
               label={option.label}
               link={option.link}
               icon={option.icon}

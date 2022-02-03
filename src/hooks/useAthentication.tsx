@@ -6,7 +6,7 @@ const useAthentication = () => {
     const Response_Type = "code";
     const Client_Id = "42c59d10-d4c9-489b-a841-85f9c6c561ce";
     const Redirect_Uri =
-      "http://intranetdesarrollo.comfama.intranet/FlujoGestionTI";
+      "https://intranetdesarrollo.comfama.intranet/FlujoGestionTI";
     const Scope = "openid profile email";
     // const State = "ThisIsMyStateValue";
 
@@ -21,9 +21,9 @@ const useAthentication = () => {
     const Grant_Type = "authorization_code";
     const Code = code;
     const Redirect_Uri =
-      "http://intranetdesarrollo.comfama.intranet/FlujoGestionTI";
+      "https://intranetdesarrollo.comfama.intranet/FlujoGestionTI";
     const Client_Id = "42c59d10-d4c9-489b-a841-85f9c6c561ce";
-    const Client_Secret = "*42c59d10-_d4c9.-489b-+a841-85f9c6c561ce=";
+    const Client_Secret = "j6uQR-9jtDFGDa-NCzr7wcy-6eorpGM9-DRAmDK";
     const Scope = "openid profile email";
 
     let body = `grant_type=${Grant_Type}&code=${Code}&redirect_uri=${encodeURIComponent(
@@ -42,7 +42,8 @@ const useAthentication = () => {
       .then(async (response) => {
         let json = await response.json();
         console.log(json);
-        return json;
+        window.sessionStorage.setItem("user-jwt", json.id_token);
+        // return json;
       })
       .catch((error) => {
         console.log(error);

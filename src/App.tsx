@@ -3,6 +3,7 @@ import { Link, Route, Routes } from "react-router-dom";
 import UserContext, { TUserContext } from "./contexts/userContext";
 import useAthentication from "./hooks/useAthentication";
 import Dashboard from "./pages/Dashboard";
+import MyPendings from "./pages/MyPendings";
 import MyRequests from "./pages/MyRequests";
 import Request from "./pages/Request";
 import { getUserContract } from "./services/auth";
@@ -38,7 +39,7 @@ function App() {
           <Route path="/" element={<Dashboard />} />
           <Route path="/all-requests" element={<p>TODAS LAS SOLICITUDES</p>} />
           <Route path="/my-requests" element={<MyRequests />} />
-          <Route path="/my-tasks" element={<p>MIS TAREAS</p>} />
+          <Route path="/my-tasks" element={<MyPendings />} />
           <Route path="/request" element={<Request />} />
           <Route path="/request/:requestId" element={<Request />} />
         </Routes>
