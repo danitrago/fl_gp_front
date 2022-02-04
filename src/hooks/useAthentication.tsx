@@ -63,7 +63,9 @@ const useAthentication = () => {
         var responseType = url.searchParams.get("responseType");
         var code = url.searchParams.get("code");
         if (responseType && code) {
-          getToken(code).then(() => resolve(true));
+          getToken(code)
+            .then(() => resolve(true))
+            .catch(() => reject(false));
         } else {
           getCode();
         }

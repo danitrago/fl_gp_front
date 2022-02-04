@@ -22,24 +22,3 @@ export const getUserContract = (token: string) => {
     //   };
     // });
 };
-
-// export const postFormData = (data: IFieldsData) => {
-//   return axios
-//     .post(`${getApiUrl()}/api/fl-gp-solicitudes`, data)
-//     .then(() => alert("¡Hecho! Tu solicitud ha sido creada."))
-//     .catch(() => alert("Error al crear la solicitud."));
-// };
-
-// export const updateFormData = (data: IFieldsData) => {
-//   return axios
-//     .put(`${getApiUrl()}/api/fl-gp-solicitudes`, data)
-//     .then(() => alert("¡Hecho! Tu solicitud ha sido modificada."))
-//     .catch(() => alert("Error al modificar la solicitud."));
-// };
-
-// export const getMyRequests = () => {
-//   return axios
-//     .get(`${getApiUrl()}/api/get-my-requests`)
-//     .then((res) => res.data)
-//     .catch(() => fetchedData);
-// };
