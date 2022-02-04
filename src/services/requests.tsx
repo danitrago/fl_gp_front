@@ -40,14 +40,11 @@ export const postFormData = (data: IFieldsData) => {
     );
 };
 
-export const updateRequestStatus = (id: string, newStatus: number) => {
-  let payload = {
-    caracterizacion: {
-      crcf3_id_estado_solicitud: newStatus,
-    },
-  };
+export const updateFormData = (id: string, data: any) => {
+  // console.log("Patching...");
+  // console.log(data);
   return axios
-    .patch(`${getApiUrl()}/api/solicitudes/${id}`, payload)
+    .patch(`${getApiUrl()}/api/solicitudes/${id}`, data)
     .then(() => {
       alertMsg("¡Hecho!", "La solicitud ha sido actualizada.", "success");
       setTimeout(() => {
@@ -61,15 +58,6 @@ export const updateRequestStatus = (id: string, newStatus: number) => {
         "error"
       )
     );
-};
-
-export const updateFormData = (id: string, data: IFieldsData) => {
-  // console.log("Patching...");
-  // console.log(data);
-  return axios
-    .patch(`${getApiUrl()}/api/solicitudes/${id}`, data)
-    .then(() => alert("¡Hecho! Tu solicitud ha sido modificada."))
-    .catch(() => alert("Error al modificar la solicitud."));
 };
 
 export const getMyRequests = (userId: number) => {

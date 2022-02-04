@@ -1,7 +1,7 @@
 import React, { useContext } from "react";
 import FormContext from "../contexts/formContext";
-import { updateRequestStatus } from "../services/requests";
 import Button from "../ui-components/Button";
+import useInterventorActions from "../hooks/useInterventorActions";
 
 type TActionsInterventorProps = {
   prev: string;
@@ -10,6 +10,9 @@ type TActionsInterventorProps = {
 const ActionsInterventor = (props: TActionsInterventorProps) => {
   const { toSubmitData, postFormData, setSelectedStep, requestId } =
     useContext(FormContext);
+
+  const { actionReject, actionReturn, actionAprove } = useInterventorActions();
+
   return (
     <div className="pt-6">
       <p className="text-center text-8xl mb-6 text-green-300">
@@ -20,17 +23,17 @@ const ActionsInterventor = (props: TActionsInterventorProps) => {
       </h2>
       <p className="text-center">¿Qué deseas hacer con esta solicitud?</p>
       <div className="flex justify-center mt-5">
-        <Button onClick={() => requestId && updateRequestStatus(requestId, 3)}>
+        <Button onClick={() => requestId && actionReject(requestId, 3)}>
           Rechazar
         </Button>
         <Button
           className="mx-2"
-          onClick={() => requestId && updateRequestStatus(requestId, 4)}
+          onClick={() => requestId && actionReturn(requestId, 4)}
         >
           Devolver
         </Button>
-        <Button onClick={() => requestId && updateRequestStatus(requestId, 2)}>
-          Aprobar
+        <Button onClick={() => requestId && actionAprove(requestId, 5)}>
+          Enviar a Proveedor
         </Button>
       </div>
       <div className="flex justify-between mt-8 border-t pt-5">

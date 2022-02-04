@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useLayoutEffect, useState } from "react";
 import { Link, Route, Routes } from "react-router-dom";
 import UserContext, { TUserContext } from "./contexts/userContext";
 import useAthentication from "./hooks/useAthentication";
@@ -16,24 +16,30 @@ function App() {
   const [isLoading, setIsLoading] = useState(true);
 
   const { autenticate } = useAthentication();
-
+  
   useEffect(() => {
-    // autenticate();
-    Promise.all([getUserContract("token")])
-      .then(([userContractData]) => {
-        setUserContract(userContractData);
-      })
-      .finally(() =>
-        setTimeout(() => {
-          setIsLoading(false);
-        }, 1000)
-      );
+    autenticate();
+    let token = window.sessionStorage.getItem("user-jwt");
+    if (token) {
+      console.log("get contract");
+      Promise.all([getUserContract(token)])
+        .then(([userContractData]) => {
+          setUserContract(userContractData);
+        })
+        .finally(() =>
+          setTimeout(() => {
+            setIsLoading(false);
+          }, 1000)
+        );
+    }
   }, []);
 
   return (
     <UserContext.Provider value={userContract}>
       {isLoading ? (
         <Spinner />
+      ) : !userContract.email ? (
+        "Sin permisos"
       ) : (
         <Routes>
           <Route path="/" element={<Dashboard />} />

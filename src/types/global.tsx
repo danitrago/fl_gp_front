@@ -39,6 +39,6 @@ type roleOptions = {
 
 export type rolesMatrix = {
   [key: string]: roleOptions;
-  leader: roleOptions;
-  controller: roleOptions;
+  "Líder": roleOptions;
+  "Interventor": roleOptions;
 };

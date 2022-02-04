@@ -1,12 +1,12 @@
 import React, { useEffect } from "react";
+import { getRedirectUri } from "../helpers";
 
 const useAthentication = () => {
   const getCode = () => {
     const Authorization_Endpoint = `https://aaz0175.my.idaptive.app/OAuth2/Authorize/GESTION_PROVEEDORES_TI_DEV`;
     const Response_Type = "code";
     const Client_Id = "42c59d10-d4c9-489b-a841-85f9c6c561ce";
-    const Redirect_Uri =
-      "https://intranetdesarrollo.comfama.intranet/FlujoGestionTI";
+    const Redirect_Uri = getRedirectUri() as string;
     const Scope = "openid profile email";
     // const State = "ThisIsMyStateValue";
 
@@ -20,8 +20,7 @@ const useAthentication = () => {
     const Token_Endpoint = `https://comfama.my.idaptive.app/OAuth2/Token/GESTION_PROVEEDORES_TI_DEV`;
     const Grant_Type = "authorization_code";
     const Code = code;
-    const Redirect_Uri =
-      "https://intranetdesarrollo.comfama.intranet/FlujoGestionTI";
+    const Redirect_Uri = getRedirectUri() as string;
     const Client_Id = "42c59d10-d4c9-489b-a841-85f9c6c561ce";
     const Client_Secret = "j6uQR-9jtDFGDa-NCzr7wcy-6eorpGM9-DRAmDK";
     const Scope = "openid profile email";
@@ -43,6 +42,7 @@ const useAthentication = () => {
         let json = await response.json();
         console.log(json);
         window.sessionStorage.setItem("user-jwt", json.id_token);
+        window.location.href = getRedirectUri() as string;
         // return json;
       })
       .catch((error) => {
