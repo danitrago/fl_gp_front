@@ -49,6 +49,7 @@ const useAthentication = () => {
         })
         .catch((error) => {
           console.log(error);
+          reject(false);
         });
     });
   };
