@@ -65,3 +65,9 @@ export const getMyRequests = (userId: number) => {
     .get(`${getApiUrl()}/api/solicitudes/owner/${userId}`)
     .then((res) => res.data);
 };
+
+export const getMyPendings = (userId: number) => {
+  return axios
+    .get(`${getApiUrl()}/api/solicitudes/pendings/${userId}`)
+    .then((res) => res.data);
+};
