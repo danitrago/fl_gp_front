@@ -22,7 +22,6 @@ function App() {
       .then(() => {
         let token = window.sessionStorage.getItem("user-jwt");
         if (token) {
-          console.log("get contract");
           Promise.all([getUserContract(token)])
             .then(([userContractData]) => {
               setUserContract(userContractData);
@@ -32,10 +31,18 @@ function App() {
                 setIsLoading(false);
               }, 1000)
             )
-            .catch(() => alert("No tienes permisos para ver esta página."));
+            .catch((err) => {
+              console.log("2222222222222222222222222222222222");
+              console.log(err);
+            });
         }
       })
-      .catch(() => alert("No tienes permisos para ver esta página."));
+      .catch((err) => {
+        console.log("333333333333333333333333333333");
+        console.log(err);
+        window.sessionStorage.clear();
+        alert("No tienes permisos para ver esta página.");
+      });
   }, []);
 
   return (

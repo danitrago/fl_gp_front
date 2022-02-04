@@ -69,6 +69,8 @@ const useAthentication = () => {
         } else {
           getCode();
         }
+      } else {
+        resolve(true);
       }
     });
   };
