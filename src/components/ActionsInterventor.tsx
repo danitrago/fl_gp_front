@@ -32,7 +32,7 @@ const ActionsInterventor = (props: TActionsInterventorProps) => {
         >
           Devolver
         </Button>
-        <Button onClick={() => requestId && actionAprove(requestId, 5)}>
+        <Button onClick={() => requestId && actionAprove(requestId, 2)}>
           Enviar a Proveedor
         </Button>
       </div>
