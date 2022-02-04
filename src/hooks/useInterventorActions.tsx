@@ -1,7 +1,11 @@
+import { useContext } from "react";
 import swal from "sweetalert";
+import FormContext from "../contexts/formContext";
 import { updateFormData } from "../services/requests";
+import { IDdl } from "../types/global";
 
 const useInterventorActions = () => {
+  const { ddl } = useContext(FormContext);
   const actionReject = (id: string, newStats: number) => {
     swal({
       text: "Por favor describe el motivo de rechazo.",
@@ -49,7 +53,11 @@ const useInterventorActions = () => {
     let select = document.createElement("select");
     select.addEventListener("change", (e: any) => (proveedor = e.target.value));
     select.className = "w-full border bg-gray-100 rounded mb-1 p-2 h-11";
-    select.innerHTML = `<option value="">Seleccionar proveedor...</option><option value="jaja">Demo</option>`;
+    select.innerHTML = `<option value="">Seleccionar proveedor...</option>${ddl.proveedores.map(
+      (prov: IDdl) => {
+        return `<option value="${prov.id}">${prov.label}</option>`;
+      }
+    )}`;
     swal({
       text: "Por favor elige un proveedor.",
       content: select,
@@ -59,6 +67,7 @@ const useInterventorActions = () => {
         let payload = {
           caracterizacion: {
             crcf3_id_estado_solicitud: newStats,
+            crcf3_id_proveedor: proveedor,
           },
         };
         updateFormData(id, payload);
