@@ -17,52 +17,57 @@ const useAthentication = () => {
   };
 
   const getToken = (code: string) => {
-    const Token_Endpoint = `https://comfama.my.idaptive.app/OAuth2/Token/GESTION_PROVEEDORES_TI_DEV`;
-    const Grant_Type = "authorization_code";
-    const Code = code;
-    const Redirect_Uri = getRedirectUri() as string;
-    const Client_Id = "42c59d10-d4c9-489b-a841-85f9c6c561ce";
-    const Client_Secret = "j6uQR-9jtDFGDa-NCzr7wcy-6eorpGM9-DRAmDK";
-    const Scope = "openid profile email";
+    return new Promise((resolve, reject) => {
+      const Token_Endpoint = `https://comfama.my.idaptive.app/OAuth2/Token/GESTION_PROVEEDORES_TI_DEV`;
+      const Grant_Type = "authorization_code";
+      const Code = code;
+      const Redirect_Uri = getRedirectUri() as string;
+      const Client_Id = "42c59d10-d4c9-489b-a841-85f9c6c561ce";
+      const Client_Secret = "j6uQR-9jtDFGDa-NCzr7wcy-6eorpGM9-DRAmDK";
+      const Scope = "openid profile email";
 
-    let body = `grant_type=${Grant_Type}&code=${Code}&redirect_uri=${encodeURIComponent(
-      Redirect_Uri
-    )}&client_id=${Client_Id}&client_secret=${Client_Secret}&scope=${encodeURIComponent(
-      Scope
-    )}`;
+      let body = `grant_type=${Grant_Type}&code=${Code}&redirect_uri=${encodeURIComponent(
+        Redirect_Uri
+      )}&client_id=${Client_Id}&client_secret=${Client_Secret}&scope=${encodeURIComponent(
+        Scope
+      )}`;
 
-    fetch(Token_Endpoint, {
-      method: "POST",
-      body: body,
-      headers: {
-        "Content-Type": "application/x-www-form-urlencoded",
-      },
-    })
-      .then(async (response) => {
-        let json = await response.json();
-        console.log(json);
-        window.sessionStorage.setItem("user-jwt", json.id_token);
-        window.location.href = getRedirectUri() as string;
-        // return json;
+      fetch(Token_Endpoint, {
+        method: "POST",
+        body: body,
+        headers: {
+          "Content-Type": "application/x-www-form-urlencoded",
+        },
       })
-      .catch((error) => {
-        console.log(error);
-      });
+        .then(async (response) => {
+          let json = await response.json();
+          console.log(json);
+          window.sessionStorage.setItem("user-jwt", json.id_token);
+          resolve(true);
+          // window.location.href = getRedirectUri() as string;
+          // return json;
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+    });
   };
 
   const autenticate = () => {
-    const jwt = sessionStorage.getItem("user-jwt") || "";
-    if (!jwt) {
-      let urlString = window.location.href;
-      var url = new URL(urlString);
-      var responseType = url.searchParams.get("responseType");
-      var code = url.searchParams.get("code");
-      if (responseType && code) {
-        getToken(code);
-      } else {
-        getCode();
+    return new Promise((resolve, reject) => {
+      const jwt = sessionStorage.getItem("user-jwt") || "";
+      if (!jwt) {
+        let urlString = window.location.href;
+        var url = new URL(urlString);
+        var responseType = url.searchParams.get("responseType");
+        var code = url.searchParams.get("code");
+        if (responseType && code) {
+          getToken(code).then(() => resolve(true));
+        } else {
+          getCode();
+        }
       }
-    }
+    });
   };
 
   return {

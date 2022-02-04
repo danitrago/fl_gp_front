@@ -16,22 +16,23 @@ function App() {
   const [isLoading, setIsLoading] = useState(true);
 
   const { autenticate } = useAthentication();
-  
+
   useEffect(() => {
-    autenticate();
-    let token = window.sessionStorage.getItem("user-jwt");
-    if (token) {
-      console.log("get contract");
-      Promise.all([getUserContract(token)])
-        .then(([userContractData]) => {
-          setUserContract(userContractData);
-        })
-        .finally(() =>
-          setTimeout(() => {
-            setIsLoading(false);
-          }, 1000)
-        );
-    }
+    autenticate().then(() => {
+      let token = window.sessionStorage.getItem("user-jwt");
+      if (token) {
+        console.log("get contract");
+        Promise.all([getUserContract(token)])
+          .then(([userContractData]) => {
+            setUserContract(userContractData);
+          })
+          .finally(() =>
+            setTimeout(() => {
+              setIsLoading(false);
+            }, 1000)
+          );
+      }
+    });
   }, []);
 
   return (
