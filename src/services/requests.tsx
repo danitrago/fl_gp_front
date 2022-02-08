@@ -68,6 +68,11 @@ export const getMyRequests = (userId: number) => {
 
 export const getMyPendings = (userId: number) => {
   return axios
-    .get(`${getApiUrl()}/api/solicitudes/pendings/${userId}`)
+    .get(`${getApiUrl()}/api/solicitudes-pendings/${userId}`, {
+      headers: {
+        authorization:
+          `Bearer ${window.sessionStorage.getItem("user-jwt")?.toString()}` || ''
+      },
+    })
     .then((res) => res.data);
 };
