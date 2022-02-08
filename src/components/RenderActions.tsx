@@ -11,12 +11,12 @@ const RenderActions = () => {
   const { toSubmitData } = useContext(FormContext);
 
   let rolesInteractions: rolesMatrix = {
-    leader: {
+    "Líder": {
       selector: "crcf3_id_solicitante_lider",
       statusOn: [0, 4],
       component: <ActionsLeader prev="Historias" />,
     },
-    controller: {
+    "Interventor": {
       selector: "crcf3_id_interventor_contrato",
       statusOn: [1],
       component: <ActionsInterventor prev="Historias" />,

@@ -34,9 +34,9 @@ const Request = () => {
 
   let disableFields =
     (toSubmitData.caracterizacion?.crcf3_id_estado_solicitud === 0 &&
-      role === "leader") ||
+      role === "Líder") ||
     (toSubmitData.caracterizacion?.crcf3_id_estado_solicitud === 4 &&
-      role === "leader")
+      role === "Líder")
       ? false
       : true;
 

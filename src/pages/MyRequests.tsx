@@ -21,7 +21,7 @@ const MyRequests = () => {
         crcf3_id_tipo_solicitud: (
           <Link
             to={`/request/${item.crcf3_fl_gp_008_solicitudid}`}
-            target="_blank"
+            // target="_blank"
             className="text-primary"
           >
             {item.crcf3_id_tipo_solicitud}

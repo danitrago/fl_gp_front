@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useLayoutEffect, useState } from "react";
 import { Link, Route, Routes } from "react-router-dom";
 import UserContext, { TUserContext } from "./contexts/userContext";
 import useAthentication from "./hooks/useAthentication";
@@ -18,22 +18,39 @@ function App() {
   const { autenticate } = useAthentication();
 
   useEffect(() => {
-    // autenticate();
-    Promise.all([getUserContract("token")])
-      .then(([userContractData]) => {
-        setUserContract(userContractData);
+    autenticate()
+      .then(() => {
+        let token = window.sessionStorage.getItem("user-jwt");
+        if (token) {
+          Promise.all([getUserContract(token)])
+            .then(([userContractData]) => {
+              setUserContract(userContractData);
+            })
+            .finally(() =>
+              setTimeout(() => {
+                setIsLoading(false);
+              }, 1000)
+            )
+            .catch((err) => {
+              console.log("2222222222222222222222222222222222");
+              console.log(err);
+            });
+        }
       })
-      .finally(() =>
-        setTimeout(() => {
-          setIsLoading(false);
-        }, 1000)
-      );
+      .catch((err) => {
+        console.log("333333333333333333333333333333");
+        console.log(err);
+        window.sessionStorage.clear();
+        alert("No tienes permisos para ver esta página.");
+      });
   }, []);
 
   return (
     <UserContext.Provider value={userContract}>
       {isLoading ? (
         <Spinner />
+      ) : !userContract.email ? (
+        "Sin permisos"
       ) : (
         <Routes>
           <Route path="/" element={<Dashboard />} />

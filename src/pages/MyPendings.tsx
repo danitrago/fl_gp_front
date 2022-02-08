@@ -2,7 +2,7 @@ import React, { useContext, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import UserContext from "../contexts/userContext";
 import { alertMsg } from "../helpers";
-import { getMyRequests } from "../services/requests";
+import { getMyPendings } from "../services/requests";
 import Layout from "../templates/PageTemplate";
 import Spinner from "../ui-components/Spinner";
 import Table from "../ui-components/Table";
@@ -21,7 +21,7 @@ const MyPendings = () => {
         crcf3_id_tipo_solicitud: (
           <Link
             to={`/request/${item.crcf3_fl_gp_008_solicitudid}`}
-            target="_blank"
+            // target="_blank"
             className="text-primary"
           >
             {item.crcf3_id_tipo_solicitud}
@@ -86,7 +86,7 @@ const MyPendings = () => {
   );
 
   useEffect(() => {
-    Promise.all([getMyRequests(userId)])
+    Promise.all([getMyPendings(userId)])
       .then(([myRequestsList]) => {
         setRequestsList(myRequestsList);
       })
