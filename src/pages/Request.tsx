@@ -32,13 +32,14 @@ const Request = () => {
 
   let { requestId } = useParams();
 
-  let disableFields =
-    (toSubmitData.caracterizacion?.crcf3_id_estado_solicitud === 0 &&
-      role === "Líder") ||
-    (toSubmitData.caracterizacion?.crcf3_id_estado_solicitud === 4 &&
-      role === "Líder")
-      ? false
-      : true;
+  let disableFields = true;
+  if (
+    (toSubmitData.caracterizacion?.crcf3_id_estado_solicitud === 0 ||
+      toSubmitData.caracterizacion?.crcf3_id_estado_solicitud === 4) &&
+    role === "Líder"
+  ) {
+    disableFields = false;
+  }
 
   const renderState = (statusId: number) => {
     if (statusId) {
