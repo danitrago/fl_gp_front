@@ -41,6 +41,12 @@ export const getApiUrl = () => {
     : process.env.REACT_APP_API_PRODUCTION;
 };
 
+export const getRedirectUri = () => {
+  return process.env.NODE_ENV === "development"
+    ? process.env.REACT_APP_REDIRECT_URI_DEV
+    : process.env.REACT_APP_REDIRECT_URI_PRD;
+};
+
 export const processData = (original: IFieldsData) => {
   let process = {
     ...original.caracterizacion,

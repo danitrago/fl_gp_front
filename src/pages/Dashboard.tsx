@@ -12,28 +12,28 @@ const Dashboard = () => {
       label: "Nueva Solicitud",
       link: "/request",
       icon: "plus-circle",
-      roles: ["leader"],
+      roles: ["Líder"],
     },
     {
       id: 2,
       label: "Mis Solicitudes",
       link: "/my-requests",
       icon: "list",
-      roles: ["leader"],
+      roles: ["Líder"],
     },
     {
       id: 3,
       label: "Mis Pendientes",
       link: "/my-tasks",
       icon: "briefcase",
-      roles: ["leader", "controller"],
+      roles: ["Líder", "Interventor"],
     },
     {
       id: 4,
       label: "Lista Interventores",
       link: "https://comfamaadm.sharepoint.com/sites/AutoFLujos/Lists/FL_GL_004_Lista_Interventor/AllItems.aspx?viewpath=%2Fsites%2FAutoFLujos%2FLists%2FFL%5FGL%5F004%5FLista%5FInterventor%2FAllItems%2Easpx",
       icon: "users",
-      roles: ["admin"],
+      roles: ["Administrador"],
       external: true,
     },
   ];
@@ -50,10 +50,8 @@ const Dashboard = () => {
             Flujo de Gestión de Proveedores
           </Title>
           <p>
-            Anim anim esse eu in labore irure nostrud dolore. Officia eiusmod
-            laboris nostrud nisi adipisicing consectetur cillum mollit culpa
-            anim ex. Enim nulla esse Lorem exercitation ut enim. Pariatur sint
-            voluptate sit ex excepteur laboris qui amet ex culpa.
+            Permite solicitar y administrar de forma centralizada las
+            solicitudes de recursos y cotizaciones a proveedores de tecnología.
           </p>
         </div>
 
