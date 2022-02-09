@@ -48,7 +48,7 @@ const useInterventorActions = () => {
       }
     });
   };
-  const actionAprove = (id: string, newStats: number) => {
+  const actionToProvider = (id: string, newStats: number) => {
     let proveedor: any = null;
     let select = document.createElement("select");
     select.addEventListener("change", (e: any) => (proveedor = e.target.value));
@@ -76,11 +76,30 @@ const useInterventorActions = () => {
       }
     });
   };
+  const actionAprove = (id: string, newStats: number) => {
+    swal({
+      title: "¿Aprobar Solicitud?",
+      text: "Estás a punto de aprobar esta solicitud.",
+      icon: "warning",
+      buttons: true,
+      dangerMode: true,
+    } as any).then((willDelete) => {
+      if (willDelete) {
+        let payload = {
+          caracterizacion: {
+            crcf3_id_estado_solicitud: newStats,
+          },
+        };
+        updateFormData(id, payload);
+      }
+    });
+  };
 
   return {
     actionReject,
     actionReturn,
-    actionAprove,
+    actionToProvider,
+    actionAprove
   };
 };
 

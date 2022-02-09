@@ -50,10 +50,8 @@ const Dashboard = () => {
             Flujo de Gestión de Proveedores
           </Title>
           <p>
-            Anim anim esse eu in labore irure nostrud dolore. Officia eiusmod
-            laboris nostrud nisi adipisicing consectetur cillum mollit culpa
-            anim ex. Enim nulla esse Lorem exercitation ut enim. Pariatur sint
-            voluptate sit ex excepteur laboris qui amet ex culpa.
+            Permite solicitar y administrar de forma centralizada las
+            solicitudes de recursos y cotizaciones a proveedores de tecnología.
           </p>
         </div>
 
