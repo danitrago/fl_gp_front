@@ -16,8 +16,13 @@ import CardGroup from "../ui-components/FormHooked/CardGroup";
 const withFormRepeat = (Component: ComponentType<any>) => {
   // HOC COMPONENT
   const NewComponent = (props: THoCForm) => {
-    const { toSubmitData, setToSubmitData, ddl, setSelectedStep } =
-      useContext<TFormContext>(FormContext);
+    const {
+      toSubmitData,
+      setToSubmitData,
+      ddl,
+      setSelectedStep,
+      disableFields,
+    } = useContext<TFormContext>(FormContext);
 
     const generateId: () => number = () => {
       let a = Date.now();
@@ -121,7 +126,7 @@ const withFormRepeat = (Component: ComponentType<any>) => {
             </CardGroup>
           );
         })}
-        <AddGroupButton fnAddGroup={addGroup} />
+        {!disableFields && <AddGroupButton fnAddGroup={addGroup} />}
         <ActionButtons {...props} submitAllGroups={submitAllGroups} />
       </div>
     );
