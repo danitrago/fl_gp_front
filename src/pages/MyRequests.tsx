@@ -1,7 +1,9 @@
 import React, { useContext, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import EmptyTable from "../components/EmptyTable";
+import ExportTableButton from "../components/ExportTableButton";
 import UserContext from "../contexts/userContext";
-import { alertMsg, formatDate } from "../helpers";
+import { alertMsg, formatDate, processDataToDownload } from "../helpers";
 import { getMyRequests } from "../services/requests";
 import Layout from "../templates/PageTemplate";
 import Spinner from "../ui-components/Spinner";
@@ -39,6 +41,7 @@ const MyRequests = () => {
           </Link>
         ),
         crcf3_fecha_limite: formatDate(item.crcf3_fecha_limite),
+        createdon: formatDate(item.createdon),
       };
     });
   }, [requestsList]);
@@ -86,6 +89,10 @@ const MyRequests = () => {
         accessor: "crcf3_id_complejidad",
       },
       {
+        Header: "Creación",
+        accessor: "createdon",
+      },
+      {
         Header: "",
         accessor: "open2",
       },
@@ -119,7 +126,14 @@ const MyRequests = () => {
         <Spinner />
       ) : (
         <div className="animate__animated animate__fadeIn">
-          <Table columns={columns} data={data} />
+          {requestsList.length > 0 ? (
+            <>
+              <Table columns={columns} data={data} />
+              <ExportTableButton data={processDataToDownload(requestsList)} />
+            </>
+          ) : (
+            <EmptyTable />
+          )}
         </div>
       )}
     </Layout>

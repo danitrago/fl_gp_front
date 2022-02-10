@@ -2,6 +2,7 @@ import React, { useEffect, useLayoutEffect, useState } from "react";
 import { Link, Route, Routes } from "react-router-dom";
 import UserContext, { TUserContext } from "./contexts/userContext";
 import useAthentication from "./hooks/useAthentication";
+import AllRequests from "./pages/AllRequests";
 import Dashboard from "./pages/Dashboard";
 import MyPendings from "./pages/MyPendings";
 import MyRequests from "./pages/MyRequests";
@@ -30,16 +31,10 @@ function App() {
               setTimeout(() => {
                 setIsLoading(false);
               }, 1000)
-            )
-            .catch((err) => {
-              console.log("2222222222222222222222222222222222");
-              console.log(err);
-            });
+            );
         }
       })
       .catch((err) => {
-        console.log("333333333333333333333333333333");
-        console.log(err);
         window.sessionStorage.clear();
         alert("No tienes permisos para ver esta página.");
       });
@@ -54,7 +49,7 @@ function App() {
       ) : (
         <Routes>
           <Route path="/" element={<Dashboard />} />
-          <Route path="/all-requests" element={<p>TODAS LAS SOLICITUDES</p>} />
+          <Route path="/requests-center" element={<AllRequests />} />
           <Route path="/my-requests" element={<MyRequests />} />
           <Route path="/my-tasks" element={<MyPendings />} />
           <Route path="/request" element={<Request />} />

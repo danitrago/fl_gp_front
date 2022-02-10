@@ -1,15 +1,16 @@
 import React, { useContext, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import EmptyTable from "../components/EmptyTable";
+import ExportTableButton from "../components/ExportTableButton";
 import UserContext from "../contexts/userContext";
-import { alertMsg, formatDate } from "../helpers";
-import { getMyPendings } from "../services/requests";
+import { alertMsg, formatDate, processDataToDownload } from "../helpers";
+import { getAllRequests, getMyRequests } from "../services/requests";
 import Layout from "../templates/PageTemplate";
 import Spinner from "../ui-components/Spinner";
 import Table from "../ui-components/Table";
 import Title from "../ui-components/Title/Title";
 
-const MyPendings = () => {
+const AllRequests = () => {
   // const [ddl, setDdl] = useState<IDdl[]>(ddlFile);
   const [requestsList, setRequestsList] = useState([]);
   const [isLoading, setIsLoading] = useState<boolean>(true);
@@ -64,8 +65,16 @@ const MyPendings = () => {
         accessor: "crcf3_id_estado_solicitud",
       },
       {
+        Header: "Solicitante",
+        accessor: "crcf3_id_solicitante_lider",
+      },
+      {
         Header: "Interventor",
         accessor: "crcf3_id_interventor_contrato",
+      },
+      {
+        Header: "Proveedor",
+        accessor: "crcf3_id_proveedor",
       },
       {
         Header: "Tipo Necesidad",
@@ -79,10 +88,10 @@ const MyPendings = () => {
         Header: "Fecha Límite",
         accessor: "crcf3_fecha_limite",
       },
-      {
-        Header: "Módulo/Funcionalidad",
-        accessor: "crcf3_modulo_funcionalidad",
-      },
+      //   {
+      //     Header: "Módulo/Funcionalidad",
+      //     accessor: "crcf3_modulo_funcionalidad",
+      //   },
       {
         Header: "Complejidad",
         accessor: "crcf3_id_complejidad",
@@ -100,7 +109,7 @@ const MyPendings = () => {
   );
 
   useEffect(() => {
-    Promise.all([getMyPendings(userId)])
+    Promise.all([getAllRequests(userId)])
       .then(([myRequestsList]) => {
         setRequestsList(myRequestsList);
       })
@@ -120,18 +129,15 @@ const MyPendings = () => {
 
   return (
     <Layout>
-      <Title variant="h1">Mis Pendientes</Title>
-
+      <Title variant="h1">Centro de Solicitudes</Title>
       {isLoading ? (
         <Spinner />
       ) : (
         <div className="animate__animated animate__fadeIn">
           {requestsList.length > 0 ? (
             <>
-              <p className="mb-5">
-                Las siguientes son solicitudes que requieren tu atención.
-              </p>
               <Table columns={columns} data={data} />
+              <ExportTableButton data={processDataToDownload(requestsList)} />
             </>
           ) : (
             <EmptyTable />
@@ -142,4 +148,4 @@ const MyPendings = () => {
   );
 };
 
-export default MyPendings;
+export default AllRequests;

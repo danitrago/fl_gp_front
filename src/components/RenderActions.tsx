@@ -25,6 +25,10 @@ const RenderActions = () => {
   };
 
   const showOptions = () => {
+    if (role === "Administrador") {
+      return <NoActionsAvaiable prev="Historias" />; // print NO actions avaiable
+    }
+
     const selector: string = rolesInteractions[role].selector;
     const idParticipant: any = toSubmitData.caracterizacion?.[selector];
     const isRequestInStatus: boolean = rolesInteractions[
