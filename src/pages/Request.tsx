@@ -1,5 +1,6 @@
 import React, { useContext, useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
+import GoToEnd from "../components/GoToEnd";
 import RenderActions from "../components/RenderActions";
 import UnnecessaryStep from "../components/UnnecessaryStep";
 import FormContext from "../contexts/formContext";
@@ -12,6 +13,7 @@ import { alertMsg } from "../helpers";
 import { getDdlOptions, getFormData, postFormData } from "../services/requests";
 import Layout from "../templates/PageTemplate";
 import { IFieldsData } from "../types/form-fields";
+import Button from "../ui-components/Button";
 import Spinner from "../ui-components/Spinner";
 import Title from "../ui-components/Title/Title";
 import { Wizard, WizardContent } from "../ui-components/Wizard";
@@ -119,6 +121,7 @@ const Request = () => {
           ddl,
           postFormData,
           setSelectedStep,
+          selectedStep,
           requestId,
           disableFields,
         }}
@@ -176,6 +179,7 @@ const Request = () => {
             </WizardContent>
           </Wizard>
         )}
+        <GoToEnd endStep="Enviar" />
       </FormContext.Provider>
     </Layout>
   );
