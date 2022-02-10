@@ -11,7 +11,8 @@ const ActionsInterventor = (props: TActionsInterventorProps) => {
   const { toSubmitData, postFormData, setSelectedStep, requestId } =
     useContext(FormContext);
 
-  const { actionReject, actionReturn, actionToProvider, actionAprove } = useInterventorActions();
+  const { actionReject, actionReturn, actionToProvider, actionAprove } =
+    useInterventorActions();
 
   return (
     <div className="pt-6">
@@ -23,16 +24,22 @@ const ActionsInterventor = (props: TActionsInterventorProps) => {
       </h2>
       <p className="text-center">¿Qué deseas hacer con esta solicitud?</p>
       <div className="flex justify-center mt-5">
-        <Button onClick={() => requestId && actionReject(requestId, 3)}>
+        <Button
+          className="mr-2"
+          onClick={() => requestId && actionReject(requestId, 3)}
+        >
           Rechazar
         </Button>
         <Button
-          className="mx-2"
+          className="mr-2"
           onClick={() => requestId && actionReturn(requestId, 4)}
         >
           Devolver
         </Button>
-        <Button onClick={() => requestId && actionToProvider(requestId, 2)}>
+        <Button
+          className="mr-2"
+          onClick={() => requestId && actionToProvider(requestId, 2)}
+        >
           Enviar a Proveedor
         </Button>
         <Button onClick={() => requestId && actionAprove(requestId, 5)}>
