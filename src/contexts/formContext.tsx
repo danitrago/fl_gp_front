@@ -6,6 +6,7 @@ export type TFormContext = {
   setToSubmitData: (value: React.SetStateAction<IFieldsData>) => void;
   ddl: any;
   postFormData: (data: IFieldsData) => Promise<void>;
+  selectedStep: string,
   setSelectedStep: React.Dispatch<React.SetStateAction<string>>;
   requestId?: string;
   disableFields: boolean;

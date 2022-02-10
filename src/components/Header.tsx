@@ -17,21 +17,23 @@ const Header = () => {
           <p className="font-bold">
             Hola,{" "}
             <span className="text-primary">
-              {user} <small className="text-dark capitalize italic">({role})</small>
+              {user}{" "}
+              <small className="text-dark capitalize italic">({role})</small>
             </span>
           </p>
         </div>
       </div>
-      {window.location.pathname != "/" && (
-        <div className="w-full py-2">
-          <h2 className="text-sm font-bold">
-            <Link to="/" className="text-primary mr-3">
-              <i className="fa fa-arrow-left"></i> Inicio
-            </Link>
-            Gestión de Proveedores de Ti
-          </h2>
-        </div>
-      )}
+      {window.location.pathname != process.env.PUBLIC_URL &&
+        window.location.pathname != process.env.PUBLIC_URL + "/" && (
+          <div className="w-full py-2">
+            <h2 className="font-bold">
+              <Link to="/" className="text-primary mr-3">
+                <i className="fa fa-arrow-left"></i> Inicio
+              </Link>
+              Gestión de Proveedores de Ti
+            </h2>
+          </div>
+        )}
     </div>
   );
 };

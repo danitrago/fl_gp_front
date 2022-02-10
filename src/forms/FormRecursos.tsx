@@ -9,7 +9,7 @@ import {
   FieldsGrid,
   Input,
   Select,
-  TextArea
+  TextArea,
 } from "../ui-components/FormHooked";
 
 const FormRecursos = (props: THoCFormChildRepeat) => {
@@ -66,6 +66,7 @@ const FormRecursos = (props: THoCFormChildRepeat) => {
           label="Cantidad de consultores*"
           type="number"
           errors={errors}
+          min={1}
           {...register("crcf3_cantidad_consultores", {
             required: true,
           })}
@@ -74,6 +75,7 @@ const FormRecursos = (props: THoCFormChildRepeat) => {
           label="% Dedicación*"
           type="number"
           errors={errors}
+          min={1}
           {...register("crcf3_porcentaje_dedicacion", {
             required: true,
           })}
@@ -82,6 +84,7 @@ const FormRecursos = (props: THoCFormChildRepeat) => {
           label="Tiempo requerido (días calendario)*"
           type="number"
           errors={errors}
+          min={1}
           {...register("crcf3_tiempo_requerido", { required: true })}
         />
         <TextArea

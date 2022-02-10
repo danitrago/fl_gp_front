@@ -1,7 +1,7 @@
 import React, { useContext, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import UserContext from "../contexts/userContext";
-import { alertMsg } from "../helpers";
+import { alertMsg, formatDate } from "../helpers";
 import { getMyPendings } from "../services/requests";
 import Layout from "../templates/PageTemplate";
 import Spinner from "../ui-components/Spinner";
@@ -18,33 +18,37 @@ const MyPendings = () => {
     return requestsList.map((item: any) => {
       return {
         ...item,
-        crcf3_id_tipo_solicitud: (
+        open: (
           <Link
             to={`/request/${item.crcf3_fl_gp_008_solicitudid}`}
+            title="Ver solicitud"
             // target="_blank"
             className="text-primary"
           >
-            {item.crcf3_id_tipo_solicitud}
+            <i className="fa fa-external-link-square-alt -mr-3"></i>
           </Link>
         ),
-        // crcf3_id_estado_solicitud:
-        //   Math.random() > 0.5 ? (
-        //     <span>
-        //       <i className="fa fa-check-circle text-green-500"></i>{" "}
-        //       <small>Completa</small>
-        //     </span>
-        //   ) : (
-        //     <span>
-        //       <i className="fa fa-exclamation-circle text-yellow-500"></i>{" "}
-        //       <small>Incompleta</small>
-        //     </span>
-        //   ),
+        open2: (
+          <Link
+            to={`/request/${item.crcf3_fl_gp_008_solicitudid}`}
+            title="Ver solicitud"
+            // target="_blank"
+            className="text-primary"
+          >
+            <i className="fa fa-external-link-square-alt -ml-3"></i>
+          </Link>
+        ),
+        crcf3_fecha_limite: formatDate(item.crcf3_fecha_limite),
       };
     });
   }, [requestsList]);
 
   const columns: any = React.useMemo(
     () => [
+      {
+        Header: "",
+        accessor: "open",
+      },
       {
         Header: "ID",
         accessor: "crcf3_id_solicitud",
@@ -57,10 +61,10 @@ const MyPendings = () => {
         Header: "Estado",
         accessor: "crcf3_id_estado_solicitud",
       },
-    //   {
-    //     Header: "Interventor",
-    //     accessor: "crcf3_id_interventor_contrato",
-    //   },
+      {
+        Header: "Interventor",
+        accessor: "crcf3_id_interventor_contrato",
+      },
       {
         Header: "Tipo Necesidad",
         accessor: "crcf3_id_tipo_necesidad",
@@ -80,6 +84,10 @@ const MyPendings = () => {
       {
         Header: "Complejidad",
         accessor: "crcf3_id_complejidad",
+      },
+      {
+        Header: "",
+        accessor: "open2",
       },
     ],
     []
@@ -107,7 +115,9 @@ const MyPendings = () => {
   return (
     <Layout>
       <Title variant="h1">Mis Pendientes</Title>
-      <p className="mb-5">Las siguientes son solicitudes que requieren tu atención.</p>
+      <p className="mb-5">
+        Las siguientes son solicitudes que requieren tu atención.
+      </p>
       {isLoading ? (
         <Spinner />
       ) : (
