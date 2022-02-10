@@ -5,6 +5,7 @@ import {
   TGroupRepeatingFields,
 } from "./types/form-fields";
 import swal from "sweetalert";
+import moment from "moment";
 
 export const fillFields: (
   group: TGroupRepeatingFields,
@@ -64,4 +65,8 @@ export const alertMsg = (
   type: "error" | "warning" | "success"
 ) => {
   swal(title, msg, type);
+};
+
+export const formatDate = (date: string) => {
+  return moment(new Date(date)).format("DD MMM YY");
 };
