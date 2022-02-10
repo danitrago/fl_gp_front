@@ -1,3 +1,4 @@
+import moment from "moment";
 import React, { useContext, useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import GoToEnd from "../components/GoToEnd";
@@ -62,6 +63,11 @@ const Request = () => {
       Promise.all([getDdlOptions(), getFormData(requestId)])
         .then(([ddl, requestData]) => {
           setDdl(ddl);
+          if (requestData?.caracterizacion?.crcf3_fecha_limite) {
+            requestData.caracterizacion.crcf3_fecha_limite = moment(
+              requestData.caracterizacion.crcf3_fecha_limite
+            ).format("YYYY-MM-DD");
+          }
           setToSubmitData(requestData);
         })
         .finally(() =>
