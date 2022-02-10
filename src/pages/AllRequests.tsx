@@ -1,5 +1,6 @@
 import React, { useContext, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import EmptyTable from "../components/EmptyTable";
 import ExportTableButton from "../components/ExportTableButton";
 import UserContext from "../contexts/userContext";
 import { alertMsg, formatDate, processDataToDownload } from "../helpers";
@@ -133,8 +134,14 @@ const AllRequests = () => {
         <Spinner />
       ) : (
         <div className="animate__animated animate__fadeIn">
-          <Table columns={columns} data={data} />
-          <ExportTableButton data={processDataToDownload(requestsList)} />
+          {requestsList.length > 0 ? (
+            <>
+              <Table columns={columns} data={data} />
+              <ExportTableButton data={processDataToDownload(requestsList)} />
+            </>
+          ) : (
+            <EmptyTable />
+          )}
         </div>
       )}
     </Layout>

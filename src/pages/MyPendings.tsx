@@ -1,5 +1,6 @@
 import React, { useContext, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import EmptyTable from "../components/EmptyTable";
 import UserContext from "../contexts/userContext";
 import { alertMsg, formatDate } from "../helpers";
 import { getMyPendings } from "../services/requests";
@@ -120,14 +121,21 @@ const MyPendings = () => {
   return (
     <Layout>
       <Title variant="h1">Mis Pendientes</Title>
-      <p className="mb-5">
-        Las siguientes son solicitudes que requieren tu atención.
-      </p>
+
       {isLoading ? (
         <Spinner />
       ) : (
         <div className="animate__animated animate__fadeIn">
-          <Table columns={columns} data={data} />
+          {requestsList.length > 0 ? (
+            <>
+              <p className="mb-5">
+                Las siguientes son solicitudes que requieren tu atención.
+              </p>
+              <Table columns={columns} data={data} />
+            </>
+          ) : (
+            <EmptyTable />
+          )}
         </div>
       )}
     </Layout>
