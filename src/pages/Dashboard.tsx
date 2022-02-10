@@ -44,10 +44,11 @@ const Dashboard = () => {
   return (
     <DashboardTemplate>
       <div className="animate__animated animate__fadeIn grid gap-4 grid-cols-1 md:grid-cols-2">
-        <div className="flex flex-col justify-center">
+        <div className="flex flex-col justify-center pr-10">
           <Title variant="h2">Bienvenido al,</Title>
           <Title variant="h1" color="dark">
-            Flujo de Gestión de Proveedores
+            Flujo de gestión solicitudes, recursos y/o servicios Contratos
+            Tecnología
           </Title>
           <p>
             Permite solicitar y administrar de forma centralizada las
