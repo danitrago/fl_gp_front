@@ -30,8 +30,15 @@ const Dashboard = () => {
     },
     {
       id: 4,
-      label: "Lista Interventores",
-      link: "https://comfamaadm.sharepoint.com/sites/AutoFLujos/Lists/FL_GL_004_Lista_Interventor/AllItems.aspx?viewpath=%2Fsites%2FAutoFLujos%2FLists%2FFL%5FGL%5F004%5FLista%5FInterventor%2FAllItems%2Easpx",
+      label: "Solicitudes",
+      link: "/requests-center",
+      icon: "list",
+      roles: ["Administrador"],
+    },
+    {
+      id: 5,
+      label: "Usuarios",
+      link: "https://comfamaadm.sharepoint.com/sites/FL_001_GestindeProveedoresTI/Lists/Usuarios/AllItems.aspx",
       icon: "users",
       roles: ["Administrador"],
       external: true,
