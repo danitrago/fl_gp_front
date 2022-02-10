@@ -70,3 +70,22 @@ export const alertMsg = (
 export const formatDate = (date: string) => {
   return moment(new Date(date)).format("DD MMM YY");
 };
+
+export const processDataToDownload = (data: any[]) => {
+  return data.map((item) => {
+    return {
+      ID: item.crcf3_id_solicitud,
+      Tipo: item.crcf3_id_tipo_solicitud,
+      Estado: item.crcf3_id_estado_solicitud,
+      Solicitante: item.crcf3_id_solicitante_lider,
+      Interventor: item.crcf3_id_interventor_contrato,
+      Proveedor: item.crcf3_id_proveedor,
+      "Tipo Necesidad": item.crcf3_id_tipo_necesidad,
+      "Ticket Servicio": item.crcf3_numero_ticket_servicio,
+      "Fecha Límite": item.crcf3_fecha_limite,
+      "Módulo/Funcionalidad": item.crcf3_modulo_funcionalidad,
+      Complejidad: item.crcf3_id_complejidad,
+      Creación: item.createdon,
+    };
+  });
+};

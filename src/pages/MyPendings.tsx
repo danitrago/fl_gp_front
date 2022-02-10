@@ -39,6 +39,7 @@ const MyPendings = () => {
           </Link>
         ),
         crcf3_fecha_limite: formatDate(item.crcf3_fecha_limite),
+        createdon: formatDate(item.createdon),
       };
     });
   }, [requestsList]);
@@ -84,6 +85,10 @@ const MyPendings = () => {
       {
         Header: "Complejidad",
         accessor: "crcf3_id_complejidad",
+      },
+      {
+        Header: "Creación",
+        accessor: "createdon",
       },
       {
         Header: "",

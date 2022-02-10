@@ -1,7 +1,8 @@
 import React, { useContext, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import ExportTableButton from "../components/ExportTableButton";
 import UserContext from "../contexts/userContext";
-import { alertMsg, formatDate } from "../helpers";
+import { alertMsg, formatDate, processDataToDownload } from "../helpers";
 import { getAllRequests, getMyRequests } from "../services/requests";
 import Layout from "../templates/PageTemplate";
 import Spinner from "../ui-components/Spinner";
@@ -39,6 +40,7 @@ const AllRequests = () => {
           </Link>
         ),
         crcf3_fecha_limite: formatDate(item.crcf3_fecha_limite),
+        createdon: formatDate(item.createdon),
       };
     });
   }, [requestsList]);
@@ -85,13 +87,17 @@ const AllRequests = () => {
         Header: "Fecha Límite",
         accessor: "crcf3_fecha_limite",
       },
-    //   {
-    //     Header: "Módulo/Funcionalidad",
-    //     accessor: "crcf3_modulo_funcionalidad",
-    //   },
+      //   {
+      //     Header: "Módulo/Funcionalidad",
+      //     accessor: "crcf3_modulo_funcionalidad",
+      //   },
       {
         Header: "Complejidad",
         accessor: "crcf3_id_complejidad",
+      },
+      {
+        Header: "Creación",
+        accessor: "createdon",
       },
       {
         Header: "",
@@ -128,6 +134,7 @@ const AllRequests = () => {
       ) : (
         <div className="animate__animated animate__fadeIn">
           <Table columns={columns} data={data} />
+          <ExportTableButton data={processDataToDownload(requestsList)} />
         </div>
       )}
     </Layout>
