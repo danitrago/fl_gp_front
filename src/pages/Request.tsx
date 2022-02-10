@@ -1,5 +1,7 @@
+import moment from "moment";
 import React, { useContext, useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
+import GoToEnd from "../components/GoToEnd";
 import RenderActions from "../components/RenderActions";
 import UnnecessaryStep from "../components/UnnecessaryStep";
 import FormContext from "../contexts/formContext";
@@ -32,13 +34,14 @@ const Request = () => {
 
   let { requestId } = useParams();
 
-  let disableFields =
-    (toSubmitData.caracterizacion?.crcf3_id_estado_solicitud === 0 &&
-      role === "Líder") ||
-    (toSubmitData.caracterizacion?.crcf3_id_estado_solicitud === 4 &&
-      role === "Líder")
-      ? false
-      : true;
+  let disableFields = true;
+  if (
+    (toSubmitData.caracterizacion?.crcf3_id_estado_solicitud === 0 ||
+      toSubmitData.caracterizacion?.crcf3_id_estado_solicitud === 4) &&
+    role === "Líder"
+  ) {
+    disableFields = false;
+  }
 
   const renderState = (statusId: number) => {
     if (statusId) {
@@ -59,6 +62,11 @@ const Request = () => {
       Promise.all([getDdlOptions(), getFormData(requestId)])
         .then(([ddl, requestData]) => {
           setDdl(ddl);
+          if (requestData?.caracterizacion?.crcf3_fecha_limite) {
+            requestData.caracterizacion.crcf3_fecha_limite = moment(
+              requestData.caracterizacion.crcf3_fecha_limite
+            ).format("YYYY-MM-DD");
+          }
           setToSubmitData(requestData);
         })
         .finally(() =>
@@ -118,6 +126,7 @@ const Request = () => {
           ddl,
           postFormData,
           setSelectedStep,
+          selectedStep,
           requestId,
           disableFields,
         }}
@@ -175,6 +184,7 @@ const Request = () => {
             </WizardContent>
           </Wizard>
         )}
+        <GoToEnd endStep="Enviar" />
       </FormContext.Provider>
     </Layout>
   );

@@ -60,6 +60,12 @@ export const updateFormData = (id: string, data: any) => {
     );
 };
 
+export const getAllRequests = (userId: number) => {
+  return axios
+    .get(`${getApiUrl()}/api/solicitudes/admin/${userId}`)
+    .then((res) => res.data);
+};
+
 export const getMyRequests = (userId: number) => {
   return axios
     .get(`${getApiUrl()}/api/solicitudes/owner/${userId}`)

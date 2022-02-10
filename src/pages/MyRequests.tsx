@@ -1,7 +1,9 @@
 import React, { useContext, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import EmptyTable from "../components/EmptyTable";
+import ExportTableButton from "../components/ExportTableButton";
 import UserContext from "../contexts/userContext";
-import { alertMsg } from "../helpers";
+import { alertMsg, formatDate, processDataToDownload } from "../helpers";
 import { getMyRequests } from "../services/requests";
 import Layout from "../templates/PageTemplate";
 import Spinner from "../ui-components/Spinner";
@@ -18,33 +20,38 @@ const MyRequests = () => {
     return requestsList.map((item: any) => {
       return {
         ...item,
-        crcf3_id_tipo_solicitud: (
+        open: (
           <Link
             to={`/request/${item.crcf3_fl_gp_008_solicitudid}`}
+            title="Ver solicitud"
             // target="_blank"
             className="text-primary"
           >
-            {item.crcf3_id_tipo_solicitud}
+            <i className="fa fa-external-link-square-alt -mr-3"></i>
           </Link>
         ),
-        // crcf3_id_estado_solicitud:
-        //   Math.random() > 0.5 ? (
-        //     <span>
-        //       <i className="fa fa-check-circle text-green-500"></i>{" "}
-        //       <small>Completa</small>
-        //     </span>
-        //   ) : (
-        //     <span>
-        //       <i className="fa fa-exclamation-circle text-yellow-500"></i>{" "}
-        //       <small>Incompleta</small>
-        //     </span>
-        //   ),
+        open2: (
+          <Link
+            to={`/request/${item.crcf3_fl_gp_008_solicitudid}`}
+            title="Ver solicitud"
+            // target="_blank"
+            className="text-primary"
+          >
+            <i className="fa fa-external-link-square-alt -ml-3"></i>
+          </Link>
+        ),
+        crcf3_fecha_limite: formatDate(item.crcf3_fecha_limite),
+        createdon: formatDate(item.createdon),
       };
     });
   }, [requestsList]);
 
   const columns: any = React.useMemo(
     () => [
+      {
+        Header: "",
+        accessor: "open",
+      },
       {
         Header: "ID",
         accessor: "crcf3_id_solicitud",
@@ -81,6 +88,14 @@ const MyRequests = () => {
         Header: "Complejidad",
         accessor: "crcf3_id_complejidad",
       },
+      {
+        Header: "Creación",
+        accessor: "createdon",
+      },
+      {
+        Header: "",
+        accessor: "open2",
+      },
     ],
     []
   );
@@ -111,7 +126,14 @@ const MyRequests = () => {
         <Spinner />
       ) : (
         <div className="animate__animated animate__fadeIn">
-          <Table columns={columns} data={data} />
+          {requestsList.length > 0 ? (
+            <>
+              <Table columns={columns} data={data} />
+              <ExportTableButton data={processDataToDownload(requestsList)} />
+            </>
+          ) : (
+            <EmptyTable />
+          )}
         </div>
       )}
     </Layout>

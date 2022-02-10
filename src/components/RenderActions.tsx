@@ -14,7 +14,7 @@ const RenderActions = () => {
     Líder: {
       selector: "crcf3_id_solicitante_lider",
       // statusOn: [0, 4],
-      statusOn: [0, 2, 4, 6, 8],
+      statusOn: [0, 1, 2, 4, 6, 8],
       component: <ActionsLeader prev="Historias" />,
     },
     Interventor: {
@@ -25,6 +25,10 @@ const RenderActions = () => {
   };
 
   const showOptions = () => {
+    if (role === "Administrador") {
+      return <NoActionsAvaiable prev="Historias" />; // print NO actions avaiable
+    }
+
     const selector: string = rolesInteractions[role].selector;
     const idParticipant: any = toSubmitData.caracterizacion?.[selector];
     const isRequestInStatus: boolean = rolesInteractions[

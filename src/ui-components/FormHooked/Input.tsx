@@ -11,7 +11,7 @@ interface IInputProps {
 const Input = React.forwardRef<
   HTMLInputElement,
   IInputProps & React.InputHTMLAttributes<HTMLInputElement>
->(({ onChange, onBlur, name, label, errors, placeholder, type, cols }, ref) => {
+>(({ onChange, onBlur, name, label, errors, placeholder, type, cols, min }, ref) => {
   const classing = classNames(
     "border bg-gray-100 rounded mb-1 p-2 h-11",
     {
@@ -32,6 +32,7 @@ const Input = React.forwardRef<
           onBlur={onBlur}
           placeholder={placeholder}
           type={type}
+          min={min}
         />
         {errors?.[name] && (
           <span className="text-red-400 text-xs">Este campo es requerido</span>
