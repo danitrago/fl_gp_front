@@ -40,7 +40,7 @@ const MyPendings = () => {
           </Link>
         ),
         crcf3_fecha_limite: formatDate(item.crcf3_fecha_limite),
-        createdon: formatDate(item.createdon),
+        createdon: formatDate(item.createdon)
       };
     });
   }, [requestsList]);
@@ -49,52 +49,52 @@ const MyPendings = () => {
     () => [
       {
         Header: "",
-        accessor: "open",
+        accessor: "open"
       },
       {
         Header: "ID",
-        accessor: "crcf3_id_solicitud",
+        accessor: "crcf3_id_solicitud"
       },
       {
         Header: "Tipo",
-        accessor: "crcf3_id_tipo_solicitud",
+        accessor: "crcf3_id_tipo_solicitud"
       },
       {
         Header: "Estado",
-        accessor: "crcf3_id_estado_solicitud",
+        accessor: "crcf3_id_estado_solicitud"
       },
       {
         Header: "Interventor",
-        accessor: "crcf3_id_interventor_contrato",
+        accessor: "crcf3_id_interventor_contrato"
       },
       {
         Header: "Tipo Necesidad",
-        accessor: "crcf3_id_tipo_necesidad",
+        accessor: "crcf3_id_tipo_necesidad"
       },
       {
         Header: "Ticket Servicio",
-        accessor: "crcf3_numero_ticket_servicio",
+        accessor: "crcf3_numero_ticket_servicio"
       },
       {
         Header: "Fecha Límite",
-        accessor: "crcf3_fecha_limite",
+        accessor: "crcf3_fecha_limite"
       },
       {
         Header: "Módulo/Funcionalidad",
-        accessor: "crcf3_modulo_funcionalidad",
+        accessor: "crcf3_modulo_funcionalidad"
       },
       {
         Header: "Complejidad",
-        accessor: "crcf3_id_complejidad",
+        accessor: "crcf3_id_complejidad"
       },
       {
         Header: "Creación",
-        accessor: "createdon",
+        accessor: "createdon"
       },
       {
         Header: "",
-        accessor: "open2",
-      },
+        accessor: "open2"
+      }
     ],
     []
   );
@@ -104,11 +104,7 @@ const MyPendings = () => {
       .then(([myRequestsList]) => {
         setRequestsList(myRequestsList);
       })
-      .finally(() =>
-        setTimeout(() => {
-          setIsLoading(false);
-        }, 800)
-      )
+      .finally(() => setIsLoading(false))
       .catch(() => {
         alertMsg(
           "¡Ups!",

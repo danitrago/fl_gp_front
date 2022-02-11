@@ -27,11 +27,7 @@ function App() {
             .then(([userContractData]) => {
               setUserContract(userContractData);
             })
-            .finally(() =>
-              setTimeout(() => {
-                setIsLoading(false);
-              }, 1000)
-            );
+            .finally(() => setIsLoading(false));
         }
       })
       .catch((err) => {

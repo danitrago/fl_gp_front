@@ -25,8 +25,8 @@ const Request = () => {
   const [toSubmitData, setToSubmitData] = useState<IFieldsData>({
     caracterizacion: {
       crcf3_id_estado_solicitud: 0,
-      crcf3_id_solicitante_lider: userId,
-    },
+      crcf3_id_solicitante_lider: userId
+    }
   } as IFieldsData);
   const [ddl, setDdl] = useState<any>({});
   const [isLoading, setIsLoading] = useState<boolean>(true);
@@ -69,11 +69,7 @@ const Request = () => {
           }
           setToSubmitData(requestData);
         })
-        .finally(() =>
-          setTimeout(() => {
-            setIsLoading(false);
-          }, 800)
-        )
+        .finally(() => setIsLoading(false))
         .catch(() => {
           alertMsg(
             "¡Ups!",
@@ -124,7 +120,7 @@ const Request = () => {
           setSelectedStep,
           selectedStep,
           requestId,
-          disableFields,
+          disableFields
         }}
       >
         {isLoading ? (
