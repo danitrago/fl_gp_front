@@ -8,9 +8,7 @@ let headers = {
 
 export const getUserContract = (token: string) => {
   return axios
-    .post(`${getApiUrl()}/api/list/verifyJwt`, {
-      token: token,
-    }, {
+    .post(`${getApiUrl()}/api/list/verifyJwt`, {}, {
       headers: headers,
     })
     .then((res) => res.data)
