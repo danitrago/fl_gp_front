@@ -1,15 +1,10 @@
 import axios from "axios";
-import { getApiUrl } from "../helpers";
-
-let headers = {
-  Authorization: `Bearer ${window.sessionStorage.getItem("user-jwt")}`,
-  "Content-Type": "application/json",
-};
+import { getApiUrl, headersAuth } from "../helpers";
 
 export const getUserContract = (token: string) => {
   return axios
-    .post(`${getApiUrl()}/api/list/verifyJwt`, {}, {
-      headers: headers,
+    .post(`${getApiUrl()}/api/list/verifyJwt`, {'data':'data'}, {
+      headers: headersAuth,
     })
     .then((res) => res.data)
     .catch((err) => {

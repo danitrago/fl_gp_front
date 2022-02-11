@@ -89,3 +89,9 @@ export const processDataToDownload = (data: any[]) => {
     };
   });
 };
+
+
+export let headersAuth = {
+  'Authorization': `Bearer ${window.sessionStorage.getItem("user-jwt")}`,
+  "Content-Type": "application/json",
+};

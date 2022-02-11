@@ -1,19 +1,14 @@
 import axios from "axios";
-import { alertMsg, getApiUrl } from "../helpers";
+import { alertMsg, getApiUrl, headersAuth } from "../helpers";
 import { IFieldsData } from "../types/form-fields";
 // const ddlFile = require("../assets/ddl.json");
 // const solicitudDemo = require("../assets/solicitud.json");
 // const fetchedData = require("../assets/solicitudes-data.json");
 
-let headers = {
-  Authorization: `Bearer ${window.sessionStorage.getItem("user-jwt")}`,
-  "Content-Type": "application/json",
-};
-
 export const getDdlOptions = () => {
   return axios
     .get(`${getApiUrl()}/api/list/ddl`, {
-      headers: headers,
+      headers: headersAuth,
     })
     .then((res) => res.data);
 };
@@ -21,7 +16,7 @@ export const getDdlOptions = () => {
 export const getFormData = (id: string) => {
   return axios
     .get(`${getApiUrl()}/api/solicitudes/${id}`, {
-      headers: headers,
+      headers: headersAuth,
     })
     .then((res) => res.data);
 };
@@ -29,7 +24,7 @@ export const getFormData = (id: string) => {
 export const postFormData = (data: IFieldsData) => {
   return axios
     .post(`${getApiUrl()}/api/solicitudes`, data, {
-      headers: headers,
+      headers: headersAuth,
     })
     .then(() => {
       alertMsg("¡Hecho!", "Tu solicitud ha sido creada.", "success");
@@ -49,7 +44,7 @@ export const postFormData = (data: IFieldsData) => {
 export const updateFormData = (id: string, data: any) => {
   return axios
     .patch(`${getApiUrl()}/api/solicitudes/${id}`, data, {
-      headers: headers,
+      headers: headersAuth,
     })
     .then(() => {
       alertMsg("¡Hecho!", "La solicitud ha sido actualizada.", "success");
@@ -69,7 +64,7 @@ export const updateFormData = (id: string, data: any) => {
 export const getAllRequests = (userId: number) => {
   return axios
     .get(`${getApiUrl()}/api/solicitudes/admin/${userId}`, {
-      headers: headers,
+      headers: headersAuth,
     })
     .then((res) => res.data);
 };
@@ -77,7 +72,7 @@ export const getAllRequests = (userId: number) => {
 export const getMyRequests = (userId: number) => {
   return axios
     .get(`${getApiUrl()}/api/solicitudes/owner/${userId}`, {
-      headers: headers,
+      headers: headersAuth,
     })
     .then((res) => res.data);
 };
@@ -85,7 +80,7 @@ export const getMyRequests = (userId: number) => {
 export const getMyPendings = (userId: number) => {
   return axios
     .get(`${getApiUrl()}/api/solicitudes-pendings`, {
-      headers: headers,
+      headers: headersAuth,
     })
     .then((res) => res.data);
 };
