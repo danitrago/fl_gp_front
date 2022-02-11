@@ -5,26 +5,32 @@ import { IFieldsData } from "../types/form-fields";
 // const solicitudDemo = require("../assets/solicitud.json");
 // const fetchedData = require("../assets/solicitudes-data.json");
 
+let headers = {
+  Authorization: `Bearer ${window.sessionStorage.getItem("user-jwt")}`,
+  "Content-Type": "application/json",
+};
+
 export const getDdlOptions = () => {
-  return axios.get(`${getApiUrl()}/api/list/ddl`).then((res) => res.data);
+  return axios
+    .get(`${getApiUrl()}/api/list/ddl`, {
+      headers: headers,
+    })
+    .then((res) => res.data);
 };
 
 export const getFormData = (id: string) => {
   return axios
-    .get(`${getApiUrl()}/api/solicitudes/${id}`)
+    .get(`${getApiUrl()}/api/solicitudes/${id}`, {
+      headers: headers,
+    })
     .then((res) => res.data);
-  // .catch((err) => {
-  //   // alert("No tienes permisos para ver esta información.");
-  //   // window.location.href = "/FlujoGestionTI";
-  //   return solicitudDemo;
-  // });
 };
 
 export const postFormData = (data: IFieldsData) => {
-  // console.log("Posting...");
-  // console.log(data);
   return axios
-    .post(`${getApiUrl()}/api/solicitudes`, data)
+    .post(`${getApiUrl()}/api/solicitudes`, data, {
+      headers: headers,
+    })
     .then(() => {
       alertMsg("¡Hecho!", "Tu solicitud ha sido creada.", "success");
       setTimeout(() => {
@@ -41,10 +47,10 @@ export const postFormData = (data: IFieldsData) => {
 };
 
 export const updateFormData = (id: string, data: any) => {
-  // console.log("Patching...");
-  // console.log(data);
   return axios
-    .patch(`${getApiUrl()}/api/solicitudes/${id}`, data)
+    .patch(`${getApiUrl()}/api/solicitudes/${id}`, data, {
+      headers: headers,
+    })
     .then(() => {
       alertMsg("¡Hecho!", "La solicitud ha sido actualizada.", "success");
       setTimeout(() => {
@@ -62,23 +68,24 @@ export const updateFormData = (id: string, data: any) => {
 
 export const getAllRequests = (userId: number) => {
   return axios
-    .get(`${getApiUrl()}/api/solicitudes/admin/${userId}`)
+    .get(`${getApiUrl()}/api/solicitudes/admin/${userId}`, {
+      headers: headers,
+    })
     .then((res) => res.data);
 };
 
 export const getMyRequests = (userId: number) => {
   return axios
-    .get(`${getApiUrl()}/api/solicitudes/owner/${userId}`)
+    .get(`${getApiUrl()}/api/solicitudes/owner/${userId}`, {
+      headers: headers,
+    })
     .then((res) => res.data);
 };
 
 export const getMyPendings = (userId: number) => {
   return axios
     .get(`${getApiUrl()}/api/solicitudes-pendings`, {
-      headers: {
-        authorization:
-          `Bearer ${window.sessionStorage.getItem("user-jwt")?.toString()}` || ''
-      },
+      headers: headers,
     })
     .then((res) => res.data);
 };

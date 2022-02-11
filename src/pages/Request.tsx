@@ -86,11 +86,7 @@ const Request = () => {
         .then(([ddl]) => {
           setDdl(ddl);
         })
-        .finally(() =>
-          setTimeout(() => {
-            setIsLoading(false);
-          }, 800)
-        )
+        .finally(() => setIsLoading(false))
         .catch(() => {
           alertMsg(
             "¡Ups!",
