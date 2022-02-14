@@ -67,7 +67,7 @@ const FormCaracterizacion = (props: THoCFormChild) => {
           })}
         />
         <Input
-          label="Fecha límite de respuesta*"
+          label="Fecha límite de respuesta* (DD/MM/AAAA)"
           type="date"
           errors={errors}
           {...register("crcf3_fecha_limite", { required: true })}

@@ -82,10 +82,10 @@ export const processDataToDownload = (data: any[]) => {
       Proveedor: item.crcf3_id_proveedor,
       "Tipo Necesidad": item.crcf3_id_tipo_necesidad,
       "Ticket Servicio": item.crcf3_numero_ticket_servicio,
-      "Fecha Límite": item.crcf3_fecha_limite,
+      "Fecha Límite": formatDate(item.crcf3_fecha_limite),
       "Módulo/Funcionalidad": item.crcf3_modulo_funcionalidad,
       Complejidad: item.crcf3_id_complejidad,
-      Creación: item.createdon
+      Creación: formatDate(item.createdon)
     };
   });
 };
