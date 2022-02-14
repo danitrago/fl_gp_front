@@ -2,7 +2,7 @@ import { FieldValues, UseFormSetValue } from "react-hook-form";
 import {
   IFieldsData,
   TFormFields,
-  TGroupRepeatingFields,
+  TGroupRepeatingFields
 } from "./types/form-fields";
 import swal from "sweetalert";
 import moment from "moment";
@@ -53,7 +53,7 @@ export const processData = (original: IFieldsData) => {
     ...original.caracterizacion,
     crcf3_solicitud_recursos: original.recursos,
     crcf3_solicitud_requisitos: original.requerimientos,
-    crcf3_solicitud_hus: original.historias,
+    crcf3_solicitud_hus: original.historias
   };
 
   return process;
@@ -85,13 +85,14 @@ export const processDataToDownload = (data: any[]) => {
       "Fecha Límite": item.crcf3_fecha_limite,
       "Módulo/Funcionalidad": item.crcf3_modulo_funcionalidad,
       Complejidad: item.crcf3_id_complejidad,
-      Creación: item.createdon,
+      Creación: item.createdon
     };
   });
 };
 
-
-export let headersAuth = {
-  'Authorization': `Bearer ${window.sessionStorage.getItem("user-jwt")}`,
-  "Content-Type": "application/json",
+export let headersAuth = () => {
+  return {
+    Authorization: `Bearer ${window.sessionStorage.getItem("user-jwt")}`,
+    "Content-Type": "application/json"
+  };
 };

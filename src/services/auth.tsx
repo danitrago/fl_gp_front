@@ -4,7 +4,7 @@ import { getApiUrl, headersAuth } from "../helpers";
 export const getUserContract = (token: string) => {
   return axios
     .post(`${getApiUrl()}/api/list/verifyJwt`, {'data':'data'}, {
-      headers: headersAuth,
+      headers: headersAuth(),
     })
     .then((res) => res.data)
     .catch((err) => {

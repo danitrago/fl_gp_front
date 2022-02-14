@@ -8,7 +8,7 @@ import { IFieldsData } from "../types/form-fields";
 export const getDdlOptions = () => {
   return axios
     .get(`${getApiUrl()}/api/list/ddl`, {
-      headers: headersAuth,
+      headers: headersAuth(),
     })
     .then((res) => res.data);
 };
@@ -16,7 +16,7 @@ export const getDdlOptions = () => {
 export const getFormData = (id: string) => {
   return axios
     .get(`${getApiUrl()}/api/solicitudes/${id}`, {
-      headers: headersAuth,
+      headers: headersAuth(),
     })
     .then((res) => res.data);
 };
@@ -24,7 +24,7 @@ export const getFormData = (id: string) => {
 export const postFormData = (data: IFieldsData) => {
   return axios
     .post(`${getApiUrl()}/api/solicitudes`, data, {
-      headers: headersAuth,
+      headers: headersAuth(),
     })
     .then(() => {
       alertMsg("¡Hecho!", "Tu solicitud ha sido creada.", "success");
@@ -44,7 +44,7 @@ export const postFormData = (data: IFieldsData) => {
 export const updateFormData = (id: string, data: any) => {
   return axios
     .patch(`${getApiUrl()}/api/solicitudes/${id}`, data, {
-      headers: headersAuth,
+      headers: headersAuth(),
     })
     .then(() => {
       alertMsg("¡Hecho!", "La solicitud ha sido actualizada.", "success");
@@ -64,7 +64,7 @@ export const updateFormData = (id: string, data: any) => {
 export const getAllRequests = (userId: number) => {
   return axios
     .get(`${getApiUrl()}/api/solicitudes/admin/${userId}`, {
-      headers: headersAuth,
+      headers: headersAuth(),
     })
     .then((res) => res.data);
 };
@@ -72,7 +72,7 @@ export const getAllRequests = (userId: number) => {
 export const getMyRequests = (userId: number) => {
   return axios
     .get(`${getApiUrl()}/api/solicitudes/owner/${userId}`, {
-      headers: headersAuth,
+      headers: headersAuth(),
     })
     .then((res) => res.data);
 };
@@ -80,7 +80,7 @@ export const getMyRequests = (userId: number) => {
 export const getMyPendings = (userId: number) => {
   return axios
     .get(`${getApiUrl()}/api/solicitudes-pendings`, {
-      headers: headersAuth,
+      headers: headersAuth(),
     })
     .then((res) => res.data);
 };
